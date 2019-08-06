@@ -1,8 +1,9 @@
 import json
 from pathlib import Path
 import os
+from normilize import normilize_line
 
-def aeneas_json2kaldi_data(aeneas_json_path, audio_path, out_data_dir, rewrite=False):
+def aeneas_json2kaldi_data(aeneas_json_path, audio_path, out_data_dir, normilize=True, rewrite=False):
     """
     Generates a kaldi data dir from the aeneas json.
     :param aeneas_json_path: a path to a aeneas json
@@ -33,12 +34,16 @@ def aeneas_json2kaldi_data(aeneas_json_path, audio_path, out_data_dir, rewrite=F
         utt_end = float(f['end'])
         utt_spk = audio_id
         utt_id = f'{audio_id}-{str(int(utt_start * 100)).zfill(7)}-{str(int(utt_end * 100)).zfill(7)}'
+        if normilize:
+            utt_text = normilize_line(f['lines'][0])
+        else:
+            utt_text = f['lines'][0]
 
         utts[utt_id] = {'id': utt_id,
                         'start': round(utt_start, 2),
                         'end': round(utt_end, 2),
                         'speaker': utt_spk,
-                        'text': f['lines'][0]}
+                        'text': utt_text}
 
     # set filenames
     wav_scp = out_data_dir / 'wav.scp'
