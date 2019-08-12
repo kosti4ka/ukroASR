@@ -68,7 +68,7 @@ def aeneas_json2kaldi_data(aeneas_json_path, audio_path, out_data_dir, normilize
 
 
 if __name__ == '__main__':
-    aeneas_json2kaldi_data('/Users/mac/Datasets/ukrainian/kateryna/kateryna_tuned.json',
-                           '/Users/mac/Datasets/ukrainian/kateryna/kateryna.wav',
-                           '/Users/mac/Datasets/ukrainian/kateryna/data',
+    aeneas_json2kaldi_data('/Users/mac/Datasets/ukrainian/prychynna/prychynna_tuned.json',
+                           '/Users/mac/Datasets/ukrainian/prychynna/prychynna.wav',
+                           '/Users/mac/Datasets/ukrainian/prychynna/data',
                            rewrite=True)
