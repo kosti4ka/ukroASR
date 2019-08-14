@@ -10,7 +10,7 @@ stress = ['́']
 consonant_modifier = ['`', '‛', ':']
 
 vovel_modifier = ['е', 'и', 'у']
-vovel = ['е', 'и', 'о']
+vovel = ['е', 'и', 'о', 'і']
 
 consonant = ['д']
 consonant_pair = ['з', 'ж']
@@ -44,7 +44,7 @@ def goroh_g2p(word):
         if not results:
             results = soup.findAll('h2')
     except:
-        print('Nothing found for................')
+        pass
 
     prons = []
     for r in results:
@@ -68,6 +68,10 @@ def goroh_g2p(word):
                 current_ph = [ph]
         current_p_split.append(''.join(current_ph))
         prons.append(current_p_split)
+
+    prons = [' '.join(p) for p in prons]
+    prons = list(set(prons))
+    prons = [p.split() for p in prons]
 
     return prons
 
