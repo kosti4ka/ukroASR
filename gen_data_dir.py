@@ -62,14 +62,14 @@ def aeneas_json2kaldi_data(aeneas_json_paths, audio_paths, out_data_dir, normili
 
     with open(wav_scp, 'w', encoding='utf-8') as wav_f:
         for audio_id in audios:
-            wav_f.write(f'{audio_id} {audios[audio_id]}')
+            wav_f.write(f'{audio_id} {audios[audio_id]}\n')
 
     with open(utt2spk, 'w', encoding='utf-8') as utt2spk_f, \
             open(segments, 'w', encoding='utf-8') as segments_f, \
             open(text, 'w', encoding='utf-8') as text_f:
         for utt_id in utts:
             utt2spk_f.write(f'{utt_id} {utts[utt_id]["speaker"]}\n')
-            segments_f.write(f'{utt_id} {audio_id} {utts[utt_id]["start"]} {utts[utt_id]["end"]}\n')
+            segments_f.write(f'{utt_id} {utts[utt_id]["audio_id"]} {utts[utt_id]["start"]} {utts[utt_id]["end"]}\n')
             text_f.write(f'{utt_id} {utts[utt_id]["text"]}\n')
 
 
@@ -118,4 +118,4 @@ if __name__ == '__main__':
                            rewrite=True)
     # text_with_unk('/Users/mac/Datasets/ukrainian/glibov/data/text',
     #               '/Users/mac/Datasets/ukrainian/lang/lexicon.txt',
-    #               '/Users/mac/Datasets/ukrainian/glibov/data/text_unk')
+    #               '/Users/mac/Datasets/ukrainian/glibov/data/text')
