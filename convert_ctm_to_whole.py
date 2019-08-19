@@ -16,11 +16,11 @@ def convert_ctm_to_whole(in_ctm_path, segments_path, out_ctm_path):
     out_ctm_path = Path(out_ctm_path)
 
     # read segments file
-    segments = [x.split() for x in open(segments_path, 'r').read().split('\n') if x]
+    segments = [x.split() for x in open(segments_path, 'r', encoding='utf-8').read().split('\n') if x]
     segments = {s[0]:{'audio_id':s[1], 'start':float(s[2]), 'end':float(s[3])} for s in segments}
 
     # read ctm file
-    in_ctm = [x.split() for x in open(in_ctm_path, 'r').read().split('\n') if x]
+    in_ctm = [x.split() for x in open(in_ctm_path, 'r', encoding='utf-8').read().split('\n') if x]
     in_ctm = [{'segment_id':s[0], 'channel':s[1], 'start': float(s[2]), 'duration':float(s[3]), 'phone':s[4]} for s in in_ctm]
 
     out_ctm = []
@@ -34,6 +34,6 @@ def convert_ctm_to_whole(in_ctm_path, segments_path, out_ctm_path):
             f.write(f'{c["audio_id"]} {c["channel"]} {c["start"]} {c["duration"]} {c["phone"]}\n')
 
 if __name__ == '__main__':
-    convert_ctm_to_whole('/home/ubuntu/kostya/zapovit_small/exp/mono_ali/1.ctm',
-                         '/home/ubuntu/kostya/zapovit_small/data/segments',
-                         '/home/ubuntu/kostya/zapovit_small/exp/mono_ali/1.whole.ctm')
+    convert_ctm_to_whole('/home/ubuntu/kostya/exp/mono_dev_ali/1.ctm',
+                         '/home/ubuntu/kostya/data_dev/segments',
+                         '/home/ubuntu/kostya/exp/mono_dev_ali/1.whole.ctm')
