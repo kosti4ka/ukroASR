@@ -14,7 +14,7 @@ def ctm_to_labels(in_ctm_path, a_labels_path):
     a_labels_path = Path(a_labels_path)
 
     # read ctm file
-    in_ctm = [x.split() for x in open(in_ctm_path, 'r').read().split('\n') if x]
+    in_ctm = [x.split() for x in open(in_ctm_path, 'r', encoding='utf-8').read().split('\n') if x]
     in_ctm = [{'audio_id': s[0], 'channel': s[1], 'start': float(s[2]), 'duration': float(s[3]), 'phone': s[4]} for s
               in in_ctm]
 
@@ -29,5 +29,5 @@ def ctm_to_labels(in_ctm_path, a_labels_path):
 
 
 if __name__ == '__main__':
-    ctm_to_labels('/home/ubuntu/kostya/zapovit_small/exp/mono_ali/1.whole.ctm',
-                  '/home/ubuntu/kostya/zapovit_small/exp/mono_ali/labels')
+    ctm_to_labels('/home/ubuntu/kostya/exp/mono_dev_ali/1.whole.ctm',
+                  '/home/ubuntu/kostya/exp/mono_dev_ali/labels')
