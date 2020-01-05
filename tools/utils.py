@@ -6,4 +6,4 @@ def get_list(file_path, encoding='utf-8'):
     :return: list from the file
     """
 
-    return [x.split() for x in open(file_path, 'r', encoding=encoding).read().split('\n') if x]
+    return [x for x in open(file_path, 'r', encoding=encoding).read().split('\n') if x]
