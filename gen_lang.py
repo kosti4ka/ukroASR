@@ -99,7 +99,7 @@ def gen_lexicon(words_path, lexicon_path, additiona_lexicons=None):
 
     manager = mp.Manager()
     q = manager.Queue()
-    pool = mp.Pool(4)
+    pool = mp.Pool(16)
 
     # put listener to work first
     watcher = pool.apply_async(listener, (q, lexicon_path))
@@ -182,13 +182,32 @@ def clean_lexicons(in_lexicon_path, out_lexicon_path):
                 f.write(f'{word} {pron}\n')
 
 
+def converto_to_ARPAbet(lexicon_path, out_lexicon_path, arpabet_path):
+    lexicon = defaultdict(list)
+    [lexicon[x.split()[0]].append(x.split()[1:]) for x in open(lexicon_path, 'r', encoding='utf-8').read().split('\n') if x]
+    to_arpabet = {x.split()[0]: x.split()[1] for x in open(arpabet_path, 'r', encoding='utf-8').read().split('\n') if x}
+
+    new_lexicon = defaultdict(list)
+    for graphemas in lexicon:
+        for phonemas in lexicon[graphemas]:
+            new_lexicon[graphemas].append([to_arpabet[p] for p in phonemas])
+
+    with open(out_lexicon_path, 'w', encoding='utf-8') as f:
+        for word in sorted(new_lexicon.keys()):
+            for pron in new_lexicon[word]:
+                f.write(f"{word} {' '.join(pron)}\n")
+
+
 if __name__ == '__main__':
+    # converto_to_ARPAbet('/Users/mac/Datasets/ukrainian/lang.org.ua/lexicon_fixed.txt',
+    #                     '/Users/mac/Datasets/ukrainian/lang.org.ua/lexicon_fixed_ARPAbet.txt',
+    #                     '/Users/mac/Datasets/ukrainian/lang.org.ua/phones_fixed_ARPAbet.txt')
     # lexicon2phonelist('/Users/mac/Datasets/ukrainian/lang/lexicon.txt',
     #                   '/Users/mac/Datasets/ukrainian/lang/nonsilence_phones_new.txt')
-    lexicon2phonelist('/Users/mac/Datasets/ukrainian/lang.org.ua/lexicon.txt',
-                      '/Users/mac/Datasets/ukrainian/lang.org.ua/phones')
-    # lexicon2letterlist('/Users/mac/Datasets/ukrainian/lang.org.ua/lexicon.txt',
-    #                   '/Users/mac/Datasets/ukrainian/lang.org.ua/letters')
+    # lexicon2phonelist('/Users/mac/Datasets/ukrainian/lang.org.ua/lexicon_fixed_ARPAbet.txt',
+    #                   '/Users/mac/Datasets/ukrainian/lang.org.ua/phones')
+    lexicon2letterlist('/Users/mac/Datasets/ukrainian/lang.org.ua/lexicon_fixed_ARPAbet.txt',
+                      '/Users/mac/Datasets/ukrainian/lang.org.ua/letters')
     # words('/Users/mac/Datasets/ukrainian/texts/text_plane',
     #       '/Users/mac/Datasets/ukrainian/texts/lang')
     # words('/Users/mac/Datasets/ukrainian/lang.org.ua/fiction/fiction.tokenized.shuffled.txt',
@@ -197,14 +216,9 @@ if __name__ == '__main__':
     #       '/Users/mac/Datasets/ukrainian/lang.org.ua/ubercorpus/dict', utt_id=False)
     # words('/Users/mac/Datasets/ukrainian/lang.org.ua/wiki/wiki_dump.tokenized.txt',
     #       '/Users/mac/Datasets/ukrainian/lang.org.ua/wiki/dict', utt_id=False)
-    # gen_lexicon('/Users/mac/Datasets/ukrainian/lang.org.ua/wiki/dict/words.txt',
-    #             '/Users/mac/Datasets/ukrainian/lang.org.ua/wiki/dict/lexicon.txt',
-    #             additiona_lexicons=['/Users/mac/Datasets/ukrainian/lang.org.ua/lexicon_raw.txt',
-    #                                 '/Users/mac/Datasets/ukrainian/lang.org.ua/wiki/dict/lexicon_1.txt',
-    #                                 '/Users/mac/Datasets/ukrainian/lang.org.ua/wiki/dict/lexicon_2.txt',
-    #                                 '/Users/mac/Datasets/ukrainian/lang.org.ua/wiki/dict/lexicon_3.txt',
-    #                                 '/Users/mac/Datasets/ukrainian/lang.org.ua/wiki/dict/lexicon_4.txt',
-    #                                 '/Users/mac/Datasets/ukrainian/lang.org.ua/wiki/dict/lexicon_5.txt'])
+    # gen_lexicon('/Users/mac/Datasets/ukrainian/lang.org.ua/fiction/dict/words.txt',
+    #             '/Users/mac/Datasets/ukrainian/lang.org.ua/fiction/dict/lexicon.txt',
+    #             additiona_lexicons=['/Users/mac/Datasets/ukrainian/lang.org.ua/lexicon_raw.txt'])
     # gen_lexicon('/home/ubuntu/kostya/words_small.txt',
     #             '/home/ubuntu/kostya/lexicon.txt',
     #             additiona_lexicons=['/home/ubuntu/kostya/lexicon-1.txt',
@@ -230,10 +244,6 @@ if __name__ == '__main__':
     #                   '/Users/mac/Datasets/ukrainian/lang.org.ua/wiki/dict/lexicon_3.txt'],
     #                   '/Users/mac/Datasets/ukrainian/lang.org.ua/wiki/dict/lexicon_combined.txt')
     # combine_lexicons(['/Users/mac/Datasets/ukrainian/lang.org.ua/lexicon_raw.txt',
-    #                                 '/Users/mac/Datasets/ukrainian/lang.org.ua/wiki/dict/lexicon_1.txt',
-    #                                 '/Users/mac/Datasets/ukrainian/lang.org.ua/wiki/dict/lexicon_2.txt',
-    #                                 '/Users/mac/Datasets/ukrainian/lang.org.ua/wiki/dict/lexicon_3.txt',
-    #                                 '/Users/mac/Datasets/ukrainian/lang.org.ua/wiki/dict/lexicon_4.txt',
-    #                                 '/Users/mac/Datasets/ukrainian/lang.org.ua/wiki/dict/lexicon_5.txt'],
+    #                   '/Users/mac/Datasets/ukrainian/lang.org.ua/fiction/dict/lexicon.txt'],
     #                   '/Users/mac/Datasets/ukrainian/lang.org.ua/lexicon_raw_new.txt')
-    # clean_lexicons('/Users/mac/Datasets/ukrainian/lang.org.ua/lexicon_raw_new.txt', '/Users/mac/Datasets/ukrainian/lang.org.ua/lexicon_new.txt')
+    # clean_lexicons('/Users/mac/Datasets/ukrainian/lang.org.ua/lexicon_raw.txt', '/Users/mac/Datasets/ukrainian/lang.org.ua/lexicon_new.txt')

@@ -29,5 +29,5 @@ def ctm_to_labels(in_ctm_path, a_labels_path):
 
 
 if __name__ == '__main__':
-    ctm_to_labels('/home/ubuntu/kostya/exp/mono_dev_ali/1.whole.ctm',
-                  '/home/ubuntu/kostya/exp/mono_dev_ali/labels')
+    ctm_to_labels('/Users/mac/Downloads/1.whole.ctm',
+                  '/Users/mac/Downloads/labels')

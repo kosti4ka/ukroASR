@@ -1,5 +1,6 @@
 from pathlib import Path
-
+from collections import defaultdict
+import operator
 
 def convert_ctm_to_whole(in_ctm_path, segments_path, out_ctm_path):
     """
@@ -33,7 +34,36 @@ def convert_ctm_to_whole(in_ctm_path, segments_path, out_ctm_path):
         for c in out_ctm:
             f.write(f'{c["audio_id"]} {c["channel"]} {c["start"]} {c["duration"]} {c["phone"]}\n')
 
+
+def ctm_to_word_stat(in_ctm_path):
+    """
+    Generate words statistic out of ctm file
+    :param in_ctm_path: a path to the initial ctm file
+    :return:
+    """
+
+    # setting paths
+    in_ctm_path = Path(in_ctm_path)
+
+    # read ctm file
+    in_ctm = [x.split() for x in open(in_ctm_path, 'r', encoding='utf-8').read().split('\n') if x]
+    in_ctm = [{'segment_id': s[0], 'channel': s[1], 'start': float(s[2]), 'duration': float(s[3]), 'word': s[4]} for s
+              in in_ctm]
+
+    words = defaultdict(int)
+
+    for c in in_ctm:
+        words[c["word"]] += 1
+
+    sorted_words = sorted(words.items(), key=operator.itemgetter(1), reverse=True)
+
+    print('ok')
+
 if __name__ == '__main__':
-    convert_ctm_to_whole('/home/ubuntu/kostya/exp/mono_dev_ali/1.ctm',
-                         '/home/ubuntu/kostya/data_dev/segments',
-                         '/home/ubuntu/kostya/exp/mono_dev_ali/1.whole.ctm')
+    # # convert_ctm_to_whole('/home/ubuntu/kostya/exp/mono_dev_ali/1.ctm',
+    # #                      '/home/ubuntu/kostya/data_dev/segments',
+    # #                      '/home/ubuntu/kostya/exp/mono_dev_ali/1.whole.ctm')
+    # ctm_to_word_stat('/home/ubuntu/kostya/kws_project/exp/tri3b_ali_dev_clean_2/ctm')
+    convert_ctm_to_whole('/Users/mac/Downloads/1.ctm',
+                         '/Users/mac/Downloads/segments',
+                         '/Users/mac/Downloads/1.whole.ctm')
