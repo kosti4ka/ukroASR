@@ -1,0 +1,13 @@
+md5: ba560f23252b81dcb812ea7d47579dc8
+locked: true
+deps:
+- path: train.csv
+  repo:
+    url: https://github.com/kosti4ka/ukrodataset.git
+    rev_lock: 15edeb94287993fb48cb53c0cfffaf756a5a58d2
+outs:
+- md5: ab559215a43adf3371621688a2f19662
+  path: train.csv
+  cache: true
+  metric: false
+  persist: false
