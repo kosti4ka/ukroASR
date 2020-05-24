@@ -3,6 +3,53 @@ from pathlib import Path
 import os
 from normilize import normilize_line
 from collections import defaultdict
+import argparse
+import pandas as pd
+
+
+def gen_data_dir(csv_path, out_data_path, normilize=True):
+    """
+    Generates a kaldi data dir out of csv with data.
+    :param csv_path: path to the csv file with data
+    :param out_data_path: path to the output kaldi data dir
+    :param normilize: normilize text
+    :return:
+    """
+
+    # setting paths
+    csv_path = Path(csv_path)
+    out_data_path = Path(out_data_path)
+    utt2spk_path = out_data_path / 'utt2spk'
+    segments_path = out_data_path / 'segments'
+    text_path = out_data_path / 'text'
+    wav_scp_path = out_data_path / 'wav.scp'
+    paren_wav_path = csv_path.parent
+
+    # make data dir
+    out_data_path.mkdir(parents=True, exist_ok=True)
+
+    # reading data
+    df = pd.read_csv(csv_path)
+
+    # init wav scp
+    wav_scp = []
+
+    with open(utt2spk_path, 'w', encoding='utf-8') as utt2spk_f, \
+            open(segments_path, 'w', encoding='utf-8') as segments_f, \
+            open(text_path, 'w', encoding='utf-8') as text_f:
+        for index, row in df.iterrows():
+            text = normilize_line(row["text"]) if normilize else row["text"]
+            utt2spk_f.write(f'{row["utt_id"]} {row["spk_id"]}\n')
+            segments_f.write(f'{row["utt_id"]} {row["audio_id"]} {row["utt_start"]} {row["utt_end"]}\n')
+            text_f.write(f'{row["utt_id"]} {text}\n')
+            wav_scp.append((row["audio_id"], paren_wav_path / row["audio_path"]))
+
+    # save wav scp
+    wav_scp = list(set(wav_scp))
+    with open(wav_scp_path, 'w', encoding='utf-8') as wav_scp_f:
+        for audio in wav_scp:
+            wav_scp_f.write(f'{audio[0]} {audio[1]}\n')
+
 
 def aeneas_json2kaldi_data(aeneas_json_paths, audio_paths, out_data_dir, normilize=True, rewrite=False):
     """
@@ -113,138 +160,10 @@ def text2plane(texts_list, out_text_file):
 
 
 if __name__ == '__main__':
-    # aeneas_json2kaldi_data(['/Users/mac/Datasets/ukrainian/panas_yasla/panas_yasla_1.json',
-    #                         '/Users/mac/Datasets/ukrainian/panas_yasla/panas_yasla_2.json',
-    #                         '/Users/mac/Datasets/ukrainian/panas_yasla/panas_yasla_3.json',
-    #                         '/Users/mac/Datasets/ukrainian/panas_yasla/panas_yasla_4.json',
-    #                         '/Users/mac/Datasets/ukrainian/panas_yasla/panas_yasla_5.json',
-    #                         '/Users/mac/Datasets/ukrainian/panas_yasla/panas_yasla_6.json',
-    #                         '/Users/mac/Datasets/ukrainian/panas_yasla/panas_yasla_7.json',
-    #                         '/Users/mac/Datasets/ukrainian/panas_yasla/panas_yasla_8.json',
-    #                         '/Users/mac/Datasets/ukrainian/panas_yasla/panas_yasla_9.json',
-    #                         '/Users/mac/Datasets/ukrainian/panas_yasla/panas_yasla_10.json',
-    #                         '/Users/mac/Datasets/ukrainian/panas_yasla/panas_yasla_11.json',
-    #                         '/Users/mac/Datasets/ukrainian/panas_yasla/panas_yasla_12.json',
-    #                         '/Users/mac/Datasets/ukrainian/panas_yasla/panas_yasla_13.json',
-    #                         '/Users/mac/Datasets/ukrainian/panas_yasla/panas_yasla_14.json',
-    #                         '/Users/mac/Datasets/ukrainian/panas_yasla/panas_yasla_15.json',
-    #                         '/Users/mac/Datasets/ukrainian/panas_yasla/panas_yasla_16.json',
-    #                         '/Users/mac/Datasets/ukrainian/panas_yasla/panas_yasla_17.json'
-    #                         ],
-    #                        ['/Users/mac/Datasets/ukrainian/panas_yasla/panas_yasla_1.wav',
-    #                         '/Users/mac/Datasets/ukrainian/panas_yasla/panas_yasla_2.wav',
-    #                         '/Users/mac/Datasets/ukrainian/panas_yasla/panas_yasla_3.wav',
-    #                         '/Users/mac/Datasets/ukrainian/panas_yasla/panas_yasla_4.wav',
-    #                         '/Users/mac/Datasets/ukrainian/panas_yasla/panas_yasla_5.wav',
-    #                         '/Users/mac/Datasets/ukrainian/panas_yasla/panas_yasla_6.wav',
-    #                         '/Users/mac/Datasets/ukrainian/panas_yasla/panas_yasla_7.wav',
-    #                         '/Users/mac/Datasets/ukrainian/panas_yasla/panas_yasla_8.wav',
-    #                         '/Users/mac/Datasets/ukrainian/panas_yasla/panas_yasla_9.wav',
-    #                         '/Users/mac/Datasets/ukrainian/panas_yasla/panas_yasla_10.wav',
-    #                         '/Users/mac/Datasets/ukrainian/panas_yasla/panas_yasla_11.wav',
-    #                         '/Users/mac/Datasets/ukrainian/panas_yasla/panas_yasla_12.wav',
-    #                         '/Users/mac/Datasets/ukrainian/panas_yasla/panas_yasla_13.wav',
-    #                         '/Users/mac/Datasets/ukrainian/panas_yasla/panas_yasla_14.wav',
-    #                         '/Users/mac/Datasets/ukrainian/panas_yasla/panas_yasla_15.wav',
-    #                         '/Users/mac/Datasets/ukrainian/panas_yasla/panas_yasla_16.wav',
-    #                         '/Users/mac/Datasets/ukrainian/panas_yasla/panas_yasla_17.wav'
-    #                         ],
-    #                        '/Users/mac/Datasets/ukrainian/panas_yasla/data',
-    #                        rewrite=True)
-    # aeneas_json2kaldi_data(['/Users/mac/Datasets/ukrainian/pchilka_vecherya/pchilka_vecherya.json'
-    #                         ],
-    #                        ['/Users/mac/Datasets/ukrainian/pchilka_vecherya/pchilka_vecherya.wav'
-    #                         ],
-    #                        '/Users/mac/Datasets/ukrainian/pchilka_vecherya/data',
-    #                        rewrite=True)
-    aeneas_json2kaldi_data(['/Users/mac/Datasets/ukrainian/zuskind_holub/zuskind_holub.json',
-                            ],
-                           ['/Users/mac/Datasets/ukrainian/zuskind_holub/zuskind_holub.wav'
-                            ],
-                           '/Users/mac/Datasets/ukrainian/zuskind_holub/data',
-                           rewrite=True)
+    parser = argparse.ArgumentParser()
+    parser.add_argument('csv_path', help='Path to the csv file with data')
+    parser.add_argument('out_data_path', help='Path to the output data dir')
 
+    args = parser.parse_args()
 
-    # text_with_unk('/Users/mac/Datasets/ukrainian/zapovit/data/text_original',
-    #               '/Users/mac/Datasets/ukrainian/lang/lexicon.txt',
-    #               '/Users/mac/Datasets/ukrainian/zapovit/data/text')
-
-#     text2plane(['/Users/mac/Datasets/ukrainian/texts/Administrativne_pravo._Zagalna_chastina_1374748722.txt',
-# '/Users/mac/Datasets/ukrainian/texts/Aivengo_1411749087.txt',
-# '/Users/mac/Datasets/ukrainian/texts/Akvariym_1425046581.txt',
-# '/Users/mac/Datasets/ukrainian/texts/Albatrosi_1425046367.txt',
-# '/Users/mac/Datasets/ukrainian/texts/Almazne_zhorno.txt',
-# '/Users/mac/Datasets/ukrainian/texts/Amnistiya_dlya_Hakera_1446666984.txt',
-# '/Users/mac/Datasets/ukrainian/texts/Anhely-po-desyat-shylinhiv-Peter-Adams.txt',
-# '/Users/mac/Datasets/ukrainian/texts/Antonii_i_Kleopatra_1407169364.txt',
-# '/Users/mac/Datasets/ukrainian/texts/Arahnofobiya_1412632437.txt',
-# '/Users/mac/Datasets/ukrainian/texts/Arystokrat_iz_Vapniarky.txt',
-# '/Users/mac/Datasets/ukrainian/texts/Aviron.txt',
-# '/Users/mac/Datasets/ukrainian/texts/Babysi_takoj_byli_divchatami_1450631964.txt',
-# '/Users/mac/Datasets/ukrainian/texts/Batalionneobmyndirovanih_1409154131.txt',
-# '/Users/mac/Datasets/ukrainian/texts/Bitva_pid_Konotopom_1403771998.txt',
-# '/Users/mac/Datasets/ukrainian/texts/BoginyaiKonsyltant_1413400353.txt',
-# '/Users/mac/Datasets/ukrainian/texts/Bojii_svitilnik.Kylya_dlya_bosa_1370255033.txt',
-# '/Users/mac/Datasets/ukrainian/texts/Bojki_1371652311.txt',
-# '/Users/mac/Datasets/ukrainian/texts/Bortsi_za_pravdu.txt',
-# '/Users/mac/Datasets/ukrainian/texts/Brati_gromy_1374761623.txt',
-# '/Users/mac/Datasets/ukrainian/texts/Brati_vognu_1374761694.txt',
-# '/Users/mac/Datasets/ukrainian/texts/Brodiaha.txt',
-# '/Users/mac/Datasets/ukrainian/texts/Byriyan_1371653477.txt',
-# '/Users/mac/Datasets/ukrainian/texts/Ctvorennya_VChK_-_interpretaciya_vidomoj_problemi_1378134741.txt',
-# '/Users/mac/Datasets/ukrainian/texts/Detektyv_Bliumkvist_ryzykuie.txt',
-# '/Users/mac/Datasets/ukrainian/texts/Detektyv_Bliumkvist_zdobuvaie_slavu.txt',
-# '/Users/mac/Datasets/ukrainian/texts/Dolina_sovisti_1446666775.txt',
-# '/Users/mac/Datasets/ukrainian/texts/Dovha_nich_nad_Sunzheiu.txt',
-# '/Users/mac/Datasets/ukrainian/texts/Etud_y_yasno-chervonih_kolorah_1397486099.txt',
-# '/Users/mac/Datasets/ukrainian/texts/Gra_Dzerkal__1371139671.txt',
-# '/Users/mac/Datasets/ukrainian/texts/Hotuietsia_vbyvstvo.txt',
-# '/Users/mac/Datasets/ukrainian/texts/HronikiYakybaVendrovicha_1413476031.txt',
-# '/Users/mac/Datasets/ukrainian/texts/I_zhodnoi_versii.txt',
-# '/Users/mac/Datasets/ukrainian/texts/Ilko_Lipei_-_karpatskii_rozbiinik_1375288375.txt',
-# '/Users/mac/Datasets/ukrainian/texts/Inakodymstvo_na_Symshini._Zbirnik_dokymentiv_ta_materialiv_(1955-1990_roki)._Tom_1_1374835061.txt',
-# '/Users/mac/Datasets/ukrainian/texts/Indiyanyn-Eduard-Klyajn.txt',
-# '/Users/mac/Datasets/ukrainian/texts/Inspektor-i-nich-Brazilska-melodiya-Bohomyl-Rajnov.txt',
-# '/Users/mac/Datasets/ukrainian/texts/Internacionalizm_chi_rysifikaciya_1369050586.txt',
-# '/Users/mac/Datasets/ukrainian/texts/Istoriya-z-sobakamy-Avakum-Zahov--8-Andrej-Hulyashky.txt',
-# '/Users/mac/Datasets/ukrainian/texts/Istoriya_radyanskoj_derjavi_1369146892.txt',
-# '/Users/mac/Datasets/ukrainian/texts/Istoriyaykrajnskojliteratyrnojmovi_1428593985.txt',
-# '/Users/mac/Datasets/ukrainian/texts/Ivan_Bogyn._Tom_1_1407860840.txt',
-# '/Users/mac/Datasets/ukrainian/texts/Ivan_Bogyn._Tom_2_1407860765.txt',
-# '/Users/mac/Datasets/ukrainian/texts/Ivan_Bohun.txt',
-# '/Users/mac/Datasets/ukrainian/texts/Ivan_Kotlyarevskii_smiyetsya_1391268934.txt',
-# '/Users/mac/Datasets/ukrainian/texts/Ivan_Mazepa.txt',
-# '/Users/mac/Datasets/ukrainian/texts/Ivan_Mazepa1.txt',
-# '/Users/mac/Datasets/ukrainian/texts/Ivan_Vyhovskyi.txt',
-# '/Users/mac/Datasets/ukrainian/texts/Kaidany_dlia_oligarha.txt',
-# '/Users/mac/Datasets/ukrainian/texts/Kalle_Bliumkvist_i_Rasmus.txt',
-# '/Users/mac/Datasets/ukrainian/texts/Kapitan_dalekoho_plavannia.txt',
-# '/Users/mac/Datasets/ukrainian/texts/Kinec-Velykoho-Yuliusa-Tetyana-Sytina.txt',
-# '/Users/mac/Datasets/ukrainian/texts/KymitakymkiAnekdotidavniisychasni_1424966416.txt',
-# '/Users/mac/Datasets/ukrainian/texts/LembergLwwLvivFatalnemisto_1413217253.txt',
-# '/Users/mac/Datasets/ukrainian/texts/Miicholovikpingvin_1423069473.txt',
-# '/Users/mac/Datasets/ukrainian/texts/Na_dvoh_tribynah._Opovidannya_ta_feiletoni_1374783116.txt',
-# '/Users/mac/Datasets/ukrainian/texts/Pokhvala_Hlupoti.txt',
-# '/Users/mac/Datasets/ukrainian/texts/Rangers._75-i_polk_reindjeriv_armij_SShA_1376161965.txt',
-# '/Users/mac/Datasets/ukrainian/texts/Shodennik_nacionalnogo_geroya_Selepka_Lavochki_1380310831.txt',
-# '/Users/mac/Datasets/ukrainian/texts/Troyevodnomychovniyakshonerahyvatisobaki_1413470797.txt',
-# '/Users/mac/Datasets/ukrainian/texts/V-pastci-Karen-Libo.txt',
-# '/Users/mac/Datasets/ukrainian/texts/V-pohoni-za-Pryvydom-Mykola-Toman.txt',
-# '/Users/mac/Datasets/ukrainian/texts/V_ryadah_YPA_1375095172.txt',
-# '/Users/mac/Datasets/ukrainian/texts/Vbyvstvo-na-31-mu-poversi-Per-Valee.txt',
-# '/Users/mac/Datasets/ukrainian/texts/Vbyvtsi_na_bortu_zbirka.txt',
-# '/Users/mac/Datasets/ukrainian/texts/Vid_Malorosii_do_Ukrainy.txt',
-# '/Users/mac/Datasets/ukrainian/texts/Viklik_1369664950.txt',
-# '/Users/mac/Datasets/ukrainian/texts/VishneviysmishkiZaboronenitvori_1416243642.txt',
-# '/Users/mac/Datasets/ukrainian/texts/Vtrachenii_simvol_1371139594.txt',
-# '/Users/mac/Datasets/ukrainian/texts/Vtrata_1459632673.txt',
-# '/Users/mac/Datasets/ukrainian/texts/Ya_Pashtyet_i_Armiya_1372368122.txt',
-# '/Users/mac/Datasets/ukrainian/texts/Yevpraksia.txt',
-# '/Users/mac/Datasets/ukrainian/texts/Zabyte_vbivstvo_1371139744.txt',
-# '/Users/mac/Datasets/ukrainian/texts/Zavisa.txt',
-# '/Users/mac/Datasets/ukrainian/texts/Zdibniiychen_1425046188.txt',
-# '/Users/mac/Datasets/ukrainian/texts/Zglyansyapomrizamistmene_1426068509.txt',
-# '/Users/mac/Datasets/ukrainian/texts/Zolota-chetvirka-Devyatnadcyatyj-kilometr-Eduard-Fikker.txt',
-# '/Users/mac/Datasets/ukrainian/texts/Zrada_1370256093.txt',
-# '/Users/mac/Datasets/ukrainian/texts/Zviri.txt'],
-#                '/Users/mac/Datasets/ukrainian/texts/text_plane')
+    gen_data_dir(args.csv_path, args.out_data_path)
