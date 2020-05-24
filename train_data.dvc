@@ -1,0 +1,15 @@
+md5: 3df43132509a670660cc8dfe2930d40a
+cmd: python3.6 gen_data_dir.py data/raw_data/train.csv data/train
+deps:
+- md5: fde20dc20c05b66ca3865eaddb1d0a9d.dir
+  path: data/raw_data/audiobooks
+- md5: ab559215a43adf3371621688a2f19662
+  path: data/raw_data/train.csv
+- md5: 57c3b7c786e5414f8f6a465f9b16cabf
+  path: gen_data_dir.py
+outs:
+- md5: 16645048583060d971fdadac02466826.dir
+  path: data/train
+  cache: true
+  metric: false
+  persist: false

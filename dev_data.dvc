@@ -1,0 +1,15 @@
+md5: 4512abeb52803a8b0ec01a2224685560
+cmd: python3.6 gen_data_dir.py data/raw_data/dev.csv data/dev
+deps:
+- md5: fde20dc20c05b66ca3865eaddb1d0a9d.dir
+  path: data/raw_data/audiobooks
+- md5: f9f3bc71f965db98dd20aeebccce45b3
+  path: data/raw_data/dev.csv
+- md5: 57c3b7c786e5414f8f6a465f9b16cabf
+  path: gen_data_dir.py
+outs:
+- md5: 95285f288385ec3de718aea87d05c606.dir
+  path: data/dev
+  cache: true
+  metric: false
+  persist: false
