@@ -38,8 +38,9 @@ def aeneas_json2kaldi_data(aeneas_json_paths, audio_paths, out_data_dir, normili
             utt_end = float(f['end'])
             utt_spk = audio_id
             utt_id = f'{audio_id}-{str(int(utt_start * 100)).zfill(7)}-{str(int(utt_end * 100)).zfill(7)}'
+            line = [l for l in f['lines'] if l not in ['<<<<<<<<<','>>>>>>>>>']][0]
             if normilize:
-                utt_text = normilize_line(f['lines'][0])
+                utt_text = normilize_line(line)
             else:
                 utt_text = f['lines'][0]
 
@@ -68,7 +69,7 @@ def aeneas_json2kaldi_data(aeneas_json_paths, audio_paths, out_data_dir, normili
             open(segments, 'w', encoding='utf-8') as segments_f, \
             open(text, 'w', encoding='utf-8') as text_f:
         for utt_id in utts:
-            utt2spk_f.write(f'{utt_id} {utts[utt_id]["speaker"]}\n')
+            utt2spk_f.write(f'{utt_id} {utts[utt_id]["audio_id"]}\n')
             segments_f.write(f'{utt_id} {utts[utt_id]["audio_id"]} {utts[utt_id]["start"]} {utts[utt_id]["end"]}\n')
             text_f.write(f'{utt_id} {utts[utt_id]["text"]}\n')
 
@@ -150,6 +151,20 @@ if __name__ == '__main__':
     #                         ],
     #                        '/Users/mac/Datasets/ukrainian/panas_yasla/data',
     #                        rewrite=True)
+    # aeneas_json2kaldi_data(['/Users/mac/Datasets/ukrainian/pchilka_vecherya/pchilka_vecherya.json'
+    #                         ],
+    #                        ['/Users/mac/Datasets/ukrainian/pchilka_vecherya/pchilka_vecherya.wav'
+    #                         ],
+    #                        '/Users/mac/Datasets/ukrainian/pchilka_vecherya/data',
+    #                        rewrite=True)
+    aeneas_json2kaldi_data(['/Users/mac/Datasets/ukrainian/zuskind_holub/zuskind_holub.json',
+                            ],
+                           ['/Users/mac/Datasets/ukrainian/zuskind_holub/zuskind_holub.wav'
+                            ],
+                           '/Users/mac/Datasets/ukrainian/zuskind_holub/data',
+                           rewrite=True)
+
+
     # text_with_unk('/Users/mac/Datasets/ukrainian/zapovit/data/text_original',
     #               '/Users/mac/Datasets/ukrainian/lang/lexicon.txt',
     #               '/Users/mac/Datasets/ukrainian/zapovit/data/text')

@@ -7,29 +7,7 @@ import multiprocessing as mp
 import re
 
 
-def words(text_path, out_dir, utt_id=True, lower_case=True):
 
-    text_path = Path(text_path)
-    out_dir = Path(out_dir)
-    words_path = out_dir / 'words.txt'
-
-    words = set()
-    with open(text_path, 'r', encoding='utf-8') as f:
-        for line in tqdm(f):
-            line = re.sub(r'\'{2,}', ' ', line)
-            line_splited = line.split()[:1] if utt_id else line.split()
-            for w in line_splited:
-                w = process_ukr_word(w)
-                if w:
-                    words.add(w.lower() if lower_case else w)
-
-    # make dir
-    if not out_dir.exists():
-        os.makedirs(str(out_dir))
-
-    with open(words_path, 'w', encoding='utf-8') as words_f:
-        for word in words:
-            words_f.write(f'{word}\n')
 
 
 def process_ukr_word(word):
@@ -79,7 +57,7 @@ def lexicon2letterlist(lexicon_path, letters_path):
             f.write(f'{i} {p}\n')
 
 
-def gen_lexicon(words_path, lexicon_path, additiona_lexicons=None):
+def gen_lexicon(words_path, lexicon_path, base_lexicons=None):
 
     # setting paths
     words_path = Path(words_path)
