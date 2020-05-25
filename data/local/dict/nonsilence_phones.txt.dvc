@@ -1,0 +1,7 @@
+md5: 21b4c66bfa53ab20d79afdc1945fccf2
+outs:
+- md5: 95256a009f0814ac801b76b666784880
+  path: nonsilence_phones.txt
+  cache: true
+  metric: false
+  persist: false
