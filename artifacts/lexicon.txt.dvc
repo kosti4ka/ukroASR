@@ -1,0 +1,7 @@
+md5: 38860d42e5723ea3e96617f2bd6bf7d7
+outs:
+- md5: aa1941e722ab47f3b89511741cf94a1f
+  path: lexicon.txt
+  cache: true
+  metric: false
+  persist: false
