@@ -7,7 +7,7 @@ from pathlib import Path
 from ukr_g2p import G2P
 # import unicode
 
-BASE_LEXICON_PATH = '/data/exp/kostya/ukr_asr/artifacts/lexicon.txt'
+BASE_LEXICON_PATH = '/data/exp/kostya/ukroASR/artifacts/lexicon.txt'
 G2P_MODEL_NAME = 'ukr-base-uncased'
 
 
