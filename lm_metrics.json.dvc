@@ -9,5 +9,5 @@ outs:
 - md5: be0a297c0c6ba388cd2a107a45bc7279
   path: lm_metrics.json
   cache: false
-  metric: false
+  metric: true
   persist: false
