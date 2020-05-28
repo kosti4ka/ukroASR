@@ -1,0 +1,12 @@
+md5: db194683a2c91c6abc9af50acca25e22
+cmd: cut -d' ' -f2- /data/exp/kostya/ukroASR/data/train/text | ngram-count -text -
+  -order 3 -gt1min 1 -gt2min 1 -lm - | gzip -c > /data/exp/kostya/ukroASR/data/lm_ukr.gz
+deps:
+- md5: a4d3ef3f2fd9e88df8c8a037ef8f07be
+  path: data/train/text
+outs:
+- md5: b73d8a091656c78faaf6b19cc47416b1
+  path: data/lm_ukr.gz
+  cache: true
+  metric: false
+  persist: false
