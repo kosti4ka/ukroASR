@@ -23,7 +23,7 @@ def gen_data_dir(csv_path, out_data_path, normilize=True):
     segments_path = out_data_path / 'segments'
     text_path = out_data_path / 'text'
     wav_scp_path = out_data_path / 'wav.scp'
-    paren_wav_path = csv_path.parent
+    parent_wav_path = csv_path.parent
 
     # make data dir
     out_data_path.mkdir(parents=True, exist_ok=True)
@@ -42,7 +42,7 @@ def gen_data_dir(csv_path, out_data_path, normilize=True):
             utt2spk_f.write(f'{row["utt_id"]} {row["spk_id"]}\n')
             segments_f.write(f'{row["utt_id"]} {row["audio_id"]} {row["utt_start"]} {row["utt_end"]}\n')
             text_f.write(f'{row["utt_id"]} {text}\n')
-            wav_scp.append((row["audio_id"], paren_wav_path / row["audio_path"]))
+            wav_scp.append((row["audio_id"], parent_wav_path / row["audio_path"]))
 
     # save wav scp
     wav_scp = list(set(wav_scp))
