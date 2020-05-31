@@ -1,33 +1,33 @@
-md5: 2c97ef995abe3cd4d2d7591797caf866
+md5: 198c039b5c6912d9d8156b314eb0d753
 cmd: python3.6 /data/exp/kostya/ukroASR/gen_data_dir.py /data/exp/kostya/ukroASR/data/raw_data/dev.csv
   /data/exp/kostya/ukroASR/data/dev
 deps:
 - md5: f9f3bc71f965db98dd20aeebccce45b3
   path: data/raw_data/dev.csv
-- md5: 98d82ee7f26cda72d9e0f90f9b2abf1d
+- md5: 4e15f7eb3c6f3b0c37ae42fedcc3d181
   path: gen_data_dir.py
 outs:
-- md5: a81158c9ff0d2dc3302940ef6036114f
+- md5: 2acbe3dbcd7895cb80447274b7484a6b
   path: data/dev/text
   cache: true
   metric: false
   persist: false
-- md5: ba31a77b82aef1500d5770e6b5ea01fe
+- md5: 3535e75a7322de8450e71aa14f28a158
   path: data/dev/utt2spk
   cache: true
   metric: false
   persist: false
-- md5: c68e2c92a6d7ae010c624998e850f1f3
+- md5: 9f3f392134cdf6b49ee274044261824c
   path: data/dev/segments
   cache: true
   metric: false
   persist: false
-- md5: 152633f151d04f31bf9c2dffec97a866
+- md5: 069e7f8a925f31b71a874f7d374d2f57
   path: data/dev/spk2utt
   cache: true
   metric: false
   persist: false
-- md5: 965b4b87ea59b1daab4b4b849abb4593
+- md5: 6a88ea8a754b539f796205c5b62b5b40
   path: data/dev/wav.scp
   cache: true
   metric: false
