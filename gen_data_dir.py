@@ -5,6 +5,7 @@ from normilize import normilize_line
 from collections import defaultdict
 import argparse
 import pandas as pd
+import subprocess
 
 MIN_UTT_DURATION = 0.4
 
@@ -65,6 +66,11 @@ def gen_data_dir(csv_path, out_data_path, normilize=True):
     with open(wav_scp_path, 'w', encoding='utf-8') as wav_scp_f:
         for audio in wav_scp:
             wav_scp_f.write(f'{audio[0]} {audio[1]}\n')
+
+    # fix data dir
+    subprocess.run(f'cd $KALDI_ROOT/egs/wsj/s5; . ./path.sh; . ./cmd.sh; '
+                   f'utils/fix_data_dir.sh {out_data_path}',
+                   shell=True)
 
 
 def aeneas_json2kaldi_data(aeneas_json_paths, audio_paths, out_data_dir, normilize=True, rewrite=False):
