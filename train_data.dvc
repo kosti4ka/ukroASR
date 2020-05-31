@@ -1,28 +1,28 @@
-md5: 0ea2bbf4eded417d368b35601f3b5e0f
+md5: 5e6f1ee66dad29f12a459ba39b66a287
 cmd: python3.6 /data/exp/kostya/ukroASR/gen_data_dir.py /data/exp/kostya/ukroASR/data/raw_data/train.csv
   /data/exp/kostya/ukroASR/data/train
 deps:
-- md5: ab559215a43adf3371621688a2f19662
+- md5: 7b73f43bab0852fd817f759aa9097ded
   path: data/raw_data/train.csv
 - md5: 4e15f7eb3c6f3b0c37ae42fedcc3d181
   path: gen_data_dir.py
 outs:
-- md5: 1cc8fda493e71bdcee80a2de7b2ba278
+- md5: 287092a36f4431ba9ff663477ccbe19b
   path: data/train/text
   cache: true
   metric: false
   persist: false
-- md5: a886906f56a5d72ae43da1bb74095e89
+- md5: fe90aa6ea0e34c0aa07bb5fceab4cf51
   path: data/train/utt2spk
   cache: true
   metric: false
   persist: false
-- md5: 6c43ecd234736bc08ab15708fd0f7d60
+- md5: 4ebb380b77e645255b117d42eb662925
   path: data/train/segments
   cache: true
   metric: false
   persist: false
-- md5: 4bbe21e2914cb4bf13d0d1b4c20729fb
+- md5: 126e514e0ab806399d2bec1776034b46
   path: data/train/spk2utt
   cache: true
   metric: false
