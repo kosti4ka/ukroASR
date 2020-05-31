@@ -6,6 +6,8 @@ from collections import defaultdict
 import argparse
 import pandas as pd
 
+MIN_UTT_DURATION = 0.4
+
 
 def gen_data_dir(csv_path, out_data_path, normilize=True):
     """
@@ -20,6 +22,7 @@ def gen_data_dir(csv_path, out_data_path, normilize=True):
     csv_path = Path(csv_path)
     out_data_path = Path(out_data_path)
     utt2spk_path = out_data_path / 'utt2spk'
+    spk2utt_path = out_data_path / 'spk2utt'
     segments_path = out_data_path / 'segments'
     text_path = out_data_path / 'text'
     wav_scp_path = out_data_path / 'wav.scp'
@@ -31,18 +34,31 @@ def gen_data_dir(csv_path, out_data_path, normilize=True):
     # reading data
     df = pd.read_csv(csv_path)
 
-    # init wav scp
+    # init wav scp and spk2utt
     wav_scp = []
+    spk2utt = defaultdict(list)
 
     with open(utt2spk_path, 'w', encoding='utf-8') as utt2spk_f, \
             open(segments_path, 'w', encoding='utf-8') as segments_f, \
             open(text_path, 'w', encoding='utf-8') as text_f:
         for index, row in df.iterrows():
             text = normilize_line(row["text"]) if normilize else row["text"]
-            utt2spk_f.write(f'{row["utt_id"]} {row["spk_id"]}\n')
-            segments_f.write(f'{row["utt_id"]} {row["audio_id"]} {row["utt_start"]} {row["utt_end"]}\n')
-            text_f.write(f'{row["utt_id"]} {text}\n')
-            wav_scp.append((row["audio_id"], parent_wav_path / row["audio_path"]))
+            utt_start = row["utt_start"]
+            utt_end = row["utt_end"]
+            utt_id = row["utt_id"]
+            spk_id = row["spk_id"]
+            audio_id = row["audio_id"]
+            if utt_end - utt_start > MIN_UTT_DURATION:
+                utt2spk_f.write(f'{utt_id} {spk_id}\n')
+                segments_f.write(f'{utt_id} {audio_id} {utt_start} {utt_end}\n')
+                text_f.write(f'{utt_id} {text}\n')
+                wav_scp.append((audio_id, parent_wav_path / row["audio_path"]))
+                spk2utt[utt_id].append(utt_id)
+
+    # save utt2spk
+    with open(spk2utt_path, 'w', encoding='utf-8') as spk2utt_f:
+        for spk_id in spk2utt:
+            spk2utt_f.write(f'{spk_id} {" ".join(spk2utt[spk_id])}\n')
 
     # save wav scp
     wav_scp = list(set(wav_scp))
