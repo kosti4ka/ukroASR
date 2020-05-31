@@ -1,4 +1,4 @@
-md5: 5fbe2557e4969f20246012f1df432fbd
+md5: facef5503b5d2e906eb4db35681cd0c6
 cmd: python3.6 /data/exp/kostya/ukroASR/gen_data_dir.py /data/exp/kostya/ukroASR/data/raw_data/train.csv
   /data/exp/kostya/ukroASR/data/train
 deps:
@@ -27,7 +27,7 @@ outs:
   cache: true
   metric: false
   persist: false
-- md5: 2a62369d340865df466a72fd6180fa0d
+- md5: 8d12f0258cb5f1cb964e56a73cedc73e
   path: data/train/wav.scp
   cache: true
   metric: false
