@@ -1,10 +1,10 @@
-md5: 5f2527e519b3eb495224c1eb69c0ce9a
+md5: d7463e3454a5d8a03a2839dca7090125
 locked: true
 deps:
 - path: dev.csv
   repo:
     url: https://github.com/kosti4ka/ukrodataset.git
-    rev_lock: 15edeb94287993fb48cb53c0cfffaf756a5a58d2
+    rev_lock: fb216056528c9a1e65f8972837fbb3286f0eb47c
 outs:
 - md5: f9f3bc71f965db98dd20aeebccce45b3
   path: dev.csv
