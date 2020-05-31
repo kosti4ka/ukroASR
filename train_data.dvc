@@ -1,14 +1,13 @@
-md5: 3df43132509a670660cc8dfe2930d40a
-cmd: python3.6 gen_data_dir.py data/raw_data/train.csv data/train
+md5: 9296e059bee733ca567cdd8756c72e45
+cmd: python3.6 /data/exp/kostya/ukroASR/gen_data_dir.py /data/exp/kostya/ukroASR/data/raw_data/train.csv
+  /data/exp/kostya/ukroASR/data/train
 deps:
-- md5: fde20dc20c05b66ca3865eaddb1d0a9d.dir
-  path: data/raw_data/audiobooks
 - md5: ab559215a43adf3371621688a2f19662
   path: data/raw_data/train.csv
-- md5: 57c3b7c786e5414f8f6a465f9b16cabf
+- md5: e91eeb8a0fd4648e91307c49d681e95b
   path: gen_data_dir.py
 outs:
-- md5: 16645048583060d971fdadac02466826.dir
+- md5: 3db8184d5adb8830ce7852482503c3d1.dir
   path: data/train
   cache: true
   metric: false
