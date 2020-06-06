@@ -2,7 +2,7 @@ import subprocess
 import argparse
 
 
-def make_mfcc(data_dir, mfcc_dir, log_dir):
+def make_mfcc(data_dir, log_dir, mfcc_dir):
     subprocess.run(f'cd $KALDI_ROOT/egs/wsj/s5; . ./path.sh; . ./cmd.sh; '
                    f'steps/make_mfcc.sh {data_dir} {log_dir} {mfcc_dir}',
                    shell=True)
