@@ -1,0 +1,21 @@
+md5: ccdf4820c3f6b19c3bbd1f91c20da738
+cmd: python3.6 /data/exp/kostya/ukroASR/features/make_mfcc.py /data/exp/kostya/ukroASR/data/dev
+  /data/exp/kostya/ukroASR/exp/log/mfcc /data/exp/kostya/ukroASR/exp/dev_mfcc
+deps:
+- md5: 6a88ea8a754b539f796205c5b62b5b40
+  path: data/dev/wav.scp
+- md5: 9f3f392134cdf6b49ee274044261824c
+  path: data/dev/segments
+- md5: 3535e75a7322de8450e71aa14f28a158
+  path: data/dev/utt2spk
+outs:
+- md5: 480f7c4c4f43824b39c23be149e5f238.dir
+  path: exp/dev_mfcc
+  cache: true
+  metric: false
+  persist: false
+- md5: 76500884e82cb60e32271e57c895cedf
+  path: data/dev/feats.scp
+  cache: true
+  metric: false
+  persist: false
