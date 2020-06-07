@@ -1,0 +1,54 @@
+md5: 7d9205f988f7c0bb4650cede9c46faa3
+cmd: cd /data/kaldi/prod/egs/wsj/s5; . ./path.sh; . ./cmd.sh; utils/subset_data_dir.sh
+  --shortest /data/exp/kostya/ukroASR/data/dev 750 /data/exp/kostya/ukroASR/data/dev_0.75kshort
+deps:
+- md5: 2acbe3dbcd7895cb80447274b7484a6b
+  path: data/dev/text
+- md5: 3535e75a7322de8450e71aa14f28a158
+  path: data/dev/utt2spk
+- md5: 9f3f392134cdf6b49ee274044261824c
+  path: data/dev/segments
+- md5: 069e7f8a925f31b71a874f7d374d2f57
+  path: data/dev/spk2utt
+- md5: 6a88ea8a754b539f796205c5b62b5b40
+  path: data/dev/wav.scp
+- md5: 76500884e82cb60e32271e57c895cedf
+  path: data/dev/feats.scp
+- md5: 0e5b20ac9167931c8ac1b447bfa8a403
+  path: data/dev/cmvn.scp
+outs:
+- md5: 9c138a3cd596723b44fc8c6f0f987d85
+  path: data/dev_0.75kshort/text
+  cache: true
+  metric: false
+  persist: false
+- md5: 8ef11c362c02133f7815d7d4e4de452e
+  path: data/dev_0.75kshort/utt2spk
+  cache: true
+  metric: false
+  persist: false
+- md5: ccb3ed2e227c79d0e462f055f9f4f1e7
+  path: data/dev_0.75kshort/segments
+  cache: true
+  metric: false
+  persist: false
+- md5: 70fd74011816ceadcf7bd787c026ebbc
+  path: data/dev_0.75kshort/spk2utt
+  cache: true
+  metric: false
+  persist: false
+- md5: 6a88ea8a754b539f796205c5b62b5b40
+  path: data/dev_0.75kshort/wav.scp
+  cache: true
+  metric: false
+  persist: false
+- md5: f1e8c959b330d7272a0dbc33a3a0cbc4
+  path: data/dev_0.75kshort/feats.scp
+  cache: true
+  metric: false
+  persist: false
+- md5: 0e5b20ac9167931c8ac1b447bfa8a403
+  path: data/dev_0.75kshort/cmvn.scp
+  cache: true
+  metric: false
+  persist: false

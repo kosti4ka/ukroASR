@@ -1,0 +1,54 @@
+md5: 12c9d191c7495d05c1f4147fe3b571f6
+cmd: cd /data/kaldi/prod/egs/wsj/s5; . ./path.sh; . ./cmd.sh; utils/subset_data_dir.sh
+  --shortest /data/exp/kostya/ukroASR/data/train 2000 /data/exp/kostya/ukroASR/data/train_2kshort
+deps:
+- md5: 287092a36f4431ba9ff663477ccbe19b
+  path: data/train/text
+- md5: fe90aa6ea0e34c0aa07bb5fceab4cf51
+  path: data/train/utt2spk
+- md5: 4ebb380b77e645255b117d42eb662925
+  path: data/train/segments
+- md5: 126e514e0ab806399d2bec1776034b46
+  path: data/train/spk2utt
+- md5: 97d85b6e07311367bda22eabe2736039
+  path: data/train/wav.scp
+- md5: 6c4579b2f7233d6add4fee91499bca31
+  path: data/train/feats.scp
+- md5: 22397031b52f2c29b64c14d13781920a
+  path: data/train/cmvn.scp
+outs:
+- md5: 032b6795999165f52742c1ad7fdb5358
+  path: data/train_2kshort/text
+  cache: true
+  metric: false
+  persist: false
+- md5: faf058cf8c5e17a7d991d47a3860f2f5
+  path: data/train_2kshort/utt2spk
+  cache: true
+  metric: false
+  persist: false
+- md5: 0dff838a5aea86c3dfea1336160dc74a
+  path: data/train_2kshort/segments
+  cache: true
+  metric: false
+  persist: false
+- md5: d2394d073b363ce4495a17e99599846d
+  path: data/train_2kshort/spk2utt
+  cache: true
+  metric: false
+  persist: false
+- md5: 97d85b6e07311367bda22eabe2736039
+  path: data/train_2kshort/wav.scp
+  cache: true
+  metric: false
+  persist: false
+- md5: 967e2abe8be25691e6250095150ef073
+  path: data/train_2kshort/feats.scp
+  cache: true
+  metric: false
+  persist: false
+- md5: 22397031b52f2c29b64c14d13781920a
+  path: data/train_2kshort/cmvn.scp
+  cache: true
+  metric: false
+  persist: false
