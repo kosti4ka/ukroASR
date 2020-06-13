@@ -1,2 +1,5 @@
 /train_mfcc
 /dev_mfcc
+/train_cmvn
+/dev_cmvn
+/mono_train_5k_ali
