@@ -1,16 +1,16 @@
-md5: 53b15a7cb0e2fb17f659665e9cc70f6f
+md5: 9a7ae1fab584f1b86ed7d5ba190bf2ab
 cmd: cd /data/kaldi/prod/egs/wsj/s5; . ./path.sh; . ./cmd.sh; utils/format_lm.sh /data/exp/kostya/ukroASR/data/lang
   /data/exp/kostya/ukroASR/data/lm_ukr.gz /data/exp/kostya/ukroASR/data/local/dict/lexicon.txt
   /data/exp/kostya/ukroASR/data/lang_ukr
 deps:
-- md5: 1e0d63286a8a80549262d30d5efc1b0f.dir
+- md5: f5914848995ce55d3a7e011ab0b820ce.dir
   path: data/lang
-- md5: b73d8a091656c78faaf6b19cc47416b1
+- md5: fd4bb70209047bb89e44bbd421b1d566
   path: data/lm_ukr.gz
-- md5: 3594f0c721e6fd1dacfce2e0c1bc374c
+- md5: 5bf2bb341feb3c20b4397a93cf734f82
   path: data/local/dict/lexicon.txt
 outs:
-- md5: 1e17adfb06ea442fe78f5b3133c329c7.dir
+- md5: b4db98bbe44351c250b5afee93d75545.dir
   path: data/lang_ukr
   cache: true
   metric: false

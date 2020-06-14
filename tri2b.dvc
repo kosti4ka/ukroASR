@@ -1,4 +1,4 @@
-md5: 88618e6f4fb34192981280c4ce2e4a90
+md5: bf1a0f1239ed70f4691643f550f2ba79
 cmd: cd /data/kaldi/prod/egs/wsj/s5; . ./path.sh; . ./cmd.sh; steps/train_lda_mllt.sh
   --splice-opts "--left-context=3 --right-context=3" 2500 15000 /data/exp/kostya/ukroASR/data/train
   /data/exp/kostya/ukroASR/data/lang /data/exp/kostya/ukroASR/exp/tri1_train_ali /data/exp/kostya/ukroASR/exp/tri2b;
@@ -7,21 +7,21 @@ cmd: cd /data/kaldi/prod/egs/wsj/s5; . ./path.sh; . ./cmd.sh; steps/train_lda_ml
   cp /data/exp/kostya/ukroASR/exp/tri2b/final.mat /data/exp/kostya/ukroASR/exp/tri2b/final.mat_copy;
   mv /data/exp/kostya/ukroASR/exp/tri2b/final.mat_copy /data/exp/kostya/ukroASR/exp/tri2b/final.mat
 deps:
-- md5: fd9f731f8ed622dbf95a59e2942c8bb8
+- md5: 2696000eb47dbc4ba5b8b89a6a8835d1
   path: exp/tri1_train_ali/ali.1.gz
-- md5: f4566bdaa26ca17dee9f5a24af3c2676
+- md5: abe6b0967e2bd55ae7cf196360bb294e
   path: exp/tri1_train_ali/ali.2.gz
-- md5: 7a516ada001a8081e102e86d928948ed
+- md5: f2f82fc57e490ab2d85e91d128f68c72
   path: exp/tri1_train_ali/ali.3.gz
-- md5: 75606639c2b24b40e4bb1fc0f3325e94
+- md5: 4214c974bbd231fa1bff7d90beb5bec7
   path: exp/tri1_train_ali/ali.4.gz
-- md5: 553b21e541c205b0b3a1316552dfa7f5
+- md5: 0adef5c29e22623fbe03faf75105f035
   path: exp/tri1_train_ali/ali.5.gz
-- md5: 9693119193504f16d489f9f94ebeebb3
+- md5: 0ff894ddf3ed1a7190b1e5f9bf7f5876
   path: exp/tri1_train_ali/ali.6.gz
-- md5: bffcb86c5fed53b6bd47f77e39b04794
+- md5: 52b1a6d43a0367fe96446788f09d2b76
   path: exp/tri1_train_ali/ali.7.gz
-- md5: 08725bca1bffef8a1b805766afff9d4d
+- md5: 26d10ae3004dddc40f4ff6f5934280e4
   path: exp/tri1_train_ali/ali.8.gz
 - md5: f825f0b0b49c7886b93854a97d68a3df
   path: exp/tri1_train_ali/phones.txt
@@ -29,7 +29,7 @@ deps:
   path: exp/tri1_train_ali/num_jobs
 - md5: 36896b9ab6ce052e53fd62ce6ed4b138
   path: exp/tri1_train_ali/final.mdl
-- md5: 875100d05104aff4b473c0797db0df96
+- md5: d491bc66986db56105c0dd5415c7c2c1
   path: data/lang/L.fst
 - md5: 35eafce314e85f199a894c7cb45f893d
   path: data/lang/words.txt

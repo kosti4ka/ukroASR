@@ -1,4 +1,4 @@
-md5: f210e669a13ba0efebf6f970cbba8afa
+md5: 33c3fee5bf216bbc07a2d7978297fbdf
 cmd: cd /data/kaldi/prod/egs/wsj/s5; . ./path.sh; . ./cmd.sh; steps/decode_fmllr.sh
   --nj 4 /data/exp/kostya/ukroASR/exp/tri3b/graph /data/exp/kostya/ukroASR/data/dev_0.15k
   /data/exp/kostya/ukroASR/exp/tri3b/decode_dev_0.15k; /data/exp/kostya/ukroASR/parce_wer_report.sh
@@ -16,7 +16,7 @@ deps:
   path: exp/tri3b/tree
 - md5: 1fd4a56d02c302ffd904cf1f8be018c2
   path: exp/tri3b/final.mat
-- md5: 701e2faa8caf4dc5a1d7b3ef701e7543
+- md5: 30aacab6993567841576dbddd12355d1
   path: exp/tri3b/graph/HCLG.fst
 - md5: 35eafce314e85f199a894c7cb45f893d
   path: exp/tri3b/graph/words.txt

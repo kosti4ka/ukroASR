@@ -1,4 +1,4 @@
-md5: d563f223cfe1b8e7de5038b137f074c4
+md5: 8ad4037e411a4aa7baf5363d84277c09
 cmd: cd /data/kaldi/prod/egs/wsj/s5; . ./path.sh; . ./cmd.sh; steps/train_sat.sh 2500
   15000 /data/exp/kostya/ukroASR/data/train /data/exp/kostya/ukroASR/data/lang /data/exp/kostya/ukroASR/exp/tri2b_train_ali
   /data/exp/kostya/ukroASR/exp/tri3b; cp /data/exp/kostya/ukroASR/exp/tri3b/final.mdl
@@ -7,21 +7,21 @@ cmd: cd /data/kaldi/prod/egs/wsj/s5; . ./path.sh; . ./cmd.sh; steps/train_sat.sh
   /data/exp/kostya/ukroASR/exp/tri3b/final.mat_copy; mv /data/exp/kostya/ukroASR/exp/tri3b/final.mat_copy
   /data/exp/kostya/ukroASR/exp/tri3b/final.mat
 deps:
-- md5: ac861585d98c2d9078f7644b28b18b59
+- md5: 9d91c2e858cc04f4b7507764b1b0ebd6
   path: exp/tri2b_train_ali/ali.1.gz
-- md5: 001b77b80e220a7f6a99530dde0a795d
+- md5: 49b9ad78d0e915a5854a96abd61f92dc
   path: exp/tri2b_train_ali/ali.2.gz
-- md5: 1186fe096dbe45c3e535c2657d7ef465
+- md5: f656783259d4c93bed7a1901749ff41e
   path: exp/tri2b_train_ali/ali.3.gz
-- md5: 6d7b1af3ef097aeb1d51a0d9503a9552
+- md5: ff6e7a23863e64d5acee6ad31bd28156
   path: exp/tri2b_train_ali/ali.4.gz
-- md5: d5fd8a8820265fecbdf962722c865c7f
+- md5: 77c11ef7dcdd2be5473d6aa1ea05e62e
   path: exp/tri2b_train_ali/ali.5.gz
-- md5: 125d08bbc2baf9ab947cbc2412e1abc3
+- md5: 0388171c845d5cdedbd74428c1082248
   path: exp/tri2b_train_ali/ali.6.gz
-- md5: 69d0eb5527d1d0a414eb637adf8e6ae3
+- md5: 4520ab8f56c7e7990bfd78d4628679e9
   path: exp/tri2b_train_ali/ali.7.gz
-- md5: bf02e6655b01a16ebe81af6709596867
+- md5: 6d0b24af9d65e5a91f87913543406f54
   path: exp/tri2b_train_ali/ali.8.gz
 - md5: f825f0b0b49c7886b93854a97d68a3df
   path: exp/tri2b_train_ali/phones.txt
@@ -29,7 +29,7 @@ deps:
   path: exp/tri2b_train_ali/num_jobs
 - md5: f84f06180711a5bce8aa775e579b5137
   path: exp/tri2b_train_ali/final.mdl
-- md5: 875100d05104aff4b473c0797db0df96
+- md5: d491bc66986db56105c0dd5415c7c2c1
   path: data/lang/L.fst
 - md5: 35eafce314e85f199a894c7cb45f893d
   path: data/lang/words.txt

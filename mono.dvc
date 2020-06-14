@@ -1,7 +1,7 @@
-md5: ba4b01f1e9f23c09c424d92d58355e1a
-cmd: cd /data/kaldi/prod/egs/wsj/s5; . ./path.sh; . ./cmd.sh; steps/train_mono.sh
-  --boost-silence 1.25 --nj 8 /data/exp/kostya/ukroASR/data/train_2kshort /data/exp/kostya/ukroASR/data/lang
-  /data/exp/kostya/ukroASR/exp/mono
+md5: 1cc954621844b6bc94fc5b5da1481a2f
+cmd: cd /data/kaldi/prod/egs/wsj/s5/../../../egs/wsj/s5; . ./path.sh; . ./cmd.sh;
+  steps/train_mono.sh --boost-silence 1.25 --nj 8 /data/exp/kostya/ukroASR/data/train_2kshort
+  /data/exp/kostya/ukroASR/data/lang /data/exp/kostya/ukroASR/exp/mono
 wdir: exp/mono
 deps:
 - md5: 967e2abe8be25691e6250095150ef073
@@ -12,7 +12,7 @@ deps:
   path: ../../data/train_2kshort/text
 - md5: 22397031b52f2c29b64c14d13781920a
   path: ../../data/train_2kshort/cmvn.scp
-- md5: 875100d05104aff4b473c0797db0df96
+- md5: d491bc66986db56105c0dd5415c7c2c1
   path: ../../data/lang/L.fst
 - md5: 35eafce314e85f199a894c7cb45f893d
   path: ../../data/lang/words.txt
@@ -34,6 +34,11 @@ outs:
   persist: false
 - md5: 44efcceb48885bbb6ce1aedf14c6968d
   path: tree
+  cache: true
+  metric: false
+  persist: false
+- md5: f825f0b0b49c7886b93854a97d68a3df
+  path: phones.txt
   cache: true
   metric: false
   persist: false
