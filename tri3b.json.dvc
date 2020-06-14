@@ -1,0 +1,30 @@
+md5: f210e669a13ba0efebf6f970cbba8afa
+cmd: cd /data/kaldi/prod/egs/wsj/s5; . ./path.sh; . ./cmd.sh; steps/decode_fmllr.sh
+  --nj 4 /data/exp/kostya/ukroASR/exp/tri3b/graph /data/exp/kostya/ukroASR/data/dev_0.15k
+  /data/exp/kostya/ukroASR/exp/tri3b/decode_dev_0.15k; /data/exp/kostya/ukroASR/parce_wer_report.sh
+  /data/exp/kostya/ukroASR/exp/tri3b/decode_dev_0.15k/scoring_kaldi/best_wer /data/exp/kostya/ukroASR/exp/metrics/tri3b.json
+deps:
+- md5: a7c154e64bf978e1c1e927fa4bfe6fa0
+  path: data/dev_0.15k/utt2spk
+- md5: c766137ca2953725bf433cb2edf30c2d
+  path: data/dev_0.15k/feats.scp
+- md5: 0e5b20ac9167931c8ac1b447bfa8a403
+  path: data/dev_0.15k/cmvn.scp
+- md5: 7e089698d54a1822a2d921aff150d654
+  path: exp/tri3b/final.mdl
+- md5: 434869aa41e2bbe4eba1360fdcd0f718
+  path: exp/tri3b/tree
+- md5: 1fd4a56d02c302ffd904cf1f8be018c2
+  path: exp/tri3b/final.mat
+- md5: 701e2faa8caf4dc5a1d7b3ef701e7543
+  path: exp/tri3b/graph/HCLG.fst
+- md5: 35eafce314e85f199a894c7cb45f893d
+  path: exp/tri3b/graph/words.txt
+- md5: ce9870b334ca5bc70bddd7605b64f802
+  path: exp/tri3b/graph/phones/silence.csl
+outs:
+- md5: 2c02a756679fdf2147077372c20d37f1
+  path: exp/metrics/tri3b.json
+  cache: true
+  metric: true
+  persist: false

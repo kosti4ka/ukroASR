@@ -1,0 +1,31 @@
+md5: 0ef42193e8caf41297daa5e78a0ff0d3
+cmd: cd /data/kaldi/prod/egs/wsj/s5; . ./path.sh; . ./cmd.sh; utils/mkgraph.sh /data/exp/kostya/ukroASR/data/lang_ukr
+  /data/exp/kostya/ukroASR/exp/tri3b /data/exp/kostya/ukroASR/exp/tri3b/graph
+deps:
+- md5: 7e089698d54a1822a2d921aff150d654
+  path: exp/tri3b/final.mdl
+- md5: 434869aa41e2bbe4eba1360fdcd0f718
+  path: exp/tri3b/tree
+- md5: 875100d05104aff4b473c0797db0df96
+  path: data/lang_ukr/L.fst
+- md5: ff6e04723b51dbf11c8838fb678fa2aa
+  path: data/lang_ukr/G.fst
+- md5: f825f0b0b49c7886b93854a97d68a3df
+  path: data/lang_ukr/phones.txt
+- md5: 35eafce314e85f199a894c7cb45f893d
+  path: data/lang_ukr/words.txt
+- md5: ce9870b334ca5bc70bddd7605b64f802
+  path: data/lang_ukr/phones/silence.csl
+- md5: 026740c09ce520e3fa3c95665820b389
+  path: data/lang_ukr/phones/disambig.int
+outs:
+- md5: 701e2faa8caf4dc5a1d7b3ef701e7543
+  path: exp/tri3b/graph/HCLG.fst
+  cache: true
+  metric: false
+  persist: false
+- md5: 35eafce314e85f199a894c7cb45f893d
+  path: exp/tri3b/graph/words.txt
+  cache: true
+  metric: false
+  persist: false
