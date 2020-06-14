@@ -1,4 +1,4 @@
-md5: dc31d8fb67c753a2f4c50f36dcbf9009
+md5: c2c89ab26a2cde8345a1ba20edfda287
 cmd: cd /data/kaldi/prod/egs/wsj/s5/../../../egs/wsj/s5; . ./path.sh; . ./cmd.sh;
   steps/decode.sh --nj 4 /data/exp/kostya/ukroASR/exp/mono/graph /data/exp/kostya/ukroASR/data/dev_0.15k
   /data/exp/kostya/ukroASR/exp/mono/decode_dev_0.15k; /data/exp/kostya/ukroASR/parce_wer_report.sh
@@ -12,12 +12,12 @@ deps:
   path: data/dev_0.15k/cmvn.scp
 - md5: 1703920f07bea75ecf132e57dae03882
   path: exp/mono/final.mdl
-- md5: 15e9c0306e5e2b212b85a1f976f509fc
+- md5: 454395fffc2c7840982a340911a6e9c4
   path: exp/mono/graph/HCLG.fst
 - md5: 35eafce314e85f199a894c7cb45f893d
   path: exp/mono/graph/words.txt
 outs:
-- md5: ff42d443cb22a2a21cbf015b487dd299
+- md5: 64888462e4272235c8da9bd861de74b1
   path: exp/metrics/mono.json
   cache: true
   metric: true

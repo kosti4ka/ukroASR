@@ -1,0 +1,13 @@
+md5: e869084729c1538e86ea3e2ddfeaad5a
+cmd: "echo {\\'LM perplexity\\': 1407.369} > /data/exp/kostya/ukroASR/exp/metrics/lm.json"
+deps:
+- md5: 2acbe3dbcd7895cb80447274b7484a6b
+  path: data/dev/text
+- md5: fd4bb70209047bb89e44bbd421b1d566
+  path: data/lm_ukr.gz
+outs:
+- md5: 79f41efd30ed3bdb7259ace2d5f9665e
+  path: exp/metrics/lm.json
+  cache: true
+  metric: true
+  persist: false
