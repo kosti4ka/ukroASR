@@ -1,4 +1,4 @@
-md5: b0917d48629176955d2c0a2118022621
+md5: 68385276b02b4914921ec81ef842145e
 cmd: cd /data/kaldi/prod/egs/wsj/s5; . ./path.sh; . ./cmd.sh; utils/mkgraph.sh /data/exp/kostya/ukroASR/data/lang_ukr
   /data/exp/kostya/ukroASR/exp/tri2b /data/exp/kostya/ukroASR/exp/tri2b/graph
 deps:
@@ -6,9 +6,9 @@ deps:
   path: exp/tri2b/final.mdl
 - md5: 6c76049b7d37ec63d08e6649186766bc
   path: exp/tri2b/tree
-- md5: 875100d05104aff4b473c0797db0df96
+- md5: d491bc66986db56105c0dd5415c7c2c1
   path: data/lang_ukr/L.fst
-- md5: ff6e04723b51dbf11c8838fb678fa2aa
+- md5: b0e6da0c9616114b1450ffc9a96d7bff
   path: data/lang_ukr/G.fst
 - md5: f825f0b0b49c7886b93854a97d68a3df
   path: data/lang_ukr/phones.txt
@@ -19,7 +19,7 @@ deps:
 - md5: 026740c09ce520e3fa3c95665820b389
   path: data/lang_ukr/phones/disambig.int
 outs:
-- md5: 399d40a123c754c56e29e7ad2c66d3ac
+- md5: 6013da3cd7757bd3c47905d670a2ab98
   path: exp/tri2b/graph/HCLG.fst
   cache: true
   metric: false
