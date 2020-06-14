@@ -1,3 +1,9 @@
 /lang
 /lm_ukr.gz
 /lang_ukr
+/dev_0.15k
+/train_5k
+/train_2kshort
+/train
+/local
+/raw_data
