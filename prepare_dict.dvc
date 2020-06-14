@@ -1,7 +1,7 @@
-md5: 9cbb38ffeaf33aed175f8811669e6ade
+md5: 671c8bf2892cc636a6b2a9839aa04834
 cmd: ./prepare_dict.sh /data/exp/kostya/ukroASR/data/train /data/exp/kostya/ukroASR/data/local/dict
 deps:
-- md5: 16645048583060d971fdadac02466826.dir
+- md5: 83b51b0931c133d39a02f84525436f22.dir
   path: data/train
 - md5: aa1941e722ab47f3b89511741cf94a1f
   path: artifacts/lexicon.txt
@@ -13,7 +13,7 @@ outs:
   cache: true
   metric: false
   persist: false
-- md5: 3594f0c721e6fd1dacfce2e0c1bc374c
+- md5: 5bf2bb341feb3c20b4397a93cf734f82
   path: data/local/dict/lexicon.txt
   cache: true
   metric: false
