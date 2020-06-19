@@ -1,30 +1,30 @@
-md5: ffb0d60bfdb426bb2ff166be0e6d21c0
+md5: 5fe4a0fd50b85f9c5dd516c879f3ac43
 cmd: cd /data/kaldi/prod/egs/wsj/s5; . ./path.sh; . ./cmd.sh; utils/mkgraph.sh /data/exp/kostya/ukroASR/data/lang_ukr
   /data/exp/kostya/ukroASR/exp/tri3b /data/exp/kostya/ukroASR/exp/tri3b/graph
 deps:
-- md5: 7e089698d54a1822a2d921aff150d654
+- md5: facb406124f163874f0055cad3948f03
   path: exp/tri3b/final.mdl
-- md5: 434869aa41e2bbe4eba1360fdcd0f718
+- md5: 0ffd37f821a8bc82bbb6a86d130c9555
   path: exp/tri3b/tree
-- md5: d491bc66986db56105c0dd5415c7c2c1
+- md5: 22c09ccb0a16b44678b263d86e084b64
   path: data/lang_ukr/L.fst
-- md5: b0e6da0c9616114b1450ffc9a96d7bff
+- md5: 7d25256493833329f85bf93683b4cad3
   path: data/lang_ukr/G.fst
 - md5: f825f0b0b49c7886b93854a97d68a3df
   path: data/lang_ukr/phones.txt
-- md5: 35eafce314e85f199a894c7cb45f893d
+- md5: 75ad4a24cfa5b466d8a6fdc75e2403b4
   path: data/lang_ukr/words.txt
 - md5: ce9870b334ca5bc70bddd7605b64f802
   path: data/lang_ukr/phones/silence.csl
 - md5: 026740c09ce520e3fa3c95665820b389
   path: data/lang_ukr/phones/disambig.int
 outs:
-- md5: 30aacab6993567841576dbddd12355d1
+- md5: 614d3892c85f7426763cd37308ce1270
   path: exp/tri3b/graph/HCLG.fst
   cache: true
   metric: false
   persist: false
-- md5: 35eafce314e85f199a894c7cb45f893d
+- md5: 75ad4a24cfa5b466d8a6fdc75e2403b4
   path: exp/tri3b/graph/words.txt
   cache: true
   metric: false

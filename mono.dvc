@@ -1,20 +1,22 @@
-md5: 1cc954621844b6bc94fc5b5da1481a2f
-cmd: cd /data/kaldi/prod/egs/wsj/s5/../../../egs/wsj/s5; . ./path.sh; . ./cmd.sh;
-  steps/train_mono.sh --boost-silence 1.25 --nj 8 /data/exp/kostya/ukroASR/data/train_2kshort
-  /data/exp/kostya/ukroASR/data/lang /data/exp/kostya/ukroASR/exp/mono
+md5: cc69d49058bcd34c30575ac3398fa8c7
+cmd: cd /data/kaldi/prod/egs/wsj/s5; . ./path.sh; . ./cmd.sh; steps/train_mono.sh
+  --boost-silence 1.25 --nj 8 /data/exp/kostya/ukroASR/data/train_2kshort /data/exp/kostya/ukroASR/data/lang
+  /data/exp/kostya/ukroASR/exp/mono; cp /data/exp/kostya/ukroASR/exp/mono/final.mdl
+  /data/exp/kostya/ukroASR/exp/mono/final.mdl_copy; mv /data/exp/kostya/ukroASR/exp/mono/final.mdl_copy
+  /data/exp/kostya/ukroASR/exp/mono/final.mdl
 wdir: exp/mono
 deps:
-- md5: 967e2abe8be25691e6250095150ef073
+- md5: 6aeefb02862f1054e4e61c87bb49078e
   path: ../../data/train_2kshort/feats.scp
-- md5: faf058cf8c5e17a7d991d47a3860f2f5
+- md5: 829f57c6ff2189d713d2630bfa4508d2
   path: ../../data/train_2kshort/utt2spk
-- md5: 032b6795999165f52742c1ad7fdb5358
+- md5: ea6cdf1793ee64631a49ac57c17c19c6
   path: ../../data/train_2kshort/text
-- md5: 22397031b52f2c29b64c14d13781920a
+- md5: 640224e35064655593fb7f24e807fa4c
   path: ../../data/train_2kshort/cmvn.scp
-- md5: d491bc66986db56105c0dd5415c7c2c1
+- md5: eb54db75042ae59c744ad008d3b8578b
   path: ../../data/lang/L.fst
-- md5: 35eafce314e85f199a894c7cb45f893d
+- md5: 75ad4a24cfa5b466d8a6fdc75e2403b4
   path: ../../data/lang/words.txt
 - md5: f825f0b0b49c7886b93854a97d68a3df
   path: ../../data/lang/phones.txt
@@ -27,7 +29,7 @@ deps:
 - md5: b026324c6904b2a9cb4b88d6d61c81d1
   path: ../../data/lang/phones/optional_silence.csl
 outs:
-- md5: 1703920f07bea75ecf132e57dae03882
+- md5: dd4627042fc690b1a5bb86d93b5abf92
   path: final.mdl
   cache: true
   metric: false

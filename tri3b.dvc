@@ -1,4 +1,4 @@
-md5: 8ad4037e411a4aa7baf5363d84277c09
+md5: 245c45ac3d672f416381a3ff828ca81d
 cmd: cd /data/kaldi/prod/egs/wsj/s5; . ./path.sh; . ./cmd.sh; steps/train_sat.sh 2500
   15000 /data/exp/kostya/ukroASR/data/train /data/exp/kostya/ukroASR/data/lang /data/exp/kostya/ukroASR/exp/tri2b_train_ali
   /data/exp/kostya/ukroASR/exp/tri3b; cp /data/exp/kostya/ukroASR/exp/tri3b/final.mdl
@@ -7,31 +7,31 @@ cmd: cd /data/kaldi/prod/egs/wsj/s5; . ./path.sh; . ./cmd.sh; steps/train_sat.sh
   /data/exp/kostya/ukroASR/exp/tri3b/final.mat_copy; mv /data/exp/kostya/ukroASR/exp/tri3b/final.mat_copy
   /data/exp/kostya/ukroASR/exp/tri3b/final.mat
 deps:
-- md5: 9d91c2e858cc04f4b7507764b1b0ebd6
+- md5: 59f74bd860ee5b99e95e4f3a92a2b03f
   path: exp/tri2b_train_ali/ali.1.gz
-- md5: 49b9ad78d0e915a5854a96abd61f92dc
+- md5: 69cf70428405754c5f781ab91947aaf3
   path: exp/tri2b_train_ali/ali.2.gz
-- md5: f656783259d4c93bed7a1901749ff41e
+- md5: 74443cb9c55321e2e9a14060a27c74fb
   path: exp/tri2b_train_ali/ali.3.gz
-- md5: ff6e7a23863e64d5acee6ad31bd28156
+- md5: 148517f359d6fcf3dd6b7d9fc5911e66
   path: exp/tri2b_train_ali/ali.4.gz
-- md5: 77c11ef7dcdd2be5473d6aa1ea05e62e
+- md5: 876c84165e2d8a506e7d1bf3ba4ff7fe
   path: exp/tri2b_train_ali/ali.5.gz
-- md5: 0388171c845d5cdedbd74428c1082248
+- md5: c0c6e915cc0a228dc73c3794fb535ade
   path: exp/tri2b_train_ali/ali.6.gz
-- md5: 4520ab8f56c7e7990bfd78d4628679e9
+- md5: eecfa932822e8e193c4e87e5a6912401
   path: exp/tri2b_train_ali/ali.7.gz
-- md5: 6d0b24af9d65e5a91f87913543406f54
+- md5: acfe5da03da0885b08ff93ad53d93035
   path: exp/tri2b_train_ali/ali.8.gz
 - md5: f825f0b0b49c7886b93854a97d68a3df
   path: exp/tri2b_train_ali/phones.txt
 - md5: c30f7472766d25af1dc80b3ffc9a58c7
   path: exp/tri2b_train_ali/num_jobs
-- md5: f84f06180711a5bce8aa775e579b5137
+- md5: 9b42b513f90662fe4d62f2298d54f6e8
   path: exp/tri2b_train_ali/final.mdl
-- md5: d491bc66986db56105c0dd5415c7c2c1
+- md5: 22c09ccb0a16b44678b263d86e084b64
   path: data/lang/L.fst
-- md5: 35eafce314e85f199a894c7cb45f893d
+- md5: 75ad4a24cfa5b466d8a6fdc75e2403b4
   path: data/lang/words.txt
 - md5: f825f0b0b49c7886b93854a97d68a3df
   path: data/lang/phones.txt
@@ -49,24 +49,24 @@ deps:
   path: data/lang/phones/extra_questions.int
 - md5: ce9870b334ca5bc70bddd7605b64f802
   path: data/lang/phones/context_indep.csl
-- md5: 6c4579b2f7233d6add4fee91499bca31
+- md5: c572a8beaedfed46542705682f5cbb91
   path: data/train/feats.scp
-- md5: fe90aa6ea0e34c0aa07bb5fceab4cf51
+- md5: c4b2055c5623bf937116343743579b12
   path: data/train/utt2spk
-- md5: 22397031b52f2c29b64c14d13781920a
+- md5: 640224e35064655593fb7f24e807fa4c
   path: data/train/cmvn.scp
 outs:
-- md5: 7e089698d54a1822a2d921aff150d654
+- md5: facb406124f163874f0055cad3948f03
   path: exp/tri3b/final.mdl
   cache: true
   metric: false
   persist: false
-- md5: 1fd4a56d02c302ffd904cf1f8be018c2
+- md5: ea263066b6b816c7ba7f713cc7d6fbda
   path: exp/tri3b/final.mat
   cache: true
   metric: false
   persist: false
-- md5: 434869aa41e2bbe4eba1360fdcd0f718
+- md5: 0ffd37f821a8bc82bbb6a86d130c9555
   path: exp/tri3b/tree
   cache: true
   metric: false

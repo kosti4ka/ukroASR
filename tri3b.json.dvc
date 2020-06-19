@@ -1,4 +1,4 @@
-md5: 33c3fee5bf216bbc07a2d7978297fbdf
+md5: d113462cc21e53a540a6c6607a2044cd
 cmd: cd /data/kaldi/prod/egs/wsj/s5; . ./path.sh; . ./cmd.sh; steps/decode_fmllr.sh
   --nj 4 /data/exp/kostya/ukroASR/exp/tri3b/graph /data/exp/kostya/ukroASR/data/dev_0.15k
   /data/exp/kostya/ukroASR/exp/tri3b/decode_dev_0.15k; /data/exp/kostya/ukroASR/parce_wer_report.sh
@@ -10,20 +10,20 @@ deps:
   path: data/dev_0.15k/feats.scp
 - md5: 0e5b20ac9167931c8ac1b447bfa8a403
   path: data/dev_0.15k/cmvn.scp
-- md5: 7e089698d54a1822a2d921aff150d654
+- md5: facb406124f163874f0055cad3948f03
   path: exp/tri3b/final.mdl
-- md5: 434869aa41e2bbe4eba1360fdcd0f718
+- md5: 0ffd37f821a8bc82bbb6a86d130c9555
   path: exp/tri3b/tree
-- md5: 1fd4a56d02c302ffd904cf1f8be018c2
+- md5: ea263066b6b816c7ba7f713cc7d6fbda
   path: exp/tri3b/final.mat
-- md5: 30aacab6993567841576dbddd12355d1
+- md5: 614d3892c85f7426763cd37308ce1270
   path: exp/tri3b/graph/HCLG.fst
-- md5: 35eafce314e85f199a894c7cb45f893d
+- md5: 75ad4a24cfa5b466d8a6fdc75e2403b4
   path: exp/tri3b/graph/words.txt
 - md5: ce9870b334ca5bc70bddd7605b64f802
   path: exp/tri3b/graph/phones/silence.csl
 outs:
-- md5: 2c02a756679fdf2147077372c20d37f1
+- md5: 103a094165733c0823a94d7aaf7b8398
   path: exp/metrics/tri3b.json
   cache: true
   metric: true

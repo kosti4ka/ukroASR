@@ -1,9 +1,9 @@
-md5: 08f85229c14449e93588aa630b69afac
+md5: a1d070efbd80822b2b68ed676ea72ff6
 cmd: cd /data/kaldi/prod/egs/wsj/s5; . ./path.sh; . ./cmd.sh; utils/prepare_lang.sh
   --position-dependent-phones false /data/exp/kostya/ukroASR/data/local/dict '<UNK>'
   /data/exp/kostya/ukroASR/data/local/lang /data/exp/kostya/ukroASR/data/lang
 deps:
-- md5: 5bf2bb341feb3c20b4397a93cf734f82
+- md5: 89b5ef19005d0f068d5f326a1fc70637
   path: data/local/dict/lexicon.txt
 - md5: e1c58dfa6a41e9fa4603ad847099be6a
   path: data/local/dict/silence_phones.txt
@@ -14,7 +14,7 @@ deps:
 - md5: d41d8cd98f00b204e9800998ecf8427e
   path: data/local/dict/extra_questions.txt
 outs:
-- md5: f5914848995ce55d3a7e011ab0b820ce.dir
+- md5: 2ba01217d83d89341f2792ccb82e5b0d.dir
   path: data/lang
   cache: true
   metric: false
