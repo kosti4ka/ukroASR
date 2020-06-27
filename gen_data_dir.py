@@ -6,6 +6,8 @@ from collections import defaultdict
 import argparse
 import pandas as pd
 import subprocess
+import shutil
+
 
 MIN_UTT_DURATION = 0.4
 
@@ -30,6 +32,11 @@ def gen_data_dir(csv_path, out_data_path, normilize=True):
     parent_wav_path = csv_path.parent
 
     # make data dir
+    try:
+        shutil.rmtree(out_data_path)
+    except:
+        pass
+
     out_data_path.mkdir(parents=True, exist_ok=True)
 
     # reading data
