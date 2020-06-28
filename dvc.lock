@@ -1,0 +1,53 @@
+train_data_dir:
+  cmd: python3.6 /data/exp/kostya/ukroASR/gen_data_dir.py /data/exp/kostya/ukroASR/data/raw_data/train.csv
+    /data/exp/kostya/ukroASR/data/train
+  deps:
+  - path: data/raw_data/train.csv
+    md5: 2595aa88a923d1a7a468102d45fc29ed
+  - path: gen_data_dir.py
+    md5: f65eea4177cb4cf4df525623655edb0f
+  outs:
+  - path: data/train/segments
+    md5: 6d9911441952cfd6bb4810b42cee6169
+  - path: data/train/spk2utt
+    md5: 511e3aa5eb8ee7899d4c975b5dd29556
+  - path: data/train/text
+    md5: 91e0d02f86f0e4c3f1e127d15b15fa7e
+  - path: data/train/utt2spk
+    md5: c4b2055c5623bf937116343743579b12
+  - path: data/train/wav.scp
+    md5: f53cdedc094ccaf473b9adeb2efeb32c
+dev_data_dir:
+  cmd: python3.6 /data/exp/kostya/ukroASR/gen_data_dir.py /data/exp/kostya/ukroASR/data/raw_data/dev.csv
+    /data/exp/kostya/ukroASR/data/dev
+  deps:
+  - path: data/raw_data/dev.csv
+    md5: f9f3bc71f965db98dd20aeebccce45b3
+  - path: gen_data_dir.py
+    md5: f65eea4177cb4cf4df525623655edb0f
+  outs:
+  - path: data/dev/segments
+    md5: 9f3f392134cdf6b49ee274044261824c
+  - path: data/dev/spk2utt
+    md5: 069e7f8a925f31b71a874f7d374d2f57
+  - path: data/dev/text
+    md5: 2acbe3dbcd7895cb80447274b7484a6b
+  - path: data/dev/utt2spk
+    md5: 3535e75a7322de8450e71aa14f28a158
+  - path: data/dev/wav.scp
+    md5: 6a88ea8a754b539f796205c5b62b5b40
+local_dict:
+  cmd: /data/exp/kostya/ukroASR/prepare_dict.sh /data/exp/kostya/ukroASR/data/local/dict
+    /data/exp/kostya/ukroASR/data/train/text /data/exp/kostya/ukroASR/artifacts/text_plane
+  deps:
+  - path: artifacts/lexicon.txt
+    md5: aa1941e722ab47f3b89511741cf94a1f
+  - path: artifacts/text_plane
+    md5: 3f9c322aa926e5701422d8521128ce12
+  - path: data/train/text
+    md5: 91e0d02f86f0e4c3f1e127d15b15fa7e
+  outs:
+  - path: data/local/dict/lexicon.txt
+    md5: cf48e8e9f312905d95bff8064cc0c0fe
+  - path: data/local/dict/vocab
+    md5: 89bfa51be991888fc997c8c30a5d74c8

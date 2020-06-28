@@ -1,0 +1,35 @@
+stages:
+  train_data_dir:
+    cmd: python3.6 /data/exp/kostya/ukroASR/gen_data_dir.py /data/exp/kostya/ukroASR/data/raw_data/train.csv
+      /data/exp/kostya/ukroASR/data/train
+    deps:
+    - data/raw_data/train.csv
+    - gen_data_dir.py
+    outs:
+    - data/train/segments
+    - data/train/spk2utt
+    - data/train/text
+    - data/train/utt2spk
+    - data/train/wav.scp
+  dev_data_dir:
+    cmd: python3.6 /data/exp/kostya/ukroASR/gen_data_dir.py /data/exp/kostya/ukroASR/data/raw_data/dev.csv
+      /data/exp/kostya/ukroASR/data/dev
+    deps:
+    - data/raw_data/dev.csv
+    - gen_data_dir.py
+    outs:
+    - data/dev/segments
+    - data/dev/spk2utt
+    - data/dev/text
+    - data/dev/utt2spk
+    - data/dev/wav.scp
+  local_dict:
+    cmd: /data/exp/kostya/ukroASR/prepare_dict.sh /data/exp/kostya/ukroASR/data/local/dict
+      /data/exp/kostya/ukroASR/data/train/text /data/exp/kostya/ukroASR/artifacts/text_plane
+    deps:
+    - artifacts/lexicon.txt
+    - artifacts/text_plane
+    - data/train/text
+    outs:
+    - data/local/dict/lexicon.txt
+    - data/local/dict/vocab
