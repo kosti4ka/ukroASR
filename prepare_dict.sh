@@ -9,11 +9,11 @@ cd $KALDI_ROOT/egs/wsj/s5
 . ./cmd.sh
 . utils/parse_options.sh
 
-data_dir=$1
-dict_dir=$2
+dict_dir=$1
+shift;
 
 # generating vocabluary
-python3.6 $UKROASR_ROOT/tools/gen_vocab.py -t $data_dir/text -v $dict_dir/vocab
+python3.6 $UKROASR_ROOT/tools/gen_vocab.py -t $* -v $dict_dir/vocab
 
 # generating lexicon file
 python3.6 $UKROASR_ROOT/tools/gen_lexicon.py -v $dict_dir/vocab -o $dict_dir/lexicon.txt
