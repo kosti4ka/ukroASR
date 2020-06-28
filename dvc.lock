@@ -48,6 +48,75 @@ local_dict:
     md5: 91e0d02f86f0e4c3f1e127d15b15fa7e
   outs:
   - path: data/local/dict/lexicon.txt
-    md5: cf48e8e9f312905d95bff8064cc0c0fe
+    md5: 2302671b38c6527ca55aa818f3dbfc79
   - path: data/local/dict/vocab
     md5: 89bfa51be991888fc997c8c30a5d74c8
+lang_dir:
+  cmd: cd $KALDI_ROOT/egs/wsj/s5; . ./path.sh; . ./cmd.sh; utils/prepare_lang.sh --position-dependent-phones
+    false /data/exp/kostya/ukroASR/data/local/dict '<UNK>' /data/exp/kostya/ukroASR/data/local/lang
+    /data/exp/kostya/ukroASR/data/lang
+  deps:
+  - path: data/local/dict/extra_questions.txt
+    md5: d41d8cd98f00b204e9800998ecf8427e
+  - path: data/local/dict/lexicon.txt
+    md5: 2302671b38c6527ca55aa818f3dbfc79
+  - path: data/local/dict/nonsilence_phones.txt
+    md5: ea287101b897d529ffb1eaded2eea279
+  - path: data/local/dict/optional_silence.txt
+    md5: afb1c6c9240586b23a567660a6a3e0b3
+  - path: data/local/dict/silence_phones.txt
+    md5: e1c58dfa6a41e9fa4603ad847099be6a
+  outs:
+  - path: data/lang/L.fst
+    md5: 80e529b2fd0c7bab8203cbc9365e5274
+  - path: data/lang/L_disambig.fst
+    md5: b6f1ce9c201e9327651b5ba063cbe8cf
+  - path: data/lang/oov.int
+    md5: 48a24b70a0b376535542b996af517398
+  - path: data/lang/oov.txt
+    md5: e28d9943584fdf57bd1a59c8f8ac6085
+  - path: data/lang/phones
+    md5: 5605b280c84e9c3bfc1d4ff64e57c006.dir
+  - path: data/lang/phones.txt
+    md5: 1ae0c037974d596eae52ac0ba4f19d3a
+  - path: data/lang/topo
+    md5: 7c299e3b53e7c5f53253bfd7f53c336d
+  - path: data/lang/words.txt
+    md5: 59cd84af253020ac536a6f649e2a27f7
+  - path: data/local/dict/lexiconp.txt
+    md5: b2a1410d588ea7142e11c609c0e7aa3d
+lm_ukr:
+  cmd: cut -d' ' -f2- /data/exp/kostya/ukroASR/data/train/text /data/exp/kostya/ukroASR/artifacts/text_plane
+    | ngram-count -text - -order 3 -gt1min 1 -gt2min 1 -lm - | gzip -c > /data/exp/kostya/ukroASR/data/lm_ukr.gz
+  deps:
+  - path: artifacts/text_plane
+    md5: 3f9c322aa926e5701422d8521128ce12
+  - path: data/train/text
+    md5: 91e0d02f86f0e4c3f1e127d15b15fa7e
+  outs:
+  - path: data/lm_ukr.gz
+    md5: 7e08fada8160218982969fd14c1d4942
+lm_metrics:
+  cmd: "echo {\\'LM perplexity\\': 2407.197} > /data/exp/kostya/ukroASR/exp/metrics/lm.json"
+  deps:
+  - path: data/dev/text
+    md5: 2acbe3dbcd7895cb80447274b7484a6b
+  - path: data/lm_ukr.gz
+    md5: 7e08fada8160218982969fd14c1d4942
+  outs:
+  - path: exp/metrics/lm.json
+    md5: 54fc0707579a5716036106bdd5030897
+lang_fst:
+  cmd: cd $KALDI_ROOT/egs/wsj/s5; . ./path.sh; . ./cmd.sh; utils/format_lm.sh /data/exp/kostya/ukroASR/data/lang
+    /data/exp/kostya/ukroASR/data/lm_ukr.gz /data/exp/kostya/ukroASR/data/local/dict/lexicon.txt
+    /data/exp/kostya/ukroASR/data/lang
+  deps:
+  - path: data/lang/words.txt
+    md5: 59cd84af253020ac536a6f649e2a27f7
+  - path: data/lm_ukr.gz
+    md5: 7e08fada8160218982969fd14c1d4942
+  - path: data/local/dict/lexicon.txt
+    md5: 2302671b38c6527ca55aa818f3dbfc79
+  outs:
+  - path: data/lang/G.fst
+    md5: 885dcd08967018e24fcd1c62df92333d

@@ -33,3 +33,49 @@ stages:
     outs:
     - data/local/dict/lexicon.txt
     - data/local/dict/vocab
+  lang_dir:
+    cmd: cd $KALDI_ROOT/egs/wsj/s5; . ./path.sh; . ./cmd.sh; utils/prepare_lang.sh
+      --position-dependent-phones false /data/exp/kostya/ukroASR/data/local/dict '<UNK>'
+      /data/exp/kostya/ukroASR/data/local/lang /data/exp/kostya/ukroASR/data/lang
+    deps:
+    - data/local/dict/extra_questions.txt
+    - data/local/dict/lexicon.txt
+    - data/local/dict/nonsilence_phones.txt
+    - data/local/dict/optional_silence.txt
+    - data/local/dict/silence_phones.txt
+    outs:
+    - data/lang/L.fst
+    - data/lang/L_disambig.fst
+    - data/lang/oov.int
+    - data/lang/oov.txt
+    - data/lang/phones
+    - data/lang/phones.txt
+    - data/lang/topo
+    - data/lang/words.txt
+    - data/local/dict/lexiconp.txt:
+        cache: false
+  lm_ukr:
+    cmd: cut -d' ' -f2- /data/exp/kostya/ukroASR/data/train/text /data/exp/kostya/ukroASR/artifacts/text_plane
+      | ngram-count -text - -order 3 -gt1min 1 -gt2min 1 -lm - | gzip -c > /data/exp/kostya/ukroASR/data/lm_ukr.gz
+    deps:
+    - artifacts/text_plane
+    - data/train/text
+    outs:
+    - data/lm_ukr.gz
+  lm_metrics:
+    cmd: "echo {\\'LM perplexity\\': 2407.197} > /data/exp/kostya/ukroASR/exp/metrics/lm.json"
+    deps:
+    - data/dev/text
+    - data/lm_ukr.gz
+    metrics:
+    - exp/metrics/lm.json
+  lang_fst:
+    cmd: cd $KALDI_ROOT/egs/wsj/s5; . ./path.sh; . ./cmd.sh; utils/format_lm.sh /data/exp/kostya/ukroASR/data/lang
+      /data/exp/kostya/ukroASR/data/lm_ukr.gz /data/exp/kostya/ukroASR/data/local/dict/lexicon.txt
+      /data/exp/kostya/ukroASR/data/lang
+    deps:
+    - data/lang/words.txt
+    - data/lm_ukr.gz
+    - data/local/dict/lexicon.txt
+    outs:
+    - data/lang/G.fst
