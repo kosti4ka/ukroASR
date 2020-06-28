@@ -79,3 +79,456 @@ stages:
     - data/local/dict/lexicon.txt
     outs:
     - data/lang/G.fst
+  mfcc_train:
+    cmd: python3.6 /data/exp/kostya/ukroASR/features/make_mfcc.py /data/exp/kostya/ukroASR/data/train
+      /data/exp/kostya/ukroASR/exp/log/mfcc /data/exp/kostya/ukroASR/exp/train_mfcc
+    deps:
+    - data/train/segments
+    - data/train/utt2spk
+    - data/train/wav.scp
+    outs:
+    - data/train/feats.scp:
+        cache: false
+    - exp/train_mfcc:
+        cache: false
+  mfcc_dev:
+    cmd: python3.6 /data/exp/kostya/ukroASR/features/make_mfcc.py /data/exp/kostya/ukroASR/data/dev
+      /data/exp/kostya/ukroASR/exp/log/mfcc /data/exp/kostya/ukroASR/exp/dev_mfcc
+    deps:
+    - data/dev/segments
+    - data/dev/utt2spk
+    - data/dev/wav.scp
+    outs:
+    - data/dev/feats.scp:
+        cache: false
+    - exp/dev_mfcc:
+        cache: false
+  cmvn_train:
+    cmd: python3.6 /data/exp/kostya/ukroASR/features/compute_cmvn_stats.py /data/exp/kostya/ukroASR/data/train
+      /data/exp/kostya/ukroASR/exp/log/cmvn /data/exp/kostya/ukroASR/exp/train_cmvn
+    deps:
+    - data/train/feats.scp
+    - data/train/utt2spk
+    outs:
+    - data/train/cmvn.scp:
+        cache: false
+    - exp/train_cmvn:
+        cache: false
+  cmvn_dev:
+    cmd: python3.6 /data/exp/kostya/ukroASR/features/compute_cmvn_stats.py /data/exp/kostya/ukroASR/data/dev
+      /data/exp/kostya/ukroASR/exp/log/cmvn /data/exp/kostya/ukroASR/exp/dev_cmvn
+    deps:
+    - data/dev/feats.scp
+    - data/dev/utt2spk
+    outs:
+    - data/dev/cmvn.scp:
+        cache: false
+    - exp/dev_cmvn:
+        cache: false
+  train_2kshort_data:
+    cmd: cd $KALDI_ROOT/egs/wsj/s5; . ./path.sh; . ./cmd.sh; utils/subset_data_dir.sh
+      --shortest /data/exp/kostya/ukroASR/data/train 2000 /data/exp/kostya/ukroASR/data/train_2kshort
+    deps:
+    - data/train/cmvn.scp
+    - data/train/feats.scp
+    - data/train/segments
+    - data/train/spk2utt
+    - data/train/text
+    - data/train/utt2spk
+    - data/train/wav.scp
+    outs:
+    - data/train_2kshort/cmvn.scp
+    - data/train_2kshort/feats.scp
+    - data/train_2kshort/segments
+    - data/train_2kshort/spk2utt
+    - data/train_2kshort/text
+    - data/train_2kshort/utt2spk
+    - data/train_2kshort/wav.scp
+  train_5k_data:
+    cmd: cd $KALDI_ROOT/egs/wsj/s5; . ./path.sh; . ./cmd.sh; utils/subset_data_dir.sh
+      /data/exp/kostya/ukroASR/data/train 5000 /data/exp/kostya/ukroASR/data/train_5k
+    deps:
+    - data/train/cmvn.scp
+    - data/train/feats.scp
+    - data/train/segments
+    - data/train/spk2utt
+    - data/train/text
+    - data/train/utt2spk
+    - data/train/wav.scp
+    outs:
+    - data/train_5k/cmvn.scp
+    - data/train_5k/feats.scp
+    - data/train_5k/segments
+    - data/train_5k/spk2utt
+    - data/train_5k/text
+    - data/train_5k/utt2spk
+    - data/train_5k/wav.scp
+  dev_075kshort_data:
+    cmd: cd $KALDI_ROOT/egs/wsj/s5; . ./path.sh; . ./cmd.sh; utils/subset_data_dir.sh
+      --shortest /data/exp/kostya/ukroASR/data/dev 750 /data/exp/kostya/ukroASR/data/dev_0.75kshort
+    deps:
+    - data/dev/cmvn.scp
+    - data/dev/feats.scp
+    - data/dev/segments
+    - data/dev/spk2utt
+    - data/dev/text
+    - data/dev/utt2spk
+    - data/dev/wav.scp
+    outs:
+    - data/dev_0.75kshort/cmvn.scp
+    - data/dev_0.75kshort/feats.scp
+    - data/dev_0.75kshort/segments
+    - data/dev_0.75kshort/spk2utt
+    - data/dev_0.75kshort/text
+    - data/dev_0.75kshort/utt2spk
+    - data/dev_0.75kshort/wav.scp
+  dev_015k_data:
+    cmd: cd $KALDI_ROOT/egs/wsj/s5; . ./path.sh; . ./cmd.sh; utils/subset_data_dir.sh
+      /data/exp/kostya/ukroASR/data/dev_0.75kshort 150 /data/exp/kostya/ukroASR/data/dev_0.15k
+    deps:
+    - data/dev_0.75kshort/cmvn.scp
+    - data/dev_0.75kshort/feats.scp
+    - data/dev_0.75kshort/segments
+    - data/dev_0.75kshort/spk2utt
+    - data/dev_0.75kshort/text
+    - data/dev_0.75kshort/utt2spk
+    - data/dev_0.75kshort/wav.scp
+    outs:
+    - data/dev_0.15k/cmvn.scp
+    - data/dev_0.15k/feats.scp
+    - data/dev_0.15k/segments
+    - data/dev_0.15k/spk2utt
+    - data/dev_0.15k/text
+    - data/dev_0.15k/utt2spk
+    - data/dev_0.15k/wav.scp
+  mono:
+    cmd: cd $KALDI_ROOT/egs/wsj/s5; . ./path.sh; . ./cmd.sh; steps/train_mono.sh --boost-silence
+      1.25 --nj 8 /data/exp/kostya/ukroASR/data/train_2kshort /data/exp/kostya/ukroASR/data/lang
+      /data/exp/kostya/ukroASR/exp/mono
+    deps:
+    - data/lang/L.fst
+    - data/lang/phones
+    - data/lang/phones.txt
+    - data/lang/topo
+    - data/lang/words.txt
+    - data/train_2kshort/cmvn.scp
+    - data/train_2kshort/feats.scp
+    - data/train_2kshort/text
+    - data/train_2kshort/utt2spk
+    outs:
+    - exp/mono/final.mdl
+    - exp/mono/phones.txt
+    - exp/mono/tree
+  mono_graph:
+    cmd: cd $KALDI_ROOT/egs/wsj/s5; . ./path.sh; . ./cmd.sh; utils/mkgraph.sh /data/exp/kostya/ukroASR/data/lang_ukr
+      /data/exp/kostya/ukroASR/exp/mono /data/exp/kostya/ukroASR/exp/mono/graph
+    deps:
+    - data/lang/G.fst
+    - data/lang/L.fst
+    - data/lang/phones
+    - data/lang/phones.txt
+    - data/lang/words.txt
+    - exp/mono/final.mdl
+    - exp/mono/tree
+    outs:
+    - exp/mono/graph/HCLG.fst:
+        cache: false
+    - exp/mono/graph/words.txt:
+        cache: false
+  mono_metrics:
+    cmd: cd $KALDI_ROOT/egs/wsj/s5; . ./path.sh; . ./cmd.sh; steps/decode.sh --nj
+      4 /data/exp/kostya/ukroASR/exp/mono/graph /data/exp/kostya/ukroASR/data/dev_0.15k
+      /data/exp/kostya/ukroASR/exp/mono/decode_dev_0.15k; /data/exp/kostya/ukroASR/parce_wer_report.sh
+      /data/exp/kostya/ukroASR/exp/mono/decode_dev_0.15k/scoring_kaldi/best_wer /data/exp/kostya/ukroASR/exp/metrics/mono.json
+    deps:
+    - data/dev_0.15k/cmvn.scp
+    - data/dev_0.15k/feats.scp
+    - data/dev_0.15k/utt2spk
+    - data/lang/words.txt
+    - exp/mono/final.mdl
+    - exp/mono/graph/HCLG.fst
+    metrics:
+    - exp/metrics/mono.json
+  mono_ali:
+    cmd: cd $KALDI_ROOT/egs/wsj/s5; . ./path.sh; . ./cmd.sh; steps/align_si.sh --boost-silence
+      1.25 --nj 8 /data/exp/kostya/ukroASR/data/train_5k /data/exp/kostya/ukroASR/data/lang
+      /data/exp/kostya/ukroASR/exp/mono /data/exp/kostya/ukroASR/exp/mono_train_5k_ali
+    deps:
+    - data/lang/L.fst
+    - data/lang/oov.int
+    - data/lang/phones
+    - data/lang/phones.txt
+    - data/lang/words.txt
+    - data/train_5k/cmvn.scp
+    - data/train_5k/feats.scp
+    - data/train_5k/text
+    - data/train_5k/utt2spk
+    - exp/mono/final.mdl
+    - exp/mono/tree
+    outs:
+    - exp/mono_train_5k_ali/ali.1.gz:
+        cache: false
+    - exp/mono_train_5k_ali/ali.2.gz:
+        cache: false
+    - exp/mono_train_5k_ali/ali.3.gz:
+        cache: false
+    - exp/mono_train_5k_ali/ali.4.gz:
+        cache: false
+    - exp/mono_train_5k_ali/ali.5.gz:
+        cache: false
+    - exp/mono_train_5k_ali/ali.6.gz:
+        cache: false
+    - exp/mono_train_5k_ali/ali.7.gz:
+        cache: false
+    - exp/mono_train_5k_ali/ali.8.gz:
+        cache: false
+  tri1:
+    cmd: cd $KALDI_ROOT/egs/wsj/s5; . ./path.sh; . ./cmd.sh; steps/train_deltas.sh
+      --boost-silence 1.25 2000 10000 /data/exp/kostya/ukroASR/data/train_5k /data/exp/kostya/ukroASR/data/lang
+      /data/exp/kostya/ukroASR/exp/mono_train_5k_ali /data/exp/kostya/ukroASR/exp/tri1;
+      cp /data/exp/kostya/ukroASR/exp/tri1/final.mdl /data/exp/kostya/ukroASR/exp/tri1/final.mdl_copy;
+      mv /data/exp/kostya/ukroASR/exp/tri1/final.mdl_copy /data/exp/kostya/ukroASR/exp/tri1/final.mdl
+    deps:
+    - data/lang/L.fst
+    - data/lang/phones
+    - data/lang/phones.txt
+    - data/lang/topo
+    - data/lang/words.txt
+    - data/train_5k/cmvn.scp
+    - data/train_5k/feats.scp
+    - data/train_5k/utt2spk
+    - exp/mono_train_5k_ali/ali.1.gz
+    - exp/mono_train_5k_ali/ali.2.gz
+    - exp/mono_train_5k_ali/ali.3.gz
+    - exp/mono_train_5k_ali/ali.4.gz
+    - exp/mono_train_5k_ali/ali.5.gz
+    - exp/mono_train_5k_ali/ali.6.gz
+    - exp/mono_train_5k_ali/ali.7.gz
+    - exp/mono_train_5k_ali/ali.8.gz
+    outs:
+    - exp/tri1/final.mdl
+    - exp/tri1/phones.txt
+    - exp/tri1/tree
+  tri1_graph:
+    cmd: cd $KALDI_ROOT/egs/wsj/s5; . ./path.sh; . ./cmd.sh; utils/mkgraph.sh /data/exp/kostya/ukroASR/data/lang_ukr
+      /data/exp/kostya/ukroASR/exp/tri1 /data/exp/kostya/ukroASR/exp/tri1/graph
+    deps:
+    - data/lang/G.fst
+    - data/lang/L.fst
+    - data/lang/phones
+    - data/lang/phones.txt
+    - data/lang/words.txt
+    - exp/tri1/final.mdl
+    - exp/tri1/tree
+    outs:
+    - exp/tri1/graph/HCLG.fst:
+        cache: false
+    - exp/tri1/graph/words.txt:
+        cache: false
+  tri1_metrics:
+    cmd: cd $KALDI_ROOT/egs/wsj/s5; . ./path.sh; . ./cmd.sh; steps/decode.sh --nj
+      4 /data/exp/kostya/ukroASR/exp/tri1/graph /data/exp/kostya/ukroASR/data/dev_0.15k
+      /data/exp/kostya/ukroASR/exp/tri1/decode_dev_0.15k; /data/exp/kostya/ukroASR/parce_wer_report.sh
+      /data/exp/kostya/ukroASR/exp/tri1/decode_dev_0.15k/scoring_kaldi/best_wer /data/exp/kostya/ukroASR/exp/metrics/tri1.json
+    deps:
+    - data/dev_0.15k/cmvn.scp
+    - data/dev_0.15k/feats.scp
+    - data/dev_0.15k/utt2spk
+    - data/lang/words.txt
+    - exp/tri1/final.mdl
+    - exp/tri1/graph/HCLG.fst
+    metrics:
+    - exp/metrics/tri1.json
+  tri_ali:
+    cmd: cd $KALDI_ROOT/egs/wsj/s5; . ./path.sh; . ./cmd.sh; steps/align_si.sh --nj
+      8 /data/exp/kostya/ukroASR/data/train /data/exp/kostya/ukroASR/data/lang /data/exp/kostya/ukroASR/exp/tri1
+      /data/exp/kostya/ukroASR/exp/tri1_train_ali
+    deps:
+    - data/lang/L.fst
+    - data/lang/oov.int
+    - data/lang/phones
+    - data/lang/phones.txt
+    - data/lang/words.txt
+    - data/train/cmvn.scp
+    - data/train/feats.scp
+    - data/train/text
+    - data/train/utt2spk
+    - exp/tri1/final.mdl
+    - exp/tri1/tree
+    outs:
+    - exp/tri1_train_ali/ali.1.gz:
+        cache: false
+    - exp/tri1_train_ali/ali.2.gz:
+        cache: false
+    - exp/tri1_train_ali/ali.3.gz:
+        cache: false
+    - exp/tri1_train_ali/ali.4.gz:
+        cache: false
+    - exp/tri1_train_ali/ali.5.gz:
+        cache: false
+    - exp/tri1_train_ali/ali.6.gz:
+        cache: false
+    - exp/tri1_train_ali/ali.7.gz:
+        cache: false
+    - exp/tri1_train_ali/ali.8.gz:
+        cache: false
+  tri2b:
+    cmd: cd $KALDI_ROOT/egs/wsj/s5; . ./path.sh; . ./cmd.sh; steps/train_lda_mllt.sh
+      --splice-opts "--left-context=3 --right-context=3" 2500 15000 /data/exp/kostya/ukroASR/data/train
+      /data/exp/kostya/ukroASR/data/lang /data/exp/kostya/ukroASR/exp/tri1_train_ali
+      /data/exp/kostya/ukroASR/exp/tri2b; cp /data/exp/kostya/ukroASR/exp/tri2b/final.mdl
+      /data/exp/kostya/ukroASR/exp/tri2b/final.mdl_copy; mv /data/exp/kostya/ukroASR/exp/tri2b/final.mdl_copy
+      /data/exp/kostya/ukroASR/exp/tri2b/final.mdl; cp /data/exp/kostya/ukroASR/exp/tri2b/final.mat
+      /data/exp/kostya/ukroASR/exp/tri2b/final.mat_copy; mv /data/exp/kostya/ukroASR/exp/tri2b/final.mat_copy
+      /data/exp/kostya/ukroASR/exp/tri2b/final.mat
+    deps:
+    - data/lang/L.fst
+    - data/lang/phones
+    - data/lang/phones.txt
+    - data/lang/topo
+    - data/lang/words.txt
+    - data/train/cmvn.scp
+    - data/train/feats.scp
+    - data/train/utt2spk
+    - exp/tri1_train_ali/ali.1.gz
+    - exp/tri1_train_ali/ali.2.gz
+    - exp/tri1_train_ali/ali.3.gz
+    - exp/tri1_train_ali/ali.4.gz
+    - exp/tri1_train_ali/ali.5.gz
+    - exp/tri1_train_ali/ali.6.gz
+    - exp/tri1_train_ali/ali.7.gz
+    - exp/tri1_train_ali/ali.8.gz
+    outs:
+    - exp/tri2b/final.mat
+    - exp/tri2b/final.mdl
+    - exp/tri2b/phones.txt
+    - exp/tri2b/tree
+  tri2b_graph:
+    cmd: cd $KALDI_ROOT/egs/wsj/s5; . ./path.sh; . ./cmd.sh; utils/mkgraph.sh /data/exp/kostya/ukroASR/data/lang_ukr
+      /data/exp/kostya/ukroASR/exp/tri2b /data/exp/kostya/ukroASR/exp/tri2b/graph
+    deps:
+    - data/lang/G.fst
+    - data/lang/L.fst
+    - data/lang/phones
+    - data/lang/phones.txt
+    - data/lang/words.txt
+    - exp/tri2b/final.mdl
+    - exp/tri2b/tree
+    outs:
+    - exp/tri2b/graph/HCLG.fst:
+        cache: false
+    - exp/tri2b/graph/words.txt:
+        cache: false
+  tri2b_metrics:
+    cmd: cd $KALDI_ROOT/egs/wsj/s5; . ./path.sh; . ./cmd.sh; steps/decode.sh --nj
+      4 /data/exp/kostya/ukroASR/exp/tri2b/graph /data/exp/kostya/ukroASR/data/dev_0.15k
+      /data/exp/kostya/ukroASR/exp/tri2b/decode_dev_0.15k; /data/exp/kostya/ukroASR/parce_wer_report.sh
+      /data/exp/kostya/ukroASR/exp/tri2b/decode_dev_0.15k/scoring_kaldi/best_wer /data/exp/kostya/ukroASR/exp/metrics/tri2b.json
+    deps:
+    - data/dev_0.15k/cmvn.scp
+    - data/dev_0.15k/feats.scp
+    - data/dev_0.15k/utt2spk
+    - data/lang/words.txt
+    - exp/tri2b/final.mat
+    - exp/tri2b/final.mdl
+    - exp/tri2b/graph/HCLG.fst
+    metrics:
+    - exp/metrics/tri2b.json
+  tri2b_ali:
+    cmd: cd $KALDI_ROOT/egs/wsj/s5; . ./path.sh; . ./cmd.sh; steps/align_si.sh --nj
+      8 /data/exp/kostya/ukroASR/data/train /data/exp/kostya/ukroASR/data/lang /data/exp/kostya/ukroASR/exp/tri2b
+      /data/exp/kostya/ukroASR/exp/tri2b_train_ali
+    deps:
+    - data/lang/L.fst
+    - data/lang/oov.int
+    - data/lang/phones
+    - data/lang/phones.txt
+    - data/lang/words.txt
+    - data/train/cmvn.scp
+    - data/train/feats.scp
+    - data/train/text
+    - data/train/utt2spk
+    - exp/tri2b/final.mat
+    - exp/tri2b/final.mdl
+    - exp/tri2b/full.mat
+    - exp/tri2b/tree
+    outs:
+    - exp/tri2b_train_ali/ali.1.gz:
+        cache: false
+    - exp/tri2b_train_ali/ali.2.gz:
+        cache: false
+    - exp/tri2b_train_ali/ali.3.gz:
+        cache: false
+    - exp/tri2b_train_ali/ali.4.gz:
+        cache: false
+    - exp/tri2b_train_ali/ali.5.gz:
+        cache: false
+    - exp/tri2b_train_ali/ali.6.gz:
+        cache: false
+    - exp/tri2b_train_ali/ali.7.gz:
+        cache: false
+    - exp/tri2b_train_ali/ali.8.gz:
+        cache: false
+  tri3b:
+    cmd: cd $KALDI_ROOT/egs/wsj/s5; . ./path.sh; . ./cmd.sh; steps/train_sat.sh 2500
+      15000 /data/exp/kostya/ukroASR/data/train /data/exp/kostya/ukroASR/data/lang
+      /data/exp/kostya/ukroASR/exp/tri2b_train_ali /data/exp/kostya/ukroASR/exp/tri3b;
+      cp /data/exp/kostya/ukroASR/exp/tri3b/final.mdl /data/exp/kostya/ukroASR/exp/tri3b/final.mdl_copy;
+      mv /data/exp/kostya/ukroASR/exp/tri3b/final.mdl_copy /data/exp/kostya/ukroASR/exp/tri3b/final.mdl;
+      cp /data/exp/kostya/ukroASR/exp/tri3b/final.mat /data/exp/kostya/ukroASR/exp/tri3b/final.mat_copy;
+      mv /data/exp/kostya/ukroASR/exp/tri3b/final.mat_copy /data/exp/kostya/ukroASR/exp/tri3b/final.mat
+    deps:
+    - data/lang/L.fst
+    - data/lang/phones
+    - data/lang/phones.txt
+    - data/lang/topo
+    - data/lang/words.txt
+    - data/train/cmvn.scp
+    - data/train/feats.scp
+    - data/train/utt2spk
+    - exp/tri2b_train_ali/ali.1.gz
+    - exp/tri2b_train_ali/ali.2.gz
+    - exp/tri2b_train_ali/ali.3.gz
+    - exp/tri2b_train_ali/ali.4.gz
+    - exp/tri2b_train_ali/ali.5.gz
+    - exp/tri2b_train_ali/ali.6.gz
+    - exp/tri2b_train_ali/ali.7.gz
+    - exp/tri2b_train_ali/ali.8.gz
+    outs:
+    - exp/tri3b/final.mat
+    - exp/tri3b/final.mdl
+    - exp/tri3b/phones.txt
+    - exp/tri3b/tree
+  tri3b_graph:
+    cmd: cd $KALDI_ROOT/egs/wsj/s5; . ./path.sh; . ./cmd.sh; utils/mkgraph.sh /data/exp/kostya/ukroASR/data/lang
+      /data/exp/kostya/ukroASR/exp/tri3b /data/exp/kostya/ukroASR/exp/tri3b/graph
+    deps:
+    - data/lang/G.fst
+    - data/lang/L.fst
+    - data/lang/phones
+    - data/lang/phones.txt
+    - data/lang/words.txt
+    - exp/tri3b/final.mdl
+    - exp/tri3b/tree
+    outs:
+    - exp/tri3b/graph/HCLG.fst:
+        cache: false
+    - exp/tri3b/graph/words.txt:
+        cache: false
+  tri3b_metrics:
+    cmd: cd $KALDI_ROOT/egs/wsj/s5; . ./path.sh; . ./cmd.sh; steps/decode_fmllr.sh
+      --nj 4 /data/exp/kostya/ukroASR/exp/tri3b/graph /data/exp/kostya/ukroASR/data/dev_0.15k
+      /data/exp/kostya/ukroASR/exp/tri3b/decode_dev_0.15k; /data/exp/kostya/ukroASR/parce_wer_report.sh
+      /data/exp/kostya/ukroASR/exp/tri3b/decode_dev_0.15k/scoring_kaldi/best_wer /data/exp/kostya/ukroASR/exp/metrics/tri3b.json
+    deps:
+    - data/dev_0.15k/cmvn.scp
+    - data/dev_0.15k/feats.scp
+    - data/dev_0.15k/utt2spk
+    - data/lang/phones
+    - data/lang/words.txt
+    - exp/tri3b/final.mat
+    - exp/tri3b/final.mdl
+    - exp/tri3b/graph/HCLG.fst
+    - exp/tri3b/tree
+    metrics:
+    - exp/metrics/tri3b.json

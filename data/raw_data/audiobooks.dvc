@@ -1,0 +1,10 @@
+md5: f705139a6da5fa9a79324f5e6f3fb3ae
+frozen: true
+deps:
+- path: audiobooks
+  repo:
+    url: https://github.com/kosti4ka/ukrodataset.git
+    rev_lock: 15a5ca91204245c099572f9c332914abc5c04825
+outs:
+- md5: f9500df836cf542cd3905a8a7b3c9c8b.dir
+  path: audiobooks
