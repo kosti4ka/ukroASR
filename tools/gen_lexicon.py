@@ -66,7 +66,10 @@ def gen_g2p(word_list, variants=1):
     for word in word_list:
         try:
             pron = g2p(word)
-            lexicon[word] = [pron]
+            if pron:
+                lexicon[word] = [pron]
+            else:
+                subprocess.call(f'echo Failed on: {word.encode("utf-8")}', shell=True)
         except:
             # TODO move it to logger
             subprocess.call(f'echo Failed on: {word.encode("utf-8")}', shell=True)
