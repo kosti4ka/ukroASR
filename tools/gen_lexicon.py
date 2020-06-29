@@ -6,6 +6,7 @@ from tools.utils import get_list, get_lexicon
 from pathlib import Path
 from ukr_g2p import G2P
 # import unicode
+from tqdm import tqdm
 
 BASE_LEXICON_PATH = '/data/exp/kostya/ukroASR/artifacts/lexicon.txt'
 G2P_MODEL_NAME = 'ukr-base-uncased'
@@ -63,16 +64,18 @@ def gen_g2p(word_list, variants=1):
 
     # generating lexicon
     lexicon = {}
-    for word in word_list:
+    for word in tqdm(word_list):
         try:
             pron = g2p(word)
             if pron:
                 lexicon[word] = [pron]
             else:
-                subprocess.call(f'echo Failed on: {word.encode("utf-8")}', shell=True)
+                pass
+                # subprocess.call(f'echo Failed on: {word.encode("utf-8")}', shell=True)
         except:
             # TODO move it to logger
-            subprocess.call(f'echo Failed on: {word.encode("utf-8")}', shell=True)
+            # subprocess.call(f'echo Failed on: {word.encode("utf-8")}', shell=True)
+            pass
 
     return lexicon
 
