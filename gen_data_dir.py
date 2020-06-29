@@ -179,7 +179,7 @@ def text2plane(texts_list, out_text_file):
     with open(out_text_file, 'w', encoding='utf-8') as out_text:
 
         for text_file in texts_list:
-            f = open(text_file, "r")
+            f = open(text_file, "r", encoding='utf-8')
             lines = list(f)
             f.close()
 
