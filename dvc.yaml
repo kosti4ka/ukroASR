@@ -26,8 +26,10 @@ stages:
   local_dict:
     cmd: /data/exp/kostya/ukroASR/prepare_dict.sh /data/exp/kostya/ukroASR/data/local/dict
       /data/exp/kostya/ukroASR/data/train/text /data/exp/kostya/ukroASR/artifacts/text_plane
+      /data/exp/kostya/ukroASR/artifacts/normal_fiction.txt
     deps:
     - artifacts/lexicon.txt
+    - artifacts/normal_fiction.txt
     - artifacts/text_plane
     - data/train/text
     outs:
@@ -56,14 +58,16 @@ stages:
         cache: false
   lm_ukr:
     cmd: cut -d' ' -f2- /data/exp/kostya/ukroASR/data/train/text /data/exp/kostya/ukroASR/artifacts/text_plane
-      | ngram-count -text - -order 3 -gt1min 1 -gt2min 1 -lm - | gzip -c > /data/exp/kostya/ukroASR/data/lm_ukr.gz
+      /data/exp/kostya/ukroASR/artifacts/normal_fiction.txt | ngram-count -text -
+      -order 3 -gt1min 1 -gt2min 1 -lm - | gzip -c > /data/exp/kostya/ukroASR/data/lm_ukr.gz
     deps:
+    - artifacts/normal_fiction.txt
     - artifacts/text_plane
     - data/train/text
     outs:
     - data/lm_ukr.gz
   lm_metrics:
-    cmd: "echo {\\'LM perplexity\\': 2407.197} > /data/exp/kostya/ukroASR/exp/metrics/lm.json"
+    cmd: "echo {\\'LM perplexity\\': 2486.735} > /data/exp/kostya/ukroASR/exp/metrics/lm.json"
     deps:
     - data/dev/text
     - data/lm_ukr.gz
