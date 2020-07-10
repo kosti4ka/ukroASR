@@ -59,7 +59,7 @@ stages:
   lm_ukr:
     cmd: cut -d' ' -f2- /data/exp/kostya/ukroASR/data/train/text /data/exp/kostya/ukroASR/artifacts/text_plane
       /data/exp/kostya/ukroASR/artifacts/normal_fiction.txt | ngram-count -text -
-      -order 3 -gt1min 1 -gt2min 1 -lm - | gzip -c > /data/exp/kostya/ukroASR/data/lm_ukr.gz
+      -order 3 -prune 1e-7 -gt1min 1 -gt2min 1 -lm - | gzip -c > /data/exp/kostya/ukroASR/data/lm_ukr.gz
     deps:
     - artifacts/normal_fiction.txt
     - artifacts/text_plane
@@ -67,7 +67,7 @@ stages:
     outs:
     - data/lm_ukr.gz
   lm_metrics:
-    cmd: "echo {\\'LM perplexity\\': 2486.735} > /data/exp/kostya/ukroASR/exp/metrics/lm.json"
+    cmd: "echo {\\'LM perplexity\\': 2556.659} > /data/exp/kostya/ukroASR/exp/metrics/lm.json"
     deps:
     - data/dev/text
     - data/lm_ukr.gz
@@ -224,7 +224,7 @@ stages:
     - exp/mono/phones.txt
     - exp/mono/tree
   mono_graph:
-    cmd: cd $KALDI_ROOT/egs/wsj/s5; . ./path.sh; . ./cmd.sh; utils/mkgraph.sh /data/exp/kostya/ukroASR/data/lang_ukr
+    cmd: cd $KALDI_ROOT/egs/wsj/s5; . ./path.sh; . ./cmd.sh; utils/mkgraph.sh /data/exp/kostya/ukroASR/data/lang
       /data/exp/kostya/ukroASR/exp/mono /data/exp/kostya/ukroASR/exp/mono/graph
     deps:
     - data/lang/G.fst
@@ -314,7 +314,7 @@ stages:
     - exp/tri1/phones.txt
     - exp/tri1/tree
   tri1_graph:
-    cmd: cd $KALDI_ROOT/egs/wsj/s5; . ./path.sh; . ./cmd.sh; utils/mkgraph.sh /data/exp/kostya/ukroASR/data/lang_ukr
+    cmd: cd $KALDI_ROOT/egs/wsj/s5; . ./path.sh; . ./cmd.sh; utils/mkgraph.sh /data/exp/kostya/ukroASR/data/lang
       /data/exp/kostya/ukroASR/exp/tri1 /data/exp/kostya/ukroASR/exp/tri1/graph
     deps:
     - data/lang/G.fst
@@ -408,7 +408,7 @@ stages:
     - exp/tri2b/phones.txt
     - exp/tri2b/tree
   tri2b_graph:
-    cmd: cd $KALDI_ROOT/egs/wsj/s5; . ./path.sh; . ./cmd.sh; utils/mkgraph.sh /data/exp/kostya/ukroASR/data/lang_ukr
+    cmd: cd $KALDI_ROOT/egs/wsj/s5; . ./path.sh; . ./cmd.sh; utils/mkgraph.sh /data/exp/kostya/ukroASR/data/lang
       /data/exp/kostya/ukroASR/exp/tri2b /data/exp/kostya/ukroASR/exp/tri2b/graph
     deps:
     - data/lang/G.fst
