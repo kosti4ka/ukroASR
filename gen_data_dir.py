@@ -50,18 +50,22 @@ def gen_data_dir(csv_path, out_data_path, normilize=True):
             open(segments_path, 'w', encoding='utf-8') as segments_f, \
             open(text_path, 'w', encoding='utf-8') as text_f:
         for index, row in df.iterrows():
-            text = normilize_line(row["text"]) if normilize else row["text"]
-            utt_start = row["utt_start"]
-            utt_end = row["utt_end"]
-            utt_id = row["utt_id"]
-            spk_id = row["spk_id"]
-            audio_id = row["audio_id"]
-            if utt_end - utt_start > MIN_UTT_DURATION:
-                utt2spk_f.write(f'{utt_id} {spk_id}\n')
-                segments_f.write(f'{utt_id} {audio_id} {utt_start} {utt_end}\n')
-                text_f.write(f'{utt_id} {text}\n')
-                wav_scp.append((audio_id, parent_wav_path / row["audio_path"]))
-                spk2utt[utt_id].append(utt_id)
+            # TODO replace this ugly piece of code
+            try:
+                text = normilize_line(row["text"]) if normilize else row["text"]
+                utt_start = row["utt_start"]
+                utt_end = row["utt_end"]
+                utt_id = row["utt_id"]
+                spk_id = row["spk_id"]
+                audio_id = row["audio_id"]
+                if utt_end - utt_start > MIN_UTT_DURATION:
+                    utt2spk_f.write(f'{utt_id} {spk_id}\n')
+                    segments_f.write(f'{utt_id} {audio_id} {utt_start} {utt_end}\n')
+                    text_f.write(f'{utt_id} {text}\n')
+                    wav_scp.append((audio_id, parent_wav_path / row["audio_path"]))
+                    spk2utt[utt_id].append(utt_id)
+            except:
+                pass
 
     # save utt2spk
     with open(spk2utt_path, 'w', encoding='utf-8') as spk2utt_f:
