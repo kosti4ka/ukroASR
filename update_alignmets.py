@@ -8,7 +8,7 @@ from aeneas.language import Language
 import json
 import uuid
 
-REALIGN_THRESHOLD = 2
+REALIGN_THRESHOLD = 40
 
 # anchor_dict = {
 #     32:273,
@@ -24,11 +24,11 @@ REALIGN_THRESHOLD = 2
 # } # python numbers
 # total_lines = 1171
 # total_len = 15558
-in_audio = '/Users/mac/Datasets/ukrainian/markes_chronics/markes_chronics.wav'
+in_audio = "/Users/mac/Datasets/ukrodataset/audiobooks/prokopchuk_ozernii_viter/prokopchuk_ozernii_viter.wav"
 # in_text = '/Users/mac/Datasets/ukrainian/nestaiko/nestaiko_2.txt'
-original_json = '/Users/mac/Datasets/ukrainian/markes_chronics/markes_chronics.json'
-current_json = '/Users/mac/Downloads/tuned (36).json'
-out_json = '/Users/mac/Datasets/ukrainian/markes_chronics/markes_chronics.json'
+original_json = "/Users/mac/Datasets/ukrodataset/audiobooks/prokopchuk_ozernii_viter/prokopchuk_ozernii_viter.json"
+current_json = '/Users/mac/Downloads/tuned (6).json'
+out_json = "/Users/mac/Datasets/ukrodataset/audiobooks/prokopchuk_ozernii_viter/prokopchuk_ozernii_viter.json"
 
 # init work dir
 tmp_dir = Path('/tmp/work_dir')
