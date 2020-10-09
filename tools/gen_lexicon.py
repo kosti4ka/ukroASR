@@ -4,12 +4,12 @@ import subprocess
 import argparse
 from tools.utils import get_list, get_lexicon
 from pathlib import Path
-from ukr_g2p import G2P
+from ukro_g2p.predict import G2P
 # import unicode
 from tqdm import tqdm
 
 BASE_LEXICON_PATH = '/data/exp/kostya/ukroASR/artifacts/lexicon.txt'
-G2P_MODEL_NAME = 'ukr-base-uncased'
+G2P_MODEL_NAME = 'ukro-base-uncased'
 
 
 def gen_lexicon(in_vocab_path, out_lex_path, base_lexicons=[BASE_LEXICON_PATH]):
