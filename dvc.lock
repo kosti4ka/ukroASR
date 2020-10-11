@@ -12,7 +12,7 @@ train_data_dir:
   - path: data/train/spk2utt
     md5: b8bcd1c7e92d7fe926dfdbb32c51ab8d
   - path: data/train/text
-    md5: 1f3484e9f75ea9c57c3104a90681a758
+    md5: 5e4d902fc6bc014a9f70914c2257e46f
   - path: data/train/utt2spk
     md5: a701ff113438365ce403756717350b2a
   - path: data/train/wav.scp
