@@ -57,7 +57,7 @@ lang_dir:
   - path: data/local/dict/extra_questions.txt
     md5: d41d8cd98f00b204e9800998ecf8427e
   - path: data/local/dict/lexicon.txt
-    md5: dfbdcb633e13ce3556d24ecd672659dc
+    md5: 92b0e99850b65bbd774bd586aafa6d87
   - path: data/local/dict/nonsilence_phones.txt
     md5: 50134f865090d60f6b28d872683bd766
   - path: data/local/dict/optional_silence.txt
@@ -66,23 +66,23 @@ lang_dir:
     md5: e1c58dfa6a41e9fa4603ad847099be6a
   outs:
   - path: data/lang/L.fst
-    md5: 3ce7f89407651c3cf8a4255e21798369
+    md5: f95501f91c6c35d4c2f06eee3b32cc1c
   - path: data/lang/L_disambig.fst
-    md5: 6847d9539099496e6f86cb5df2916773
+    md5: 3849535328db611b7a59d1844133020f
   - path: data/lang/oov.int
     md5: 48a24b70a0b376535542b996af517398
   - path: data/lang/oov.txt
     md5: e28d9943584fdf57bd1a59c8f8ac6085
   - path: data/lang/phones
-    md5: 1a0d99c9f2771ae64c87e3688bf430d1.dir
+    md5: 5369449373939b703246b6c4b4331d93.dir
   - path: data/lang/phones.txt
-    md5: b92fbcd08bbaa6eb8d64d826e46bcd67
+    md5: b28d7e277c321c49c508cba5608c7ec5
   - path: data/lang/topo
     md5: 2693e4022d2bd44d746a59aab2e6d6f3
   - path: data/lang/words.txt
-    md5: bb88f2083b367fd865ff20fa4744a285
+    md5: 6af76c14115bc153fa1f5ddfa9afca74
   - path: data/local/dict/lexiconp.txt
-    md5: 0a33ec6b79f3baa702b7ab56f5d1c4d7
+    md5: d75ee9d781749579bfecf116d56f14bc
 lm_ukr:
   cmd: cut -d' ' -f2- /data/exp/kostya/ukroASR/data/train/text | ngram-count -text
     - -order 3 -prune 1e-7 -gt1min 1 -gt2min 1 -lm - | gzip -c > /data/exp/kostya/ukroASR/data/lm_ukr.gz
@@ -98,7 +98,7 @@ lm_metrics:
   - path: data/dev/text
     md5: 2acbe3dbcd7895cb80447274b7484a6b
   - path: data/lm_ukr.gz
-    md5: f536d56bf637374bd227bd2372e311d8
+    md5: 151cc06bdc00ed0c88ddaf902b2c4e1e
   outs:
   - path: exp/metrics/lm.json
     md5: a327c7c4b813448ec0f98aafcb77d2ae
@@ -108,14 +108,14 @@ lang_fst:
     /data/exp/kostya/ukroASR/data/lang
   deps:
   - path: data/lang/words.txt
-    md5: bb88f2083b367fd865ff20fa4744a285
+    md5: 6af76c14115bc153fa1f5ddfa9afca74
   - path: data/lm_ukr.gz
-    md5: f536d56bf637374bd227bd2372e311d8
+    md5: 151cc06bdc00ed0c88ddaf902b2c4e1e
   - path: data/local/dict/lexicon.txt
-    md5: dfbdcb633e13ce3556d24ecd672659dc
+    md5: 92b0e99850b65bbd774bd586aafa6d87
   outs:
   - path: data/lang/G.fst
-    md5: 879859d63fff45acefed4e9c2806a61e
+    md5: 15494681f5b80681a360ebb61af2b9ce
 mfcc_train:
   cmd: python3.6 /data/exp/kostya/ukroASR/features/make_mfcc.py /data/exp/kostya/ukroASR/data/train
     /data/exp/kostya/ukroASR/exp/log/mfcc /data/exp/kostya/ukroASR/exp/train_mfcc
@@ -185,7 +185,7 @@ train_2kshort_data:
   - path: data/train/spk2utt
     md5: b8bcd1c7e92d7fe926dfdbb32c51ab8d
   - path: data/train/text
-    md5: 1f3484e9f75ea9c57c3104a90681a758
+    md5: 5e4d902fc6bc014a9f70914c2257e46f
   - path: data/train/utt2spk
     md5: a701ff113438365ce403756717350b2a
   - path: data/train/wav.scp
@@ -200,7 +200,7 @@ train_2kshort_data:
   - path: data/train_2kshort/spk2utt
     md5: d2ef1100bcf862a11e85ca7cb7c368fe
   - path: data/train_2kshort/text
-    md5: ea6cdf1793ee64631a49ac57c17c19c6
+    md5: caab7e6d4f8529e010222dc5a1adaf3b
   - path: data/train_2kshort/utt2spk
     md5: 829f57c6ff2189d713d2630bfa4508d2
   - path: data/train_2kshort/wav.scp
@@ -218,7 +218,7 @@ train_5k_data:
   - path: data/train/spk2utt
     md5: b8bcd1c7e92d7fe926dfdbb32c51ab8d
   - path: data/train/text
-    md5: 1f3484e9f75ea9c57c3104a90681a758
+    md5: 5e4d902fc6bc014a9f70914c2257e46f
   - path: data/train/utt2spk
     md5: a701ff113438365ce403756717350b2a
   - path: data/train/wav.scp
@@ -233,7 +233,7 @@ train_5k_data:
   - path: data/train_5k/spk2utt
     md5: 61b34b6c79ad19db035e386ab917dfb1
   - path: data/train_5k/text
-    md5: 1deb9223ace46573eb8f18b900d192aa
+    md5: 2bb0e37bfa7b9a36f5fe9615d2daeed9
   - path: data/train_5k/utt2spk
     md5: ef0b97ca272b7fbed423bcb26fa3ef05
   - path: data/train_5k/wav.scp
@@ -310,28 +310,28 @@ mono:
     /data/exp/kostya/ukroASR/exp/mono
   deps:
   - path: data/lang/L.fst
-    md5: 3ce7f89407651c3cf8a4255e21798369
+    md5: f95501f91c6c35d4c2f06eee3b32cc1c
   - path: data/lang/phones
-    md5: 1a0d99c9f2771ae64c87e3688bf430d1.dir
+    md5: 5369449373939b703246b6c4b4331d93.dir
   - path: data/lang/phones.txt
-    md5: b92fbcd08bbaa6eb8d64d826e46bcd67
+    md5: b28d7e277c321c49c508cba5608c7ec5
   - path: data/lang/topo
     md5: 2693e4022d2bd44d746a59aab2e6d6f3
   - path: data/lang/words.txt
-    md5: bb88f2083b367fd865ff20fa4744a285
+    md5: 6af76c14115bc153fa1f5ddfa9afca74
   - path: data/train_2kshort/cmvn.scp
     md5: 640224e35064655593fb7f24e807fa4c
   - path: data/train_2kshort/feats.scp
     md5: fde9288f9868d1e460469b9c2c70ec5e
   - path: data/train_2kshort/text
-    md5: ea6cdf1793ee64631a49ac57c17c19c6
+    md5: caab7e6d4f8529e010222dc5a1adaf3b
   - path: data/train_2kshort/utt2spk
     md5: 829f57c6ff2189d713d2630bfa4508d2
   outs:
   - path: exp/mono/final.mdl
-    md5: d9d7611b3c1370dc04b1abaa5cb769d3
+    md5: ef8fbb91cc9df1a6411a5211402c39de
   - path: exp/mono/phones.txt
-    md5: b92fbcd08bbaa6eb8d64d826e46bcd67
+    md5: b28d7e277c321c49c508cba5608c7ec5
   - path: exp/mono/tree
     md5: 6fe676939f4f5face3387f4dd329467f
 mono_graph:
@@ -339,24 +339,24 @@ mono_graph:
     /data/exp/kostya/ukroASR/exp/mono /data/exp/kostya/ukroASR/exp/mono/graph
   deps:
   - path: data/lang/G.fst
-    md5: 879859d63fff45acefed4e9c2806a61e
+    md5: 15494681f5b80681a360ebb61af2b9ce
   - path: data/lang/L.fst
-    md5: 3ce7f89407651c3cf8a4255e21798369
+    md5: f95501f91c6c35d4c2f06eee3b32cc1c
   - path: data/lang/phones
-    md5: 1a0d99c9f2771ae64c87e3688bf430d1.dir
+    md5: 5369449373939b703246b6c4b4331d93.dir
   - path: data/lang/phones.txt
-    md5: b92fbcd08bbaa6eb8d64d826e46bcd67
+    md5: b28d7e277c321c49c508cba5608c7ec5
   - path: data/lang/words.txt
-    md5: bb88f2083b367fd865ff20fa4744a285
+    md5: 6af76c14115bc153fa1f5ddfa9afca74
   - path: exp/mono/final.mdl
-    md5: d9d7611b3c1370dc04b1abaa5cb769d3
+    md5: ef8fbb91cc9df1a6411a5211402c39de
   - path: exp/mono/tree
     md5: 6fe676939f4f5face3387f4dd329467f
   outs:
   - path: exp/mono/graph/HCLG.fst
-    md5: 0558b323e5f6861f4bef0b3c6b2d7be3
+    md5: a658afe1e9fc217f0d8dcafb155028ce
   - path: exp/mono/graph/words.txt
-    md5: bb88f2083b367fd865ff20fa4744a285
+    md5: 6af76c14115bc153fa1f5ddfa9afca74
 mono_metrics:
   cmd: cd $KALDI_ROOT/egs/wsj/s5; . ./path.sh; . ./cmd.sh; steps/decode.sh --nj 4
     /data/exp/kostya/ukroASR/exp/mono/graph /data/exp/kostya/ukroASR/data/dev_0.15k
@@ -370,58 +370,58 @@ mono_metrics:
   - path: data/dev_0.15k/utt2spk
     md5: a7c154e64bf978e1c1e927fa4bfe6fa0
   - path: data/lang/words.txt
-    md5: bb88f2083b367fd865ff20fa4744a285
+    md5: 6af76c14115bc153fa1f5ddfa9afca74
   - path: exp/mono/final.mdl
-    md5: d9d7611b3c1370dc04b1abaa5cb769d3
+    md5: ef8fbb91cc9df1a6411a5211402c39de
   - path: exp/mono/graph/HCLG.fst
-    md5: 0558b323e5f6861f4bef0b3c6b2d7be3
+    md5: a658afe1e9fc217f0d8dcafb155028ce
   outs:
   - path: exp/metrics/mono.json
-    md5: e9eda8948e940376cae28f84fcb3a3d2
+    md5: 9a6265ebb974dd33ce155e6b9f76c032
 mono_ali:
   cmd: cd $KALDI_ROOT/egs/wsj/s5; . ./path.sh; . ./cmd.sh; steps/align_si.sh --boost-silence
     1.25 --nj 8 /data/exp/kostya/ukroASR/data/train_5k /data/exp/kostya/ukroASR/data/lang
     /data/exp/kostya/ukroASR/exp/mono /data/exp/kostya/ukroASR/exp/mono_train_5k_ali
   deps:
   - path: data/lang/L.fst
-    md5: 3ce7f89407651c3cf8a4255e21798369
+    md5: f95501f91c6c35d4c2f06eee3b32cc1c
   - path: data/lang/oov.int
     md5: 48a24b70a0b376535542b996af517398
   - path: data/lang/phones
-    md5: 1a0d99c9f2771ae64c87e3688bf430d1.dir
+    md5: 5369449373939b703246b6c4b4331d93.dir
   - path: data/lang/phones.txt
-    md5: b92fbcd08bbaa6eb8d64d826e46bcd67
+    md5: b28d7e277c321c49c508cba5608c7ec5
   - path: data/lang/words.txt
-    md5: bb88f2083b367fd865ff20fa4744a285
+    md5: 6af76c14115bc153fa1f5ddfa9afca74
   - path: data/train_5k/cmvn.scp
     md5: 640224e35064655593fb7f24e807fa4c
   - path: data/train_5k/feats.scp
     md5: bd79ab8f451e00b93af8d8a809dfdcee
   - path: data/train_5k/text
-    md5: 1deb9223ace46573eb8f18b900d192aa
+    md5: 2bb0e37bfa7b9a36f5fe9615d2daeed9
   - path: data/train_5k/utt2spk
     md5: ef0b97ca272b7fbed423bcb26fa3ef05
   - path: exp/mono/final.mdl
-    md5: d9d7611b3c1370dc04b1abaa5cb769d3
+    md5: ef8fbb91cc9df1a6411a5211402c39de
   - path: exp/mono/tree
     md5: 6fe676939f4f5face3387f4dd329467f
   outs:
   - path: exp/mono_train_5k_ali/ali.1.gz
-    md5: f813a8c38a6787d3a6676ed791a8a7db
+    md5: 75038ada0e06f1832cca6edbd9c957d3
   - path: exp/mono_train_5k_ali/ali.2.gz
-    md5: 95bbcdbb0ae2d1257fa9dc046e30693d
+    md5: 25b3e1f15a254fb48c1cce2ed6be427e
   - path: exp/mono_train_5k_ali/ali.3.gz
-    md5: 594651e09c7c513fdb4076d95ed22da3
+    md5: 604dee72692332b324e0c28948612735
   - path: exp/mono_train_5k_ali/ali.4.gz
-    md5: 9384579e88129aad7dffe808f35549cd
+    md5: 7b411e7eb80bec1e384772882c16965e
   - path: exp/mono_train_5k_ali/ali.5.gz
-    md5: a858f046cdd95de18c4e6e522192c2c6
+    md5: 2056d617e3be098469326f42f06d4bfc
   - path: exp/mono_train_5k_ali/ali.6.gz
-    md5: c9b2a085675f72c2ee8c76093e9a8802
+    md5: f3eb25c2315725fe1efdfd5a936d59b2
   - path: exp/mono_train_5k_ali/ali.7.gz
-    md5: b84970bcf71f3918fc72de79541a396c
+    md5: e546530444f2bcc75354d72d3ee5c8ea
   - path: exp/mono_train_5k_ali/ali.8.gz
-    md5: 22f8f6a434888a124d193bf8c4ea6f4b
+    md5: e3d4d6ffb21878a87ae1e0120d76fe56
 tri1:
   cmd: cd $KALDI_ROOT/egs/wsj/s5; . ./path.sh; . ./cmd.sh; steps/train_deltas.sh --boost-silence
     1.25 2000 10000 /data/exp/kostya/ukroASR/data/train_5k /data/exp/kostya/ukroASR/data/lang
@@ -430,15 +430,15 @@ tri1:
     mv /data/exp/kostya/ukroASR/exp/tri1/final.mdl_copy /data/exp/kostya/ukroASR/exp/tri1/final.mdl
   deps:
   - path: data/lang/L.fst
-    md5: 3ce7f89407651c3cf8a4255e21798369
+    md5: f95501f91c6c35d4c2f06eee3b32cc1c
   - path: data/lang/phones
-    md5: 1a0d99c9f2771ae64c87e3688bf430d1.dir
+    md5: 5369449373939b703246b6c4b4331d93.dir
   - path: data/lang/phones.txt
-    md5: b92fbcd08bbaa6eb8d64d826e46bcd67
+    md5: b28d7e277c321c49c508cba5608c7ec5
   - path: data/lang/topo
     md5: 2693e4022d2bd44d746a59aab2e6d6f3
   - path: data/lang/words.txt
-    md5: bb88f2083b367fd865ff20fa4744a285
+    md5: 6af76c14115bc153fa1f5ddfa9afca74
   - path: data/train_5k/cmvn.scp
     md5: 640224e35064655593fb7f24e807fa4c
   - path: data/train_5k/feats.scp
@@ -446,51 +446,51 @@ tri1:
   - path: data/train_5k/utt2spk
     md5: ef0b97ca272b7fbed423bcb26fa3ef05
   - path: exp/mono_train_5k_ali/ali.1.gz
-    md5: f813a8c38a6787d3a6676ed791a8a7db
+    md5: 75038ada0e06f1832cca6edbd9c957d3
   - path: exp/mono_train_5k_ali/ali.2.gz
-    md5: 95bbcdbb0ae2d1257fa9dc046e30693d
+    md5: 25b3e1f15a254fb48c1cce2ed6be427e
   - path: exp/mono_train_5k_ali/ali.3.gz
-    md5: 594651e09c7c513fdb4076d95ed22da3
+    md5: 604dee72692332b324e0c28948612735
   - path: exp/mono_train_5k_ali/ali.4.gz
-    md5: 9384579e88129aad7dffe808f35549cd
+    md5: 7b411e7eb80bec1e384772882c16965e
   - path: exp/mono_train_5k_ali/ali.5.gz
-    md5: a858f046cdd95de18c4e6e522192c2c6
+    md5: 2056d617e3be098469326f42f06d4bfc
   - path: exp/mono_train_5k_ali/ali.6.gz
-    md5: c9b2a085675f72c2ee8c76093e9a8802
+    md5: f3eb25c2315725fe1efdfd5a936d59b2
   - path: exp/mono_train_5k_ali/ali.7.gz
-    md5: b84970bcf71f3918fc72de79541a396c
+    md5: e546530444f2bcc75354d72d3ee5c8ea
   - path: exp/mono_train_5k_ali/ali.8.gz
-    md5: 22f8f6a434888a124d193bf8c4ea6f4b
+    md5: e3d4d6ffb21878a87ae1e0120d76fe56
   outs:
   - path: exp/tri1/final.mdl
-    md5: f7109ccdd715a520b4f8feceae462eec
+    md5: a1edbbb6b12193e979520a6000fe4a2d
   - path: exp/tri1/phones.txt
-    md5: b92fbcd08bbaa6eb8d64d826e46bcd67
+    md5: b28d7e277c321c49c508cba5608c7ec5
   - path: exp/tri1/tree
-    md5: 1628233652e35e814cc4497353e13b46
+    md5: 32d4812b082daf4a008cca926bf9573e
 tri1_graph:
   cmd: cd $KALDI_ROOT/egs/wsj/s5; . ./path.sh; . ./cmd.sh; utils/mkgraph.sh /data/exp/kostya/ukroASR/data/lang
     /data/exp/kostya/ukroASR/exp/tri1 /data/exp/kostya/ukroASR/exp/tri1/graph
   deps:
   - path: data/lang/G.fst
-    md5: 879859d63fff45acefed4e9c2806a61e
+    md5: 15494681f5b80681a360ebb61af2b9ce
   - path: data/lang/L.fst
-    md5: 3ce7f89407651c3cf8a4255e21798369
+    md5: f95501f91c6c35d4c2f06eee3b32cc1c
   - path: data/lang/phones
-    md5: 1a0d99c9f2771ae64c87e3688bf430d1.dir
+    md5: 5369449373939b703246b6c4b4331d93.dir
   - path: data/lang/phones.txt
-    md5: b92fbcd08bbaa6eb8d64d826e46bcd67
+    md5: b28d7e277c321c49c508cba5608c7ec5
   - path: data/lang/words.txt
-    md5: bb88f2083b367fd865ff20fa4744a285
+    md5: 6af76c14115bc153fa1f5ddfa9afca74
   - path: exp/tri1/final.mdl
-    md5: f7109ccdd715a520b4f8feceae462eec
+    md5: a1edbbb6b12193e979520a6000fe4a2d
   - path: exp/tri1/tree
-    md5: 1628233652e35e814cc4497353e13b46
+    md5: 32d4812b082daf4a008cca926bf9573e
   outs:
   - path: exp/tri1/graph/HCLG.fst
-    md5: 0f431ee3916a42cc72ea58d9cc3c7074
+    md5: ddafc2e0756eb5397129ff2f858bddff
   - path: exp/tri1/graph/words.txt
-    md5: bb88f2083b367fd865ff20fa4744a285
+    md5: 6af76c14115bc153fa1f5ddfa9afca74
 tri1_metrics:
   cmd: cd $KALDI_ROOT/egs/wsj/s5; . ./path.sh; . ./cmd.sh; steps/decode.sh --nj 4
     /data/exp/kostya/ukroASR/exp/tri1/graph /data/exp/kostya/ukroASR/data/dev_0.15k
@@ -504,58 +504,58 @@ tri1_metrics:
   - path: data/dev_0.15k/utt2spk
     md5: a7c154e64bf978e1c1e927fa4bfe6fa0
   - path: data/lang/words.txt
-    md5: bb88f2083b367fd865ff20fa4744a285
+    md5: 6af76c14115bc153fa1f5ddfa9afca74
   - path: exp/tri1/final.mdl
-    md5: f7109ccdd715a520b4f8feceae462eec
+    md5: a1edbbb6b12193e979520a6000fe4a2d
   - path: exp/tri1/graph/HCLG.fst
-    md5: 0f431ee3916a42cc72ea58d9cc3c7074
+    md5: ddafc2e0756eb5397129ff2f858bddff
   outs:
   - path: exp/metrics/tri1.json
-    md5: 503bcb5f457f6012de3b436851beb476
+    md5: 3487fcc6995713f96ce6cb8cd76d3115
 tri_ali:
   cmd: cd $KALDI_ROOT/egs/wsj/s5; . ./path.sh; . ./cmd.sh; steps/align_si.sh --nj
     8 /data/exp/kostya/ukroASR/data/train /data/exp/kostya/ukroASR/data/lang /data/exp/kostya/ukroASR/exp/tri1
     /data/exp/kostya/ukroASR/exp/tri1_train_ali
   deps:
   - path: data/lang/L.fst
-    md5: 3ce7f89407651c3cf8a4255e21798369
+    md5: f95501f91c6c35d4c2f06eee3b32cc1c
   - path: data/lang/oov.int
     md5: 48a24b70a0b376535542b996af517398
   - path: data/lang/phones
-    md5: 1a0d99c9f2771ae64c87e3688bf430d1.dir
+    md5: 5369449373939b703246b6c4b4331d93.dir
   - path: data/lang/phones.txt
-    md5: b92fbcd08bbaa6eb8d64d826e46bcd67
+    md5: b28d7e277c321c49c508cba5608c7ec5
   - path: data/lang/words.txt
-    md5: bb88f2083b367fd865ff20fa4744a285
+    md5: 6af76c14115bc153fa1f5ddfa9afca74
   - path: data/train/cmvn.scp
     md5: 640224e35064655593fb7f24e807fa4c
   - path: data/train/feats.scp
     md5: ac85872cd2cd96102850c7673be4e923
   - path: data/train/text
-    md5: 1f3484e9f75ea9c57c3104a90681a758
+    md5: 5e4d902fc6bc014a9f70914c2257e46f
   - path: data/train/utt2spk
     md5: a701ff113438365ce403756717350b2a
   - path: exp/tri1/final.mdl
-    md5: f7109ccdd715a520b4f8feceae462eec
+    md5: a1edbbb6b12193e979520a6000fe4a2d
   - path: exp/tri1/tree
-    md5: 1628233652e35e814cc4497353e13b46
+    md5: 32d4812b082daf4a008cca926bf9573e
   outs:
   - path: exp/tri1_train_ali/ali.1.gz
-    md5: cf8c3321c992560dc29e685a9cec9ff8
+    md5: f47a0b80e9e7e2b967a7c16a9ba9e041
   - path: exp/tri1_train_ali/ali.2.gz
-    md5: f4c364f3b36e31b5eeb5ed46edea937c
+    md5: 199e8656668d57337a4e95eb1fc5e4ba
   - path: exp/tri1_train_ali/ali.3.gz
-    md5: fd411755b1ed499c1b1dbb2a6dcfb19d
+    md5: e025c51ce2522675df680231ebaeb76a
   - path: exp/tri1_train_ali/ali.4.gz
-    md5: 18fd3f230604a6211065fafdbfa24dee
+    md5: 53255abd833c0d61602c82930372cf4d
   - path: exp/tri1_train_ali/ali.5.gz
-    md5: f78bc134bf97b61107461f8f060b9f90
+    md5: 5d6da0a11a29a5d7c9bd34e698dc9ea8
   - path: exp/tri1_train_ali/ali.6.gz
-    md5: 69ae9789b8b9e28c07551ec970a4589f
+    md5: 8afb1c7eb4165dd58bb0eb3e9a30e41a
   - path: exp/tri1_train_ali/ali.7.gz
-    md5: e0654686c404ca52f82dbb149251d438
+    md5: f54443ccd044374f7f68efe29784ef89
   - path: exp/tri1_train_ali/ali.8.gz
-    md5: 146c4052f6cd599e7610be241755abfc
+    md5: 6ad68c3fdca891a7f94dc798b6697292
 tri2b:
   cmd: cd $KALDI_ROOT/egs/wsj/s5; . ./path.sh; . ./cmd.sh; steps/train_lda_mllt.sh
     --splice-opts "--left-context=3 --right-context=3" 2500 15000 /data/exp/kostya/ukroASR/data/train
@@ -567,15 +567,15 @@ tri2b:
     /data/exp/kostya/ukroASR/exp/tri2b/final.mat
   deps:
   - path: data/lang/L.fst
-    md5: 3ce7f89407651c3cf8a4255e21798369
+    md5: f95501f91c6c35d4c2f06eee3b32cc1c
   - path: data/lang/phones
-    md5: 1a0d99c9f2771ae64c87e3688bf430d1.dir
+    md5: 5369449373939b703246b6c4b4331d93.dir
   - path: data/lang/phones.txt
-    md5: b92fbcd08bbaa6eb8d64d826e46bcd67
+    md5: b28d7e277c321c49c508cba5608c7ec5
   - path: data/lang/topo
     md5: 2693e4022d2bd44d746a59aab2e6d6f3
   - path: data/lang/words.txt
-    md5: bb88f2083b367fd865ff20fa4744a285
+    md5: 6af76c14115bc153fa1f5ddfa9afca74
   - path: data/train/cmvn.scp
     md5: 640224e35064655593fb7f24e807fa4c
   - path: data/train/feats.scp
@@ -583,53 +583,53 @@ tri2b:
   - path: data/train/utt2spk
     md5: a701ff113438365ce403756717350b2a
   - path: exp/tri1_train_ali/ali.1.gz
-    md5: cf8c3321c992560dc29e685a9cec9ff8
+    md5: f47a0b80e9e7e2b967a7c16a9ba9e041
   - path: exp/tri1_train_ali/ali.2.gz
-    md5: f4c364f3b36e31b5eeb5ed46edea937c
+    md5: 199e8656668d57337a4e95eb1fc5e4ba
   - path: exp/tri1_train_ali/ali.3.gz
-    md5: fd411755b1ed499c1b1dbb2a6dcfb19d
+    md5: e025c51ce2522675df680231ebaeb76a
   - path: exp/tri1_train_ali/ali.4.gz
-    md5: 18fd3f230604a6211065fafdbfa24dee
+    md5: 53255abd833c0d61602c82930372cf4d
   - path: exp/tri1_train_ali/ali.5.gz
-    md5: f78bc134bf97b61107461f8f060b9f90
+    md5: 5d6da0a11a29a5d7c9bd34e698dc9ea8
   - path: exp/tri1_train_ali/ali.6.gz
-    md5: 69ae9789b8b9e28c07551ec970a4589f
+    md5: 8afb1c7eb4165dd58bb0eb3e9a30e41a
   - path: exp/tri1_train_ali/ali.7.gz
-    md5: e0654686c404ca52f82dbb149251d438
+    md5: f54443ccd044374f7f68efe29784ef89
   - path: exp/tri1_train_ali/ali.8.gz
-    md5: 146c4052f6cd599e7610be241755abfc
+    md5: 6ad68c3fdca891a7f94dc798b6697292
   outs:
   - path: exp/tri2b/final.mat
-    md5: 986035e272774bdc5e8cf95ca7901233
+    md5: 21fc1eb93ea1c2b172a6560e3f9228cb
   - path: exp/tri2b/final.mdl
-    md5: 98b16f365c9c5fcd7c21040f99e3ec0f
+    md5: c6610ad2547ec322aba5e280ddc63802
   - path: exp/tri2b/phones.txt
-    md5: b92fbcd08bbaa6eb8d64d826e46bcd67
+    md5: b28d7e277c321c49c508cba5608c7ec5
   - path: exp/tri2b/tree
-    md5: f6b92846364ebe29c9e2cbe5e759cab6
+    md5: ea7ee9fef2f9a35dc30e2bf71bea769b
 tri2b_graph:
   cmd: cd $KALDI_ROOT/egs/wsj/s5; . ./path.sh; . ./cmd.sh; utils/mkgraph.sh /data/exp/kostya/ukroASR/data/lang
     /data/exp/kostya/ukroASR/exp/tri2b /data/exp/kostya/ukroASR/exp/tri2b/graph
   deps:
   - path: data/lang/G.fst
-    md5: 879859d63fff45acefed4e9c2806a61e
+    md5: 15494681f5b80681a360ebb61af2b9ce
   - path: data/lang/L.fst
-    md5: 3ce7f89407651c3cf8a4255e21798369
+    md5: f95501f91c6c35d4c2f06eee3b32cc1c
   - path: data/lang/phones
-    md5: 1a0d99c9f2771ae64c87e3688bf430d1.dir
+    md5: 5369449373939b703246b6c4b4331d93.dir
   - path: data/lang/phones.txt
-    md5: b92fbcd08bbaa6eb8d64d826e46bcd67
+    md5: b28d7e277c321c49c508cba5608c7ec5
   - path: data/lang/words.txt
-    md5: bb88f2083b367fd865ff20fa4744a285
+    md5: 6af76c14115bc153fa1f5ddfa9afca74
   - path: exp/tri2b/final.mdl
-    md5: 98b16f365c9c5fcd7c21040f99e3ec0f
+    md5: c6610ad2547ec322aba5e280ddc63802
   - path: exp/tri2b/tree
-    md5: f6b92846364ebe29c9e2cbe5e759cab6
+    md5: ea7ee9fef2f9a35dc30e2bf71bea769b
   outs:
   - path: exp/tri2b/graph/HCLG.fst
-    md5: 0f9ebf7e052063c83b6fbfb994669f21
+    md5: 906c4673320843424ee159018f12b192
   - path: exp/tri2b/graph/words.txt
-    md5: bb88f2083b367fd865ff20fa4744a285
+    md5: 6af76c14115bc153fa1f5ddfa9afca74
 tri2b_metrics:
   cmd: cd $KALDI_ROOT/egs/wsj/s5; . ./path.sh; . ./cmd.sh; steps/decode.sh --nj 4
     /data/exp/kostya/ukroASR/exp/tri2b/graph /data/exp/kostya/ukroASR/data/dev_0.15k
@@ -643,64 +643,64 @@ tri2b_metrics:
   - path: data/dev_0.15k/utt2spk
     md5: a7c154e64bf978e1c1e927fa4bfe6fa0
   - path: data/lang/words.txt
-    md5: bb88f2083b367fd865ff20fa4744a285
+    md5: 6af76c14115bc153fa1f5ddfa9afca74
   - path: exp/tri2b/final.mat
-    md5: 986035e272774bdc5e8cf95ca7901233
+    md5: 21fc1eb93ea1c2b172a6560e3f9228cb
   - path: exp/tri2b/final.mdl
-    md5: 98b16f365c9c5fcd7c21040f99e3ec0f
+    md5: c6610ad2547ec322aba5e280ddc63802
   - path: exp/tri2b/graph/HCLG.fst
-    md5: 0f9ebf7e052063c83b6fbfb994669f21
+    md5: 906c4673320843424ee159018f12b192
   outs:
   - path: exp/metrics/tri2b.json
-    md5: 4e0ab9d60b7e245baac72a7c152df20a
+    md5: 4913a324a2e83e605b7e566b35953d5d
 tri2b_ali:
   cmd: cd $KALDI_ROOT/egs/wsj/s5; . ./path.sh; . ./cmd.sh; steps/align_si.sh --nj
     8 /data/exp/kostya/ukroASR/data/train /data/exp/kostya/ukroASR/data/lang /data/exp/kostya/ukroASR/exp/tri2b
     /data/exp/kostya/ukroASR/exp/tri2b_train_ali
   deps:
   - path: data/lang/L.fst
-    md5: 3ce7f89407651c3cf8a4255e21798369
+    md5: f95501f91c6c35d4c2f06eee3b32cc1c
   - path: data/lang/oov.int
     md5: 48a24b70a0b376535542b996af517398
   - path: data/lang/phones
-    md5: 1a0d99c9f2771ae64c87e3688bf430d1.dir
+    md5: 5369449373939b703246b6c4b4331d93.dir
   - path: data/lang/phones.txt
-    md5: b92fbcd08bbaa6eb8d64d826e46bcd67
+    md5: b28d7e277c321c49c508cba5608c7ec5
   - path: data/lang/words.txt
-    md5: bb88f2083b367fd865ff20fa4744a285
+    md5: 6af76c14115bc153fa1f5ddfa9afca74
   - path: data/train/cmvn.scp
     md5: 640224e35064655593fb7f24e807fa4c
   - path: data/train/feats.scp
     md5: ac85872cd2cd96102850c7673be4e923
   - path: data/train/text
-    md5: 1f3484e9f75ea9c57c3104a90681a758
+    md5: 5e4d902fc6bc014a9f70914c2257e46f
   - path: data/train/utt2spk
     md5: a701ff113438365ce403756717350b2a
   - path: exp/tri2b/final.mat
-    md5: 986035e272774bdc5e8cf95ca7901233
+    md5: 21fc1eb93ea1c2b172a6560e3f9228cb
   - path: exp/tri2b/final.mdl
-    md5: 98b16f365c9c5fcd7c21040f99e3ec0f
+    md5: c6610ad2547ec322aba5e280ddc63802
   - path: exp/tri2b/full.mat
-    md5: 0aa0b3cb8d695b577c2eff10bf5db0b9
+    md5: 7ee1058a4817dade52adf7db1c055bdb
   - path: exp/tri2b/tree
-    md5: f6b92846364ebe29c9e2cbe5e759cab6
+    md5: ea7ee9fef2f9a35dc30e2bf71bea769b
   outs:
   - path: exp/tri2b_train_ali/ali.1.gz
-    md5: 4f74eace647c3ce84562d7d1edf0c170
+    md5: 66e5def5feed15e86cc1e5af10e343a5
   - path: exp/tri2b_train_ali/ali.2.gz
-    md5: c73557cc69e93d790de3c1b65633c0fc
+    md5: 1aed5213c5d1c57cc49579fc0370c6eb
   - path: exp/tri2b_train_ali/ali.3.gz
-    md5: f220a09cfac4a876f3b6ee31a707bb72
+    md5: 67e4e0f2301d298343b8b32c52a9f571
   - path: exp/tri2b_train_ali/ali.4.gz
-    md5: 510f4b3e7fbaa45425742d06f460d5eb
+    md5: 6264c02200b941fb727b99e142405dcb
   - path: exp/tri2b_train_ali/ali.5.gz
-    md5: 036db66bc8c38e63a72f84d9b9eeb447
+    md5: 64a275b01eb1fc9d8e016842c2999da8
   - path: exp/tri2b_train_ali/ali.6.gz
-    md5: 01df6fd93228beb0798118acd9c9799f
+    md5: 7ad401b2386d6e56a3c4ecd8393614be
   - path: exp/tri2b_train_ali/ali.7.gz
-    md5: 105042e9a09d7508ca07782d4702fca3
+    md5: 84f12c1001c96829f0a9744dfd8b67b4
   - path: exp/tri2b_train_ali/ali.8.gz
-    md5: 3958be1ae6b7f88e85289702971fb0e4
+    md5: a20bd672b1aea3d8fb87f6e7b1bdb8b1
 tri3b:
   cmd: cd $KALDI_ROOT/egs/wsj/s5; . ./path.sh; . ./cmd.sh; steps/train_sat.sh 2500
     15000 /data/exp/kostya/ukroASR/data/train /data/exp/kostya/ukroASR/data/lang /data/exp/kostya/ukroASR/exp/tri2b_train_ali
@@ -711,15 +711,15 @@ tri3b:
     /data/exp/kostya/ukroASR/exp/tri3b/final.mat
   deps:
   - path: data/lang/L.fst
-    md5: 3ce7f89407651c3cf8a4255e21798369
+    md5: f95501f91c6c35d4c2f06eee3b32cc1c
   - path: data/lang/phones
-    md5: 1a0d99c9f2771ae64c87e3688bf430d1.dir
+    md5: 5369449373939b703246b6c4b4331d93.dir
   - path: data/lang/phones.txt
-    md5: b92fbcd08bbaa6eb8d64d826e46bcd67
+    md5: b28d7e277c321c49c508cba5608c7ec5
   - path: data/lang/topo
     md5: 2693e4022d2bd44d746a59aab2e6d6f3
   - path: data/lang/words.txt
-    md5: bb88f2083b367fd865ff20fa4744a285
+    md5: 6af76c14115bc153fa1f5ddfa9afca74
   - path: data/train/cmvn.scp
     md5: 640224e35064655593fb7f24e807fa4c
   - path: data/train/feats.scp
@@ -727,53 +727,53 @@ tri3b:
   - path: data/train/utt2spk
     md5: a701ff113438365ce403756717350b2a
   - path: exp/tri2b_train_ali/ali.1.gz
-    md5: 4f74eace647c3ce84562d7d1edf0c170
+    md5: 66e5def5feed15e86cc1e5af10e343a5
   - path: exp/tri2b_train_ali/ali.2.gz
-    md5: c73557cc69e93d790de3c1b65633c0fc
+    md5: 1aed5213c5d1c57cc49579fc0370c6eb
   - path: exp/tri2b_train_ali/ali.3.gz
-    md5: f220a09cfac4a876f3b6ee31a707bb72
+    md5: 67e4e0f2301d298343b8b32c52a9f571
   - path: exp/tri2b_train_ali/ali.4.gz
-    md5: 510f4b3e7fbaa45425742d06f460d5eb
+    md5: 6264c02200b941fb727b99e142405dcb
   - path: exp/tri2b_train_ali/ali.5.gz
-    md5: 036db66bc8c38e63a72f84d9b9eeb447
+    md5: 64a275b01eb1fc9d8e016842c2999da8
   - path: exp/tri2b_train_ali/ali.6.gz
-    md5: 01df6fd93228beb0798118acd9c9799f
+    md5: 7ad401b2386d6e56a3c4ecd8393614be
   - path: exp/tri2b_train_ali/ali.7.gz
-    md5: 105042e9a09d7508ca07782d4702fca3
+    md5: 84f12c1001c96829f0a9744dfd8b67b4
   - path: exp/tri2b_train_ali/ali.8.gz
-    md5: 3958be1ae6b7f88e85289702971fb0e4
+    md5: a20bd672b1aea3d8fb87f6e7b1bdb8b1
   outs:
   - path: exp/tri3b/final.mat
-    md5: 986035e272774bdc5e8cf95ca7901233
+    md5: 21fc1eb93ea1c2b172a6560e3f9228cb
   - path: exp/tri3b/final.mdl
-    md5: 691e1dae5975b2519d4ac57e76647e60
+    md5: 5d311eaf817232b1adb438f33f497ad5
   - path: exp/tri3b/phones.txt
-    md5: b92fbcd08bbaa6eb8d64d826e46bcd67
+    md5: b28d7e277c321c49c508cba5608c7ec5
   - path: exp/tri3b/tree
-    md5: b22ab715bcff75474127ca5c715893bc
+    md5: 68460e07af49c94a586981508f1f68d1
 tri3b_graph:
   cmd: cd $KALDI_ROOT/egs/wsj/s5; . ./path.sh; . ./cmd.sh; utils/mkgraph.sh /data/exp/kostya/ukroASR/data/lang
     /data/exp/kostya/ukroASR/exp/tri3b /data/exp/kostya/ukroASR/exp/tri3b/graph
   deps:
   - path: data/lang/G.fst
-    md5: 879859d63fff45acefed4e9c2806a61e
+    md5: 15494681f5b80681a360ebb61af2b9ce
   - path: data/lang/L.fst
-    md5: 3ce7f89407651c3cf8a4255e21798369
+    md5: f95501f91c6c35d4c2f06eee3b32cc1c
   - path: data/lang/phones
-    md5: 1a0d99c9f2771ae64c87e3688bf430d1.dir
+    md5: 5369449373939b703246b6c4b4331d93.dir
   - path: data/lang/phones.txt
-    md5: b92fbcd08bbaa6eb8d64d826e46bcd67
+    md5: b28d7e277c321c49c508cba5608c7ec5
   - path: data/lang/words.txt
-    md5: bb88f2083b367fd865ff20fa4744a285
+    md5: 6af76c14115bc153fa1f5ddfa9afca74
   - path: exp/tri3b/final.mdl
-    md5: 691e1dae5975b2519d4ac57e76647e60
+    md5: 5d311eaf817232b1adb438f33f497ad5
   - path: exp/tri3b/tree
-    md5: b22ab715bcff75474127ca5c715893bc
+    md5: 68460e07af49c94a586981508f1f68d1
   outs:
   - path: exp/tri3b/graph/HCLG.fst
-    md5: 84d4e4980f9a3d5dfd209e0ca6af3f66
+    md5: 90acf4bc9bc699ad2094fed99c566e02
   - path: exp/tri3b/graph/words.txt
-    md5: bb88f2083b367fd865ff20fa4744a285
+    md5: 6af76c14115bc153fa1f5ddfa9afca74
 tri3b_metrics:
   cmd: cd $KALDI_ROOT/egs/wsj/s5; . ./path.sh; . ./cmd.sh; steps/decode_fmllr.sh --nj
     4 /data/exp/kostya/ukroASR/exp/tri3b/graph /data/exp/kostya/ukroASR/data/dev_0.15k
@@ -787,17 +787,17 @@ tri3b_metrics:
   - path: data/dev_0.15k/utt2spk
     md5: a7c154e64bf978e1c1e927fa4bfe6fa0
   - path: data/lang/phones
-    md5: 1a0d99c9f2771ae64c87e3688bf430d1.dir
+    md5: 5369449373939b703246b6c4b4331d93.dir
   - path: data/lang/words.txt
-    md5: bb88f2083b367fd865ff20fa4744a285
+    md5: 6af76c14115bc153fa1f5ddfa9afca74
   - path: exp/tri3b/final.mat
-    md5: 986035e272774bdc5e8cf95ca7901233
+    md5: 21fc1eb93ea1c2b172a6560e3f9228cb
   - path: exp/tri3b/final.mdl
-    md5: 691e1dae5975b2519d4ac57e76647e60
+    md5: 5d311eaf817232b1adb438f33f497ad5
   - path: exp/tri3b/graph/HCLG.fst
-    md5: 84d4e4980f9a3d5dfd209e0ca6af3f66
+    md5: 90acf4bc9bc699ad2094fed99c566e02
   - path: exp/tri3b/tree
-    md5: b22ab715bcff75474127ca5c715893bc
+    md5: 68460e07af49c94a586981508f1f68d1
   outs:
   - path: exp/metrics/tri3b.json
-    md5: 86a0e2b851377f192c82cef6c7223fb2
+    md5: 85f7a245a753b758f8a175b667b04efb
