@@ -37,23 +37,18 @@ dev_data_dir:
   - path: data/dev/wav.scp
     md5: 6a88ea8a754b539f796205c5b62b5b40
 local_dict:
-  cmd: /data/exp/kostya/ukroASR/prepare_dict.sh /data/exp/kostya/ukroASR/data/local/dict
-    /data/exp/kostya/ukroASR/data/train/text /data/exp/kostya/ukroASR/artifacts/text_plane
-    /data/exp/kostya/ukroASR/artifacts/normal_fiction.txt
+  cmd: /data/exp/kostya/ukroASR/prepare_dict.sh --nj 8 /data/exp/kostya/ukroASR/data/local/dict
+    /data/exp/kostya/ukroASR/data/train/text
   deps:
   - path: artifacts/lexicon.txt
     md5: 090ee18d9b43fb3b3716646654fd3beb
-  - path: artifacts/normal_fiction.txt
-    md5: ec1da4249355d6e39eccde5911b83b47
-  - path: artifacts/text_plane
-    md5: 3f9c322aa926e5701422d8521128ce12
   - path: data/train/text
-    md5: 1f3484e9f75ea9c57c3104a90681a758
+    md5: 5e4d902fc6bc014a9f70914c2257e46f
   outs:
   - path: data/local/dict/lexicon.txt
-    md5: dfbdcb633e13ce3556d24ecd672659dc
+    md5: 92b0e99850b65bbd774bd586aafa6d87
   - path: data/local/dict/vocab
-    md5: 31e3616de9492539439999128faa3b59
+    md5: b7938ac8bb553c4c22d4804080bf0ff7
 lang_dir:
   cmd: cd $KALDI_ROOT/egs/wsj/s5; . ./path.sh; . ./cmd.sh; utils/prepare_lang.sh --position-dependent-phones
     false /data/exp/kostya/ukroASR/data/local/dict '<UNK>' /data/exp/kostya/ukroASR/data/local/lang
@@ -89,19 +84,14 @@ lang_dir:
   - path: data/local/dict/lexiconp.txt
     md5: 0a33ec6b79f3baa702b7ab56f5d1c4d7
 lm_ukr:
-  cmd: cut -d' ' -f2- /data/exp/kostya/ukroASR/data/train/text /data/exp/kostya/ukroASR/artifacts/text_plane
-    /data/exp/kostya/ukroASR/artifacts/normal_fiction.txt | ngram-count -text - -order
-    3 -prune 1e-7 -gt1min 1 -gt2min 1 -lm - | gzip -c > /data/exp/kostya/ukroASR/data/lm_ukr.gz
+  cmd: cut -d' ' -f2- /data/exp/kostya/ukroASR/data/train/text | ngram-count -text
+    - -order 3 -prune 1e-7 -gt1min 1 -gt2min 1 -lm - | gzip -c > /data/exp/kostya/ukroASR/data/lm_ukr.gz
   deps:
-  - path: artifacts/normal_fiction.txt
-    md5: ec1da4249355d6e39eccde5911b83b47
-  - path: artifacts/text_plane
-    md5: 3f9c322aa926e5701422d8521128ce12
   - path: data/train/text
-    md5: 1f3484e9f75ea9c57c3104a90681a758
+    md5: 5e4d902fc6bc014a9f70914c2257e46f
   outs:
   - path: data/lm_ukr.gz
-    md5: f536d56bf637374bd227bd2372e311d8
+    md5: 151cc06bdc00ed0c88ddaf902b2c4e1e
 lm_metrics:
   cmd: "echo {\\'LM perplexity\\': 2556.659} > /data/exp/kostya/ukroASR/exp/metrics/lm.json"
   deps:
