@@ -7,17 +7,27 @@ from pathlib import Path
 from ukro_g2p.predict import G2P
 # import unicode
 from tqdm import tqdm
+from concurrent.futures import ProcessPoolExecutor
+from functools import partial
+import torch
+
 
 BASE_LEXICON_PATH = '/data/exp/kostya/ukroASR/artifacts/lexicon.txt'
 G2P_MODEL_NAME = 'ukro-base-uncased'
 
 
-def gen_lexicon(in_vocab_path, out_lex_path, base_lexicons=[BASE_LEXICON_PATH]):
+def create_chunks(iterable, num_chunks):
+    for i in range(0, num_chunks):
+        yield iterable[i::num_chunks]
+
+
+def gen_lexicon(in_vocab_path, out_lex_path, base_lexicons=[BASE_LEXICON_PATH], num_workers=1):
     """
     Generates lexicon for given vocabulary
     :param in_vocab_path: in vocabulary path
     :param out_lex_path: out lexicon path
     :param base_lexicons: list of base lexicons
+    :param num_workers: number of workers
     :return:
     """
 
@@ -39,8 +49,14 @@ def gen_lexicon(in_vocab_path, out_lex_path, base_lexicons=[BASE_LEXICON_PATH]):
 
     oov_vocab = [word for word in vocab if word not in base_lexicon]
 
-    # extend base lexicon with OOV
-    base_lexicon.update(gen_g2p(oov_vocab))
+    executor = ProcessPoolExecutor(max_workers=num_workers)
+    futures = []
+    for vocab_chunk in create_chunks(oov_vocab, num_workers):
+        futures.append(executor.submit(partial(gen_g2p, vocab_chunk)))
+
+    for future in futures:
+        # extend base lexicon with OOVs
+        base_lexicon.update(future.result())
 
     out_lexicon = {word: base_lexicon[word] for word in vocab if word in base_lexicon}
 
@@ -62,8 +78,12 @@ def gen_g2p(word_list, variants=1):
     # init g2p model
     g2p = G2P(G2P_MODEL_NAME)
 
+    # set number of processors available for pytorch
+    torch.set_num_threads(1)
+
     # generating lexicon
     lexicon = {}
+    # TODO move pbar outside process
     for word in tqdm(word_list):
         try:
             pron = g2p(word)
@@ -83,8 +103,9 @@ def gen_g2p(word_list, variants=1):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('-v', '--vocab', help='path to a vocabulary file', required=True)
-    parser.add_argument('-o', '--out_lex', help='path to the generated lexicon.', required=True)
+    parser.add_argument('-o', '--out_lex', help='path to the generated lexicon', required=True)
+    parser.add_argument('-n', '--num_workers', help='number of workers', required=False, type=int)
 
     args = parser.parse_args()
 
-    gen_lexicon(args.vocab, args.out_lex)
+    gen_lexicon(args.vocab, args.out_lex, num_workers=args.num_workers)
