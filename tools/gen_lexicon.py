@@ -104,8 +104,8 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('-v', '--vocab', help='path to a vocabulary file', required=True)
     parser.add_argument('-o', '--out_lex', help='path to the generated lexicon', required=True)
-    parser.add_argument('-n', '--num_workers', help='number of workers', required=False, type=int)
+    parser.add_argument('-nj', '--num_jobs', help='number of jobs', required=False, type=int, default=1)
 
     args = parser.parse_args()
 
-    gen_lexicon(args.vocab, args.out_lex, num_workers=args.num_workers)
+    gen_lexicon(args.vocab, args.out_lex, num_workers=args.num_jobs)
