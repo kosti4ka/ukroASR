@@ -1,6 +1,8 @@
 from pathlib import Path
 from collections import defaultdict
 import operator
+import argparse
+
 
 def convert_ctm_to_whole(in_ctm_path, segments_path, out_ctm_path):
     """
@@ -18,7 +20,7 @@ def convert_ctm_to_whole(in_ctm_path, segments_path, out_ctm_path):
 
     # read segments file
     segments = [x.split() for x in open(segments_path, 'r', encoding='utf-8').read().split('\n') if x]
-    segments = {s[0]:{'audio_id':s[1], 'start':float(s[2]), 'end':float(s[3])} for s in segments}
+    segments = {s[0]: {'audio_id':s[1], 'start':float(s[2]), 'end':float(s[3])} for s in segments}
 
     # read ctm file
     in_ctm = [x.split() for x in open(in_ctm_path, 'r', encoding='utf-8').read().split('\n') if x]
@@ -59,11 +61,13 @@ def ctm_to_word_stat(in_ctm_path):
 
     print('ok')
 
+
 if __name__ == '__main__':
-    # # convert_ctm_to_whole('/home/ubuntu/kostya/exp/mono_dev_ali/1.ctm',
-    # #                      '/home/ubuntu/kostya/data_dev/segments',
-    # #                      '/home/ubuntu/kostya/exp/mono_dev_ali/1.whole.ctm')
-    # ctm_to_word_stat('/home/ubuntu/kostya/kws_project/exp/tri3b_ali_dev_clean_2/ctm')
-    convert_ctm_to_whole('/Users/mac/Downloads/1.ctm',
-                         '/Users/mac/Downloads/segments',
-                         '/Users/mac/Downloads/1.whole.ctm')
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-i', '--input_ctm', help='path to the input ctm file', required=True)
+    parser.add_argument('-s', '--segments', help='path to the segments file', required=True)
+    parser.add_argument('-o', '--out_ctm', help='path to the output ctm file', required=True)
+
+    args = parser.parse_args()
+
+    convert_ctm_to_whole(args.input_ctm, args.segments, args.out_ctm)
