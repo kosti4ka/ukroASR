@@ -407,21 +407,21 @@ mono_ali:
     md5: 6fe676939f4f5face3387f4dd329467f
   outs:
   - path: exp/mono_train_5k_ali/ali.1.gz
-    md5: 75038ada0e06f1832cca6edbd9c957d3
+    md5: aa9085850e41421b80e91f3d8bd61e59
   - path: exp/mono_train_5k_ali/ali.2.gz
-    md5: 25b3e1f15a254fb48c1cce2ed6be427e
+    md5: f792b6ba06f4c0d98d3013a89b0dfda0
   - path: exp/mono_train_5k_ali/ali.3.gz
-    md5: 604dee72692332b324e0c28948612735
+    md5: 0e39a9839c56c25c7293b9bb7d622bce
   - path: exp/mono_train_5k_ali/ali.4.gz
-    md5: 7b411e7eb80bec1e384772882c16965e
+    md5: 07d9c2f99c68fc7fb4ab7866c3afc792
   - path: exp/mono_train_5k_ali/ali.5.gz
-    md5: 2056d617e3be098469326f42f06d4bfc
+    md5: 2d19316e0e65c18ad94c283043e2f369
   - path: exp/mono_train_5k_ali/ali.6.gz
-    md5: f3eb25c2315725fe1efdfd5a936d59b2
+    md5: 3bedcd34ce2e10ef820b55d85fb6f3ef
   - path: exp/mono_train_5k_ali/ali.7.gz
-    md5: e546530444f2bcc75354d72d3ee5c8ea
+    md5: 2b75ee0f4b5ce108400959faad76e851
   - path: exp/mono_train_5k_ali/ali.8.gz
-    md5: e3d4d6ffb21878a87ae1e0120d76fe56
+    md5: d06222adac66b6b8b38a81d2a9cb462f
 tri1:
   cmd: cd $KALDI_ROOT/egs/wsj/s5; . ./path.sh; . ./cmd.sh; steps/train_deltas.sh --boost-silence
     1.25 2000 10000 /data/exp/kostya/ukroASR/data/train_5k /data/exp/kostya/ukroASR/data/lang
@@ -446,21 +446,21 @@ tri1:
   - path: data/train_5k/utt2spk
     md5: ef0b97ca272b7fbed423bcb26fa3ef05
   - path: exp/mono_train_5k_ali/ali.1.gz
-    md5: 75038ada0e06f1832cca6edbd9c957d3
+    md5: aa9085850e41421b80e91f3d8bd61e59
   - path: exp/mono_train_5k_ali/ali.2.gz
-    md5: 25b3e1f15a254fb48c1cce2ed6be427e
+    md5: f792b6ba06f4c0d98d3013a89b0dfda0
   - path: exp/mono_train_5k_ali/ali.3.gz
-    md5: 604dee72692332b324e0c28948612735
+    md5: 0e39a9839c56c25c7293b9bb7d622bce
   - path: exp/mono_train_5k_ali/ali.4.gz
-    md5: 7b411e7eb80bec1e384772882c16965e
+    md5: 07d9c2f99c68fc7fb4ab7866c3afc792
   - path: exp/mono_train_5k_ali/ali.5.gz
-    md5: 2056d617e3be098469326f42f06d4bfc
+    md5: 2d19316e0e65c18ad94c283043e2f369
   - path: exp/mono_train_5k_ali/ali.6.gz
-    md5: f3eb25c2315725fe1efdfd5a936d59b2
+    md5: 3bedcd34ce2e10ef820b55d85fb6f3ef
   - path: exp/mono_train_5k_ali/ali.7.gz
-    md5: e546530444f2bcc75354d72d3ee5c8ea
+    md5: 2b75ee0f4b5ce108400959faad76e851
   - path: exp/mono_train_5k_ali/ali.8.gz
-    md5: e3d4d6ffb21878a87ae1e0120d76fe56
+    md5: d06222adac66b6b8b38a81d2a9cb462f
   outs:
   - path: exp/tri1/final.mdl
     md5: a1edbbb6b12193e979520a6000fe4a2d
@@ -541,21 +541,21 @@ tri_ali:
     md5: 32d4812b082daf4a008cca926bf9573e
   outs:
   - path: exp/tri1_train_ali/ali.1.gz
-    md5: f47a0b80e9e7e2b967a7c16a9ba9e041
+    md5: ae95b1f7f2a610b1c2f2b72de03ca1ef
   - path: exp/tri1_train_ali/ali.2.gz
-    md5: 199e8656668d57337a4e95eb1fc5e4ba
+    md5: d0a744aea8a1e5e5ff71eaceaae915f9
   - path: exp/tri1_train_ali/ali.3.gz
-    md5: e025c51ce2522675df680231ebaeb76a
+    md5: d73fdb8850ab60504fbe9509b27f4aa4
   - path: exp/tri1_train_ali/ali.4.gz
-    md5: 53255abd833c0d61602c82930372cf4d
+    md5: 42748a24aaf23a2dad1425ddc8f8bc1f
   - path: exp/tri1_train_ali/ali.5.gz
-    md5: 5d6da0a11a29a5d7c9bd34e698dc9ea8
+    md5: ad505b77e61e58ca9990bae6584e5bff
   - path: exp/tri1_train_ali/ali.6.gz
-    md5: 8afb1c7eb4165dd58bb0eb3e9a30e41a
+    md5: a83b307ee7819ca6eac19631d3308774
   - path: exp/tri1_train_ali/ali.7.gz
-    md5: f54443ccd044374f7f68efe29784ef89
+    md5: fd87ffbe4d9cb48c619c60253a168a77
   - path: exp/tri1_train_ali/ali.8.gz
-    md5: 6ad68c3fdca891a7f94dc798b6697292
+    md5: 0d3d9b3314c44f8d61b84d9e44d3693f
 tri2b:
   cmd: cd $KALDI_ROOT/egs/wsj/s5; . ./path.sh; . ./cmd.sh; steps/train_lda_mllt.sh
     --splice-opts "--left-context=3 --right-context=3" 2500 15000 /data/exp/kostya/ukroASR/data/train
@@ -583,21 +583,21 @@ tri2b:
   - path: data/train/utt2spk
     md5: a701ff113438365ce403756717350b2a
   - path: exp/tri1_train_ali/ali.1.gz
-    md5: f47a0b80e9e7e2b967a7c16a9ba9e041
+    md5: ae95b1f7f2a610b1c2f2b72de03ca1ef
   - path: exp/tri1_train_ali/ali.2.gz
-    md5: 199e8656668d57337a4e95eb1fc5e4ba
+    md5: d0a744aea8a1e5e5ff71eaceaae915f9
   - path: exp/tri1_train_ali/ali.3.gz
-    md5: e025c51ce2522675df680231ebaeb76a
+    md5: d73fdb8850ab60504fbe9509b27f4aa4
   - path: exp/tri1_train_ali/ali.4.gz
-    md5: 53255abd833c0d61602c82930372cf4d
+    md5: 42748a24aaf23a2dad1425ddc8f8bc1f
   - path: exp/tri1_train_ali/ali.5.gz
-    md5: 5d6da0a11a29a5d7c9bd34e698dc9ea8
+    md5: ad505b77e61e58ca9990bae6584e5bff
   - path: exp/tri1_train_ali/ali.6.gz
-    md5: 8afb1c7eb4165dd58bb0eb3e9a30e41a
+    md5: a83b307ee7819ca6eac19631d3308774
   - path: exp/tri1_train_ali/ali.7.gz
-    md5: f54443ccd044374f7f68efe29784ef89
+    md5: fd87ffbe4d9cb48c619c60253a168a77
   - path: exp/tri1_train_ali/ali.8.gz
-    md5: 6ad68c3fdca891a7f94dc798b6697292
+    md5: 0d3d9b3314c44f8d61b84d9e44d3693f
   outs:
   - path: exp/tri2b/final.mat
     md5: 21fc1eb93ea1c2b172a6560e3f9228cb
@@ -686,21 +686,21 @@ tri2b_ali:
     md5: ea7ee9fef2f9a35dc30e2bf71bea769b
   outs:
   - path: exp/tri2b_train_ali/ali.1.gz
-    md5: 66e5def5feed15e86cc1e5af10e343a5
+    md5: 72e9bd2b170cbbeeec6c04df0ed34318
   - path: exp/tri2b_train_ali/ali.2.gz
-    md5: 1aed5213c5d1c57cc49579fc0370c6eb
+    md5: 6b3f579f48f9ebf55f733ad4d16b44fd
   - path: exp/tri2b_train_ali/ali.3.gz
-    md5: 67e4e0f2301d298343b8b32c52a9f571
+    md5: c26caac12c49012a0be6465ae38b57ef
   - path: exp/tri2b_train_ali/ali.4.gz
-    md5: 6264c02200b941fb727b99e142405dcb
+    md5: ee438251e8d310d9823d8700a56333a0
   - path: exp/tri2b_train_ali/ali.5.gz
-    md5: 64a275b01eb1fc9d8e016842c2999da8
+    md5: 67f43df7542bd23f68f23d23b986bfa4
   - path: exp/tri2b_train_ali/ali.6.gz
-    md5: 7ad401b2386d6e56a3c4ecd8393614be
+    md5: d60fd72b1b190ab7ce24b2fef309e837
   - path: exp/tri2b_train_ali/ali.7.gz
-    md5: 84f12c1001c96829f0a9744dfd8b67b4
+    md5: 850fc9c530edbc993f59e1430051a855
   - path: exp/tri2b_train_ali/ali.8.gz
-    md5: a20bd672b1aea3d8fb87f6e7b1bdb8b1
+    md5: 84336bed2140cc0a646e6807e3875b69
 tri3b:
   cmd: cd $KALDI_ROOT/egs/wsj/s5; . ./path.sh; . ./cmd.sh; steps/train_sat.sh 2500
     15000 /data/exp/kostya/ukroASR/data/train /data/exp/kostya/ukroASR/data/lang /data/exp/kostya/ukroASR/exp/tri2b_train_ali
@@ -708,7 +708,9 @@ tri3b:
     /data/exp/kostya/ukroASR/exp/tri3b/final.mdl_copy; mv /data/exp/kostya/ukroASR/exp/tri3b/final.mdl_copy
     /data/exp/kostya/ukroASR/exp/tri3b/final.mdl; cp /data/exp/kostya/ukroASR/exp/tri3b/final.mat
     /data/exp/kostya/ukroASR/exp/tri3b/final.mat_copy; mv /data/exp/kostya/ukroASR/exp/tri3b/final.mat_copy
-    /data/exp/kostya/ukroASR/exp/tri3b/final.mat
+    /data/exp/kostya/ukroASR/exp/tri3b/final.mat; cp /data/exp/kostya/ukroASR/exp/tri3b/final.occs
+    /data/exp/kostya/ukroASR/exp/tri3b/final.occs_copy; mv /data/exp/kostya/ukroASR/exp/tri3b/final.occs_copy
+    /data/exp/kostya/ukroASR/exp/tri3b/final.occs
   deps:
   - path: data/lang/L.fst
     md5: f95501f91c6c35d4c2f06eee3b32cc1c
@@ -727,26 +729,30 @@ tri3b:
   - path: data/train/utt2spk
     md5: a701ff113438365ce403756717350b2a
   - path: exp/tri2b_train_ali/ali.1.gz
-    md5: 66e5def5feed15e86cc1e5af10e343a5
+    md5: 72e9bd2b170cbbeeec6c04df0ed34318
   - path: exp/tri2b_train_ali/ali.2.gz
-    md5: 1aed5213c5d1c57cc49579fc0370c6eb
+    md5: 6b3f579f48f9ebf55f733ad4d16b44fd
   - path: exp/tri2b_train_ali/ali.3.gz
-    md5: 67e4e0f2301d298343b8b32c52a9f571
+    md5: c26caac12c49012a0be6465ae38b57ef
   - path: exp/tri2b_train_ali/ali.4.gz
-    md5: 6264c02200b941fb727b99e142405dcb
+    md5: ee438251e8d310d9823d8700a56333a0
   - path: exp/tri2b_train_ali/ali.5.gz
-    md5: 64a275b01eb1fc9d8e016842c2999da8
+    md5: 67f43df7542bd23f68f23d23b986bfa4
   - path: exp/tri2b_train_ali/ali.6.gz
-    md5: 7ad401b2386d6e56a3c4ecd8393614be
+    md5: d60fd72b1b190ab7ce24b2fef309e837
   - path: exp/tri2b_train_ali/ali.7.gz
-    md5: 84f12c1001c96829f0a9744dfd8b67b4
+    md5: 850fc9c530edbc993f59e1430051a855
   - path: exp/tri2b_train_ali/ali.8.gz
-    md5: a20bd672b1aea3d8fb87f6e7b1bdb8b1
+    md5: 84336bed2140cc0a646e6807e3875b69
   outs:
   - path: exp/tri3b/final.mat
     md5: 21fc1eb93ea1c2b172a6560e3f9228cb
   - path: exp/tri3b/final.mdl
     md5: 5d311eaf817232b1adb438f33f497ad5
+  - path: exp/tri3b/final.occs
+    md5: d5d65090723c42eb891dce0b80aacb2d
+  - path: exp/tri3b/full.mat
+    md5: 7ee1058a4817dade52adf7db1c055bdb
   - path: exp/tri3b/phones.txt
     md5: b28d7e277c321c49c508cba5608c7ec5
   - path: exp/tri3b/tree

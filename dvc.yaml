@@ -474,7 +474,9 @@ stages:
       cp /data/exp/kostya/ukroASR/exp/tri3b/final.mdl /data/exp/kostya/ukroASR/exp/tri3b/final.mdl_copy;
       mv /data/exp/kostya/ukroASR/exp/tri3b/final.mdl_copy /data/exp/kostya/ukroASR/exp/tri3b/final.mdl;
       cp /data/exp/kostya/ukroASR/exp/tri3b/final.mat /data/exp/kostya/ukroASR/exp/tri3b/final.mat_copy;
-      mv /data/exp/kostya/ukroASR/exp/tri3b/final.mat_copy /data/exp/kostya/ukroASR/exp/tri3b/final.mat
+      mv /data/exp/kostya/ukroASR/exp/tri3b/final.mat_copy /data/exp/kostya/ukroASR/exp/tri3b/final.mat;
+      cp /data/exp/kostya/ukroASR/exp/tri3b/final.occs /data/exp/kostya/ukroASR/exp/tri3b/final.occs_copy;
+      mv /data/exp/kostya/ukroASR/exp/tri3b/final.occs_copy /data/exp/kostya/ukroASR/exp/tri3b/final.occs
     deps:
     - data/lang/L.fst
     - data/lang/phones
@@ -495,6 +497,8 @@ stages:
     outs:
     - exp/tri3b/final.mat
     - exp/tri3b/final.mdl
+    - exp/tri3b/final.occs
+    - exp/tri3b/full.mat
     - exp/tri3b/phones.txt
     - exp/tri3b/tree
   tri3b_graph:
