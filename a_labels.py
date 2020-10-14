@@ -26,7 +26,7 @@ def ctm_to_labels(in_ctm_path, a_labels_path):
 
     with open(a_labels_path, 'w', encoding='utf-8') as f:
         for l in a_labels:
-            f.write(f'{l["start"]} {l["end"]} {l["label"]}\n')
+            f.write(f'{l["start"]}\t{l["end"]}\t{l["label"]}\n')
 
 
 if __name__ == '__main__':
