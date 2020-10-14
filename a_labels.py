@@ -1,4 +1,5 @@
 from pathlib import Path
+import argparse
 
 
 def ctm_to_labels(in_ctm_path, a_labels_path):
@@ -29,5 +30,10 @@ def ctm_to_labels(in_ctm_path, a_labels_path):
 
 
 if __name__ == '__main__':
-    ctm_to_labels('/Users/mac/Downloads/1.whole.ctm',
-                  '/Users/mac/Downloads/labels')
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-i', '--input_ctm', help='path to the input ctm file', required=True)
+    parser.add_argument('-o', '--out_labels', help='out labels file', required=True)
+
+    args = parser.parse_args()
+
+    ctm_to_labels(args.input_ctm, args.out_labels)
