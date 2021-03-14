@@ -144,9 +144,11 @@ REALIGN_THRESHOLD = 40
 def run_aligning_task(input_audio_path, input_text_path, out_json_path, task_language='ukr'):
     """
     Runs aeneas algnment task
-    :param audi_path: input audio
-    :param variants: max number of pronunciations for each word
-    :return lexicon: generated lexicon
+    :param input_audio_path: input audio path
+    :param input_text_path: input raw text path
+    :param out_json_path: out alignment json file
+    :param task_language: language code
+    :return:
     """
 
     config_string = f'task_language={task_language}|is_text_type=plain|os_task_file_format=json'
