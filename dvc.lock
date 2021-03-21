@@ -123,8 +123,10 @@ stages:
     deps:
     - path: data/dev/text
       md5: 2acbe3dbcd7895cb80447274b7484a6b
+      size: 263675
     - path: data/lm_ukr.gz
-      md5: 151cc06bdc00ed0c88ddaf902b2c4e1e
+      md5: 1080b5459643944466842a8c74734cff
+      size: 2387204
     outs:
     - path: exp/metrics/lm.json
       md5: a327c7c4b813448ec0f98aafcb77d2ae
