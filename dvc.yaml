@@ -534,3 +534,47 @@ stages:
     - exp/tri3b/tree
     metrics:
     - exp/metrics/tri3b.json
+  lm_o4_ukr:
+    cmd: cut -d' ' -f2- /data/exp/kostya/ukroASR/data/train/text /data/exp/kostya/ukroASR/artifacts/text_plane
+      /data/exp/kostya/ukroASR/artifacts/normal_fiction.txt | ngram-count -text -
+      -order 4 -lm - | gzip -c > /data/exp/kostya/ukroASR/data/lm_ukr_o4.gz
+    deps:
+    - artifacts/normal_fiction.txt
+    - artifacts/text_plane
+    - data/train/text
+    outs:
+    - data/lm_ukr_o4.gz
+  lm_o4_metrics:
+    cmd: "echo {\\'LM perplexity\\': 2480.645} > /data/exp/kostya/ukroASR/exp/metrics/lm_o4.json"
+    deps:
+    - data/dev/text
+    - data/lm_ukr_o4.gz
+    metrics:
+    - exp/metrics/lm_o4.json
+  carpa:
+    cmd: cd $KALDI_ROOT/egs/wsj/s5; . ./path.sh; . ./cmd.sh; utils/build_const_arpa_lm.sh
+      /data/exp/kostya/ukroASR/data/lm_ukr_o4.gz /data/exp/kostya/ukroASR/data/lang
+      /data/exp/kostya/ukroASR/data/carpa
+    deps:
+    - data/lang/words.txt
+    - data/lm_ukr_o4.gz
+    outs:
+    - data/carpa/G.carpa
+  tri3b_rescore_metrics:
+    cmd: cd $KALDI_ROOT/egs/wsj/s5; . ./path.sh; . ./cmd.sh; steps/lmrescore_const_arpa.sh
+      /data/exp/kostya/ukroASR/data/lang /data/exp/kostya/ukroASR/data/carpa /data/exp/kostya/ukroASR/data/dev_0.15k
+      /data/exp/kostya/ukroASR/exp/tri3b/decode_dev_0.15k /data/exp/kostya/ukroASR/exp/tri3b/rescore_dev_0.15k;
+      /data/exp/kostya/ukroASR/parce_wer_report.sh /data/exp/kostya/ukroASR/exp/tri3b/rescore_dev_0.15k/scoring_kaldi/best_wer
+      /data/exp/kostya/ukroASR/exp/metrics/tri3b_rescore.json
+    deps:
+    - data/dev_0.15k/cmvn.scp
+    - data/dev_0.15k/feats.scp
+    - data/dev_0.15k/utt2spk
+    - data/lang/phones
+    - data/lang/words.txt
+    - exp/tri3b/final.mat
+    - exp/tri3b/final.mdl
+    - exp/tri3b/graph/HCLG.fst
+    - exp/tri3b/tree
+    metrics:
+    - exp/metrics/tri3b_rescore.json

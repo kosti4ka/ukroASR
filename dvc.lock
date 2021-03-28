@@ -1096,3 +1096,88 @@ stages:
     - path: exp/metrics/tri3b.json
       md5: d822dc4bc9ea6466281a2d7be49cafea
       size: 15
+  lm_o4_ukr:
+    cmd: cut -d' ' -f2- /data/exp/kostya/ukroASR/data/train/text /data/exp/kostya/ukroASR/artifacts/text_plane
+      /data/exp/kostya/ukroASR/artifacts/normal_fiction.txt | ngram-count -text -
+      -order 4 -lm - | gzip -c > /data/exp/kostya/ukroASR/data/lm_ukr_o4.gz
+    deps:
+    - path: artifacts/normal_fiction.txt
+      md5: ec1da4249355d6e39eccde5911b83b47
+      size: 205467591
+    - path: artifacts/text_plane
+      md5: 3f9c322aa926e5701422d8521128ce12
+      size: 49124558
+    - path: data/train/text
+      md5: fd6167178ad5b7fec50a417b012b2e33
+      size: 5256661
+    outs:
+    - path: data/lm_ukr_o4.gz
+      md5: c7325b06ef45e12e1236ce34c62d5fb2
+      size: 138188632
+  lm_o4_metrics:
+    cmd: "echo {\\'LM perplexity\\': 2480.645} > /data/exp/kostya/ukroASR/exp/metrics/lm_o4.json"
+    deps:
+    - path: data/dev/text
+      md5: 2acbe3dbcd7895cb80447274b7484a6b
+      size: 263675
+    - path: data/lm_ukr_o4.gz
+      md5: c7325b06ef45e12e1236ce34c62d5fb2
+      size: 138188632
+    outs:
+    - path: exp/metrics/lm_o4.json
+      md5: 7ca48ed899fd76bd863a03daa868e37c
+      size: 28
+  carpa:
+    cmd: cd $KALDI_ROOT/egs/wsj/s5; . ./path.sh; . ./cmd.sh; utils/build_const_arpa_lm.sh
+      /data/exp/kostya/ukroASR/data/lm_ukr_o4.gz /data/exp/kostya/ukroASR/data/lang
+      /data/exp/kostya/ukroASR/data/carpa
+    deps:
+    - path: data/lang/words.txt
+      md5: 8ac5ac51c87575fe7d53ee64b257dfec
+      size: 1397961
+    - path: data/lm_ukr_o4.gz
+      md5: c7325b06ef45e12e1236ce34c62d5fb2
+      size: 138188632
+    outs:
+    - path: data/carpa/G.carpa
+      md5: 935773d857e6eaa67ddd33d29f69d638
+      size: 86023680
+  tri3b_rescore_metrics:
+    cmd: cd $KALDI_ROOT/egs/wsj/s5; . ./path.sh; . ./cmd.sh; steps/lmrescore_const_arpa.sh
+      /data/exp/kostya/ukroASR/data/lang /data/exp/kostya/ukroASR/data/carpa /data/exp/kostya/ukroASR/data/dev_0.15k
+      /data/exp/kostya/ukroASR/exp/tri3b/decode_dev_0.15k /data/exp/kostya/ukroASR/exp/tri3b/rescore_dev_0.15k;
+      /data/exp/kostya/ukroASR/parce_wer_report.sh /data/exp/kostya/ukroASR/exp/tri3b/rescore_dev_0.15k/scoring_kaldi/best_wer
+      /data/exp/kostya/ukroASR/exp/metrics/tri3b_rescore.json
+    deps:
+    - path: data/dev_0.15k/cmvn.scp
+      md5: 0e5b20ac9167931c8ac1b447bfa8a403
+      size: 291
+    - path: data/dev_0.15k/feats.scp
+      md5: c766137ca2953725bf433cb2edf30c2d
+      size: 17694
+    - path: data/dev_0.15k/utt2spk
+      md5: a7c154e64bf978e1c1e927fa4bfe6fa0
+      size: 10758
+    - path: data/lang/phones
+      md5: bd34f79799625147dd56a1be9be96c87.dir
+      size: 5854905
+      nfiles: 26
+    - path: data/lang/words.txt
+      md5: 8ac5ac51c87575fe7d53ee64b257dfec
+      size: 1397961
+    - path: exp/tri3b/final.mat
+      md5: e9ada887ad4396f2e325a9ccf58cb616
+      size: 14575
+    - path: exp/tri3b/final.mdl
+      md5: e2fb4efd26a0863ba7c6bb895afdcc43
+      size: 5207695
+    - path: exp/tri3b/graph/HCLG.fst
+      md5: 8fc82e9a3039564cfe4328c3a8454f9d
+      size: 154778837
+    - path: exp/tri3b/tree
+      md5: 98678e7c9ec303f825d1b92bc7847e2b
+      size: 167757
+    outs:
+    - path: exp/metrics/tri3b_rescore.json
+      md5: ebe5ec1063d7251daf2c3b57a04fa011
+      size: 15
