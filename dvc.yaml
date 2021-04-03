@@ -54,9 +54,12 @@ stages:
     - data/local/dict/lexiconp.txt:
         cache: false
   lm_ukr:
-    cmd: cut -d' ' -f2- /data/exp/kostya/ukroASR/data/train/text | ngram-count -text
-      - -order 3 -prune 1e-7 -gt1min 1 -gt2min 1 -lm - | gzip -c > /data/exp/kostya/ukroASR/data/lm_ukr.gz
+    cmd: cut -d' ' -f2- /data/exp/kostya/ukroASR/data/train/text /data/exp/kostya/ukroASR/artifacts/text_plane
+      /data/exp/kostya/ukroASR/artifacts/normal_fiction.txt | ngram-count -text -
+      -order 3 -gt1min 1 -gt2min 1 -lm - | gzip -c > /data/exp/kostya/ukroASR/data/lm_ukr.gz
     deps:
+    - artifacts/normal_fiction.txt
+    - artifacts/text_plane
     - data/train/text
     outs:
     - data/lm_ukr.gz
@@ -556,6 +559,7 @@ stages:
       /data/exp/kostya/ukroASR/data/lm_ukr_o4.gz /data/exp/kostya/ukroASR/data/lang
       /data/exp/kostya/ukroASR/data/carpa
     deps:
+    - data/lang/oov.int
     - data/lang/words.txt
     - data/lm_ukr_o4.gz
     outs:

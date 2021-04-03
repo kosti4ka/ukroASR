@@ -108,16 +108,23 @@ stages:
       md5: 89e1bb886019660e39af39584ca9a668
       size: 2810002
   lm_ukr:
-    cmd: cut -d' ' -f2- /data/exp/kostya/ukroASR/data/train/text | ngram-count -text
-      - -order 3 -prune 1e-7 -gt1min 1 -gt2min 1 -lm - | gzip -c > /data/exp/kostya/ukroASR/data/lm_ukr.gz
+    cmd: cut -d' ' -f2- /data/exp/kostya/ukroASR/data/train/text /data/exp/kostya/ukroASR/artifacts/text_plane
+      /data/exp/kostya/ukroASR/artifacts/normal_fiction.txt | ngram-count -text -
+      -order 3 -gt1min 1 -gt2min 1 -lm - | gzip -c > /data/exp/kostya/ukroASR/data/lm_ukr.gz
     deps:
+    - path: artifacts/normal_fiction.txt
+      md5: ec1da4249355d6e39eccde5911b83b47
+      size: 205467591
+    - path: artifacts/text_plane
+      md5: 3f9c322aa926e5701422d8521128ce12
+      size: 49124558
     - path: data/train/text
       md5: fd6167178ad5b7fec50a417b012b2e33
       size: 5256661
     outs:
     - path: data/lm_ukr.gz
-      md5: 1080b5459643944466842a8c74734cff
-      size: 2387204
+      md5: 5a2f2274f12fd64b16ce4dfda35637d2
+      size: 98521930
   lm_metrics:
     cmd: "echo {\\'LM perplexity\\': 2556.659} > /data/exp/kostya/ukroASR/exp/metrics/lm.json"
     deps:
@@ -139,15 +146,15 @@ stages:
       md5: 8ac5ac51c87575fe7d53ee64b257dfec
       size: 1397961
     - path: data/lm_ukr.gz
-      md5: 1080b5459643944466842a8c74734cff
-      size: 2387204
+      md5: 5a2f2274f12fd64b16ce4dfda35637d2
+      size: 98521930
     - path: data/local/dict/lexicon.txt
       md5: 8a939c8457365c81e467d4da768f32bf
       size: 2547474
     outs:
     - path: data/lang/G.fst
-      md5: 939655eeef82bc8d358eda0820287c44
-      size: 7095570
+      md5: 3ea19ea37a0d80755c75f69e1a137313
+      size: 110038790
   mfcc_train:
     cmd: python3.6 /data/exp/kostya/ukroASR/features/make_mfcc.py /data/exp/kostya/ukroASR/data/train
       /data/exp/kostya/ukroASR/exp/log/mfcc /data/exp/kostya/ukroASR/exp/train_mfcc
@@ -1030,8 +1037,8 @@ stages:
       /data/exp/kostya/ukroASR/exp/tri3b /data/exp/kostya/ukroASR/exp/tri3b/graph
     deps:
     - path: data/lang/G.fst
-      md5: 939655eeef82bc8d358eda0820287c44
-      size: 7095570
+      md5: 3ea19ea37a0d80755c75f69e1a137313
+      size: 110038790
     - path: data/lang/L.fst
       md5: 8c5da6ab3305b52a0f8007aecf62048e
       size: 14686486
@@ -1053,8 +1060,8 @@ stages:
       size: 167757
     outs:
     - path: exp/tri3b/graph/HCLG.fst
-      md5: 8fc82e9a3039564cfe4328c3a8454f9d
-      size: 154778837
+      md5: 81dc597ff86481e5297e345ed1b82d06
+      size: 1934416961
     - path: exp/tri3b/graph/words.txt
       md5: 8ac5ac51c87575fe7d53ee64b257dfec
       size: 1397961
@@ -1087,14 +1094,14 @@ stages:
       md5: e2fb4efd26a0863ba7c6bb895afdcc43
       size: 5207695
     - path: exp/tri3b/graph/HCLG.fst
-      md5: 8fc82e9a3039564cfe4328c3a8454f9d
-      size: 154778837
+      md5: 81dc597ff86481e5297e345ed1b82d06
+      size: 1934416961
     - path: exp/tri3b/tree
       md5: 98678e7c9ec303f825d1b92bc7847e2b
       size: 167757
     outs:
     - path: exp/metrics/tri3b.json
-      md5: d822dc4bc9ea6466281a2d7be49cafea
+      md5: 3bf72147dc4deaf94a28c5b1032e8bec
       size: 15
   lm_o4_ukr:
     cmd: cut -d' ' -f2- /data/exp/kostya/ukroASR/data/train/text /data/exp/kostya/ukroASR/artifacts/text_plane
@@ -1132,6 +1139,9 @@ stages:
       /data/exp/kostya/ukroASR/data/lm_ukr_o4.gz /data/exp/kostya/ukroASR/data/lang
       /data/exp/kostya/ukroASR/data/carpa
     deps:
+    - path: data/lang/oov.int
+      md5: 48a24b70a0b376535542b996af517398
+      size: 2
     - path: data/lang/words.txt
       md5: 8ac5ac51c87575fe7d53ee64b257dfec
       size: 1397961
@@ -1172,12 +1182,12 @@ stages:
       md5: e2fb4efd26a0863ba7c6bb895afdcc43
       size: 5207695
     - path: exp/tri3b/graph/HCLG.fst
-      md5: 8fc82e9a3039564cfe4328c3a8454f9d
-      size: 154778837
+      md5: 81dc597ff86481e5297e345ed1b82d06
+      size: 1934416961
     - path: exp/tri3b/tree
       md5: 98678e7c9ec303f825d1b92bc7847e2b
       size: 167757
     outs:
     - path: exp/metrics/tri3b_rescore.json
-      md5: ebe5ec1063d7251daf2c3b57a04fa011
+      md5: 65773ac0e82d44733019164c8e98690c
       size: 15
