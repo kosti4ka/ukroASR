@@ -4,7 +4,7 @@ export PYTHONPATH="${PYTHONPATH}:/data/exp/kostya/ukr_g2p"
 export PYTHONPATH="${PYTHONPATH}:/data/exp/kostya/ukroASR"
 UKROASR_ROOT=/data/exp/kostya/ukroASR
 
-nj=1
+nj=8
 
 cd $KALDI_ROOT/egs/wsj/s5
 . ./path.sh
