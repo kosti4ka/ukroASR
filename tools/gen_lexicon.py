@@ -5,7 +5,6 @@ import argparse
 from tools.utils import get_list, get_lexicon
 from pathlib import Path
 from ukro_g2p.predict import G2P
-# import unicode
 from tqdm import tqdm
 from concurrent.futures import ProcessPoolExecutor
 from functools import partial
@@ -48,6 +47,7 @@ def gen_lexicon(in_vocab_path, out_lex_path, base_lexicons=[BASE_LEXICON_PATH], 
             base_lexicon.update(get_lexicon(lex_path))
 
     oov_vocab = [word for word in vocab if word not in base_lexicon]
+    print(f'Num words to generate pronunciations: {len(oov_vocab)}')
 
     executor = ProcessPoolExecutor(max_workers=num_workers)
     futures = []
