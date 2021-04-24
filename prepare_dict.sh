@@ -20,6 +20,9 @@ python3.6 $UKROASR_ROOT/tools/gen_vocab.py -t $* -v $dict_dir/vocab
 # generating lexicon file
 python3.6 $UKROASR_ROOT/tools/gen_lexicon.py -v $dict_dir/vocab -o $dict_dir/lexicon.txt -nj $nj
 
+# keep only words that pronunciation was generated for
+awk '{print $1}' $dict_dir/lexicon.txt > $dict_dir/vocab
+
 # extend lexicon with silence phones
 echo '!SIL SIL' >> $dict_dir/lexicon.txt
 echo '<SPOKEN_NOISE> SPN' >> $dict_dir/lexicon.txt
