@@ -90,10 +90,10 @@ def gen_g2p(word_list, variants=1):
             if pron:
                 lexicon[word] = [pron]
             else:
-                subprocess.call(f'echo {word.encode("utf-8")} >> /tmp/failed_lexicon', shell=True)
+                subprocess.call(f'echo {word} >> /tmp/failed_lexicon', shell=True)
         except:
             # TODO move it to logger
-            subprocess.call(f'echo {word.encode("utf-8")} >> /tmp/failed_lexicon', shell=True)
+            subprocess.call(f'echo {word} >> /tmp/failed_lexicon', shell=True)
 
     return lexicon
 
