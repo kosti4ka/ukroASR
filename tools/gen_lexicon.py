@@ -20,19 +20,22 @@ def create_chunks(iterable, num_chunks):
         yield iterable[i::num_chunks]
 
 
-def gen_lexicon(in_vocab_path, out_lex_path, base_lexicons=[BASE_LEXICON_PATH], num_workers=1):
+def gen_lexicon(in_vocab_path, out_lex_path, base_lexicons=[BASE_LEXICON_PATH], num_workers=1, write_lexicon_oov=True):
     """
     Generates lexicon for given vocabulary
     :param in_vocab_path: in vocabulary path
     :param out_lex_path: out lexicon path
     :param base_lexicons: list of base lexicons
     :param num_workers: number of workers
+    :param write_lexicon_oov: if True, saves words with no pronunciation to the file 'lexicon_oov.txt'
     :return:
     """
 
     # init paths
     out_lex_path = Path(out_lex_path)
     out_lex_path.parent.mkdir(parents=True, exist_ok=True)
+
+    oov_out_path = out_lex_path.parent / 'lexicon_oov.txt' if write_lexicon_oov else None
 
     # read vocabulary file
     vocab = get_list(in_vocab_path)
@@ -51,12 +54,14 @@ def gen_lexicon(in_vocab_path, out_lex_path, base_lexicons=[BASE_LEXICON_PATH], 
 
     executor = ProcessPoolExecutor(max_workers=num_workers)
     futures = []
+    lexicon_oov = []
     for vocab_chunk in create_chunks(oov_vocab, num_workers):
         futures.append(executor.submit(partial(gen_g2p, vocab_chunk)))
 
     for future in futures:
         # extend base lexicon with OOVs
-        base_lexicon.update(future.result())
+        base_lexicon.update(future.result()[0])
+        lexicon_oov.extend(future.result()[1])
 
     out_lexicon = {word: base_lexicon[word] for word in vocab if word in base_lexicon}
 
@@ -65,6 +70,12 @@ def gen_lexicon(in_vocab_path, out_lex_path, base_lexicons=[BASE_LEXICON_PATH], 
         for word in out_lexicon:
             for pron in out_lexicon[word]:
                 f.write(f'{word} {" ".join(pron)}\n')
+
+    # writing out oov words
+    if oov_out_path:
+        with open(oov_out_path, 'w', encoding='utf-8') as f:
+            for word in lexicon_oov:
+                f.write(f'{word}\n')
 
 
 def gen_g2p(word_list, variants=1):
@@ -83,6 +94,7 @@ def gen_g2p(word_list, variants=1):
 
     # generating lexicon
     lexicon = {}
+    lexicon_oov = []
     # TODO move pbar outside process
     for word in tqdm(word_list):
         try:
@@ -90,12 +102,12 @@ def gen_g2p(word_list, variants=1):
             if pron:
                 lexicon[word] = [pron]
             else:
-                subprocess.call(f'echo {word} >> /tmp/failed_lexicon', shell=True)
+                lexicon_oov.append(word)
         except:
             # TODO move it to logger
-            subprocess.call(f'echo {word} >> /tmp/failed_lexicon', shell=True)
+            lexicon_oov.append(word)
 
-    return lexicon
+    return lexicon, lexicon_oov
 
 
 if __name__ == '__main__':
