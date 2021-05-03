@@ -11,7 +11,7 @@ echo "$0 $@"  # Print the command line for logging
 
 . utils/parse_options.sh
 
-if [ $# -ne 4 ]; then
+if [ $# -ne 3 ]; then
   echo "Usage: prepare_lang.sh <src-dict-dir> <lm-path> <out-dict-dir>"
   echo "<src-dict-dir> should contain the following files:"
   echo " extra_questions.txt  nonsilence_phones.txt  optional_silence.txt  silence_phones.txt"
