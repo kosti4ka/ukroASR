@@ -578,3 +578,25 @@ stages:
     - exp/tri3b/tree
     metrics:
     - exp/metrics/tri3b_rescore.json
+  local_dict_train:
+    cmd: /data/exp/kostya/ukroASR/prepare_dict.sh /data/exp/kostya/ukroASR/data/local/dict_train
+      /data/exp/kostya/ukroASR/data/train/text
+    deps:
+    - artifacts/lexicon.txt
+    - data/train/text
+    - prepare_dict.sh
+    outs:
+    - data/local/dict_train/lexicon.txt
+    - data/local/dict_train/vocab
+  lm_ukr_o3:
+    cmd: cut -d' ' -f2- /data/exp/kostya/ukroASR/artifacts/text_plane                 /data/exp/kostya/ukroASR/artifacts/normal_fiction.txt                 /data/exp/kostya/ukroASR/artifacts/normal_news.txt                 /data/exp/kostya/ukroASR/artifacts/normal_wiki_dump.txt                 /data/exp/kostya/ukroASR/artifacts/normal_ubercorpus.txt
+      > /tmp/train_corpus; ~/kenlm/build/bin/lmplz -o 3 --prune 6 8 10 </tmp/train_corpus
+      | gzip -c > /data/exp/kostya/ukroASR/data/lm_ukr_o3.gz
+    deps:
+    - artifacts/normal_fiction.txt
+    - artifacts/normal_news.txt
+    - artifacts/normal_ubercorpus.txt
+    - artifacts/normal_wiki_dump.txt
+    - artifacts/text_plane
+    outs:
+    - data/lm_ukr_o3.gz
