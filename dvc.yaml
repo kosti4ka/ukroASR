@@ -249,14 +249,14 @@ stages:
     - exp/metrics/mono.json
   mono_ali:
     cmd: cd $KALDI_ROOT/egs/wsj/s5; . ./path.sh; . ./cmd.sh; steps/align_si.sh --boost-silence
-      1.25 --nj 8 /data/exp/kostya/ukroASR/data/train_5k /data/exp/kostya/ukroASR/data/lang
+      1.25 --nj 8 /data/exp/kostya/ukroASR/data/train_5k /data/exp/kostya/ukroASR/data/lang_am_train
       /data/exp/kostya/ukroASR/exp/mono /data/exp/kostya/ukroASR/exp/mono_train_5k_ali
     deps:
-    - data/lang/L.fst
-    - data/lang/oov.int
-    - data/lang/phones
-    - data/lang/phones.txt
-    - data/lang/words.txt
+    - data/lang_am_train/L.fst
+    - data/lang_am_train/oov.int
+    - data/lang_am_train/phones
+    - data/lang_am_train/phones.txt
+    - data/lang_am_train/words.txt
     - data/train_5k/cmvn.scp
     - data/train_5k/feats.scp
     - data/train_5k/text
@@ -282,16 +282,16 @@ stages:
         cache: false
   tri1:
     cmd: cd $KALDI_ROOT/egs/wsj/s5; . ./path.sh; . ./cmd.sh; steps/train_deltas.sh
-      --boost-silence 1.25 2000 10000 /data/exp/kostya/ukroASR/data/train_5k /data/exp/kostya/ukroASR/data/lang
+      --boost-silence 1.25 2000 10000 /data/exp/kostya/ukroASR/data/train_5k /data/exp/kostya/ukroASR/data/lang_am_train
       /data/exp/kostya/ukroASR/exp/mono_train_5k_ali /data/exp/kostya/ukroASR/exp/tri1;
       cp /data/exp/kostya/ukroASR/exp/tri1/final.mdl /data/exp/kostya/ukroASR/exp/tri1/final.mdl_copy;
       mv /data/exp/kostya/ukroASR/exp/tri1/final.mdl_copy /data/exp/kostya/ukroASR/exp/tri1/final.mdl
     deps:
-    - data/lang/L.fst
-    - data/lang/phones
-    - data/lang/phones.txt
-    - data/lang/topo
-    - data/lang/words.txt
+    - data/lang_am_train/L.fst
+    - data/lang_am_train/phones
+    - data/lang_am_train/phones.txt
+    - data/lang_am_train/topo
+    - data/lang_am_train/words.txt
     - data/train_5k/cmvn.scp
     - data/train_5k/feats.scp
     - data/train_5k/utt2spk
@@ -339,14 +339,14 @@ stages:
     - exp/metrics/tri1.json
   tri_ali:
     cmd: cd $KALDI_ROOT/egs/wsj/s5; . ./path.sh; . ./cmd.sh; steps/align_si.sh --nj
-      8 /data/exp/kostya/ukroASR/data/train /data/exp/kostya/ukroASR/data/lang /data/exp/kostya/ukroASR/exp/tri1
-      /data/exp/kostya/ukroASR/exp/tri1_train_ali
+      8 /data/exp/kostya/ukroASR/data/train /data/exp/kostya/ukroASR/data/lang_am_train
+      /data/exp/kostya/ukroASR/exp/tri1 /data/exp/kostya/ukroASR/exp/tri1_train_ali
     deps:
-    - data/lang/L.fst
-    - data/lang/oov.int
-    - data/lang/phones
-    - data/lang/phones.txt
-    - data/lang/words.txt
+    - data/lang_am_train/L.fst
+    - data/lang_am_train/oov.int
+    - data/lang_am_train/phones
+    - data/lang_am_train/phones.txt
+    - data/lang_am_train/words.txt
     - data/train/cmvn.scp
     - data/train/feats.scp
     - data/train/text
@@ -373,18 +373,18 @@ stages:
   tri2b:
     cmd: cd $KALDI_ROOT/egs/wsj/s5; . ./path.sh; . ./cmd.sh; steps/train_lda_mllt.sh
       --splice-opts "--left-context=3 --right-context=3" 2500 15000 /data/exp/kostya/ukroASR/data/train
-      /data/exp/kostya/ukroASR/data/lang /data/exp/kostya/ukroASR/exp/tri1_train_ali
+      /data/exp/kostya/ukroASR/data/lang_am_train /data/exp/kostya/ukroASR/exp/tri1_train_ali
       /data/exp/kostya/ukroASR/exp/tri2b; cp /data/exp/kostya/ukroASR/exp/tri2b/final.mdl
       /data/exp/kostya/ukroASR/exp/tri2b/final.mdl_copy; mv /data/exp/kostya/ukroASR/exp/tri2b/final.mdl_copy
       /data/exp/kostya/ukroASR/exp/tri2b/final.mdl; cp /data/exp/kostya/ukroASR/exp/tri2b/final.mat
       /data/exp/kostya/ukroASR/exp/tri2b/final.mat_copy; mv /data/exp/kostya/ukroASR/exp/tri2b/final.mat_copy
       /data/exp/kostya/ukroASR/exp/tri2b/final.mat
     deps:
-    - data/lang/L.fst
-    - data/lang/phones
-    - data/lang/phones.txt
-    - data/lang/topo
-    - data/lang/words.txt
+    - data/lang_am_train/L.fst
+    - data/lang_am_train/phones
+    - data/lang_am_train/phones.txt
+    - data/lang_am_train/topo
+    - data/lang_am_train/words.txt
     - data/train/cmvn.scp
     - data/train/feats.scp
     - data/train/utt2spk
@@ -434,14 +434,14 @@ stages:
     - exp/metrics/tri2b.json
   tri2b_ali:
     cmd: cd $KALDI_ROOT/egs/wsj/s5; . ./path.sh; . ./cmd.sh; steps/align_si.sh --nj
-      8 /data/exp/kostya/ukroASR/data/train /data/exp/kostya/ukroASR/data/lang /data/exp/kostya/ukroASR/exp/tri2b
-      /data/exp/kostya/ukroASR/exp/tri2b_train_ali
+      8 /data/exp/kostya/ukroASR/data/train /data/exp/kostya/ukroASR/data/lang_am_train
+      /data/exp/kostya/ukroASR/exp/tri2b /data/exp/kostya/ukroASR/exp/tri2b_train_ali
     deps:
-    - data/lang/L.fst
-    - data/lang/oov.int
-    - data/lang/phones
-    - data/lang/phones.txt
-    - data/lang/words.txt
+    - data/lang_am_train/L.fst
+    - data/lang_am_train/oov.int
+    - data/lang_am_train/phones
+    - data/lang_am_train/phones.txt
+    - data/lang_am_train/words.txt
     - data/train/cmvn.scp
     - data/train/feats.scp
     - data/train/text
@@ -469,20 +469,18 @@ stages:
         cache: false
   tri3b:
     cmd: cd $KALDI_ROOT/egs/wsj/s5; . ./path.sh; . ./cmd.sh; steps/train_sat.sh 2500
-      15000 /data/exp/kostya/ukroASR/data/train /data/exp/kostya/ukroASR/data/lang
+      15000 /data/exp/kostya/ukroASR/data/train /data/exp/kostya/ukroASR/data/lang_am_train
       /data/exp/kostya/ukroASR/exp/tri2b_train_ali /data/exp/kostya/ukroASR/exp/tri3b;
       cp /data/exp/kostya/ukroASR/exp/tri3b/final.mdl /data/exp/kostya/ukroASR/exp/tri3b/final.mdl_copy;
       mv /data/exp/kostya/ukroASR/exp/tri3b/final.mdl_copy /data/exp/kostya/ukroASR/exp/tri3b/final.mdl;
       cp /data/exp/kostya/ukroASR/exp/tri3b/final.mat /data/exp/kostya/ukroASR/exp/tri3b/final.mat_copy;
-      mv /data/exp/kostya/ukroASR/exp/tri3b/final.mat_copy /data/exp/kostya/ukroASR/exp/tri3b/final.mat;
-      cp /data/exp/kostya/ukroASR/exp/tri3b/final.occs /data/exp/kostya/ukroASR/exp/tri3b/final.occs_copy;
-      mv /data/exp/kostya/ukroASR/exp/tri3b/final.occs_copy /data/exp/kostya/ukroASR/exp/tri3b/final.occs
+      mv /data/exp/kostya/ukroASR/exp/tri3b/final.mat_copy /data/exp/kostya/ukroASR/exp/tri3b/final.mat
     deps:
-    - data/lang/L.fst
-    - data/lang/phones
-    - data/lang/phones.txt
-    - data/lang/topo
-    - data/lang/words.txt
+    - data/lang_am_train/L.fst
+    - data/lang_am_train/phones
+    - data/lang_am_train/phones.txt
+    - data/lang_am_train/topo
+    - data/lang_am_train/words.txt
     - data/train/cmvn.scp
     - data/train/feats.scp
     - data/train/utt2spk
@@ -497,8 +495,6 @@ stages:
     outs:
     - exp/tri3b/final.mat
     - exp/tri3b/final.mdl
-    - exp/tri3b/final.occs
-    - exp/tri3b/full.mat
     - exp/tri3b/phones.txt
     - exp/tri3b/tree
   tri3b_graph:
@@ -534,13 +530,6 @@ stages:
     - exp/tri3b/tree
     metrics:
     - exp/metrics/tri3b.json
-  lm_o4_metrics:
-    cmd: "echo {\\'LM perplexity\\': 2480.645} > /data/exp/kostya/ukroASR/exp/metrics/lm_o4.json"
-    deps:
-    - data/dev/text
-    - data/lm_ukr_o4.gz
-    metrics:
-    - exp/metrics/lm_o4.json
   carpa:
     cmd: cd $KALDI_ROOT/egs/wsj/s5; . ./path.sh; . ./cmd.sh; utils/build_const_arpa_lm.sh
       /data/exp/kostya/ukroASR/data/lm_ukr_o4.gz /data/exp/kostya/ukroASR/data/lang
