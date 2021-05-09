@@ -70,3 +70,313 @@ stages:
     - path: data/lm_ukr_o3.gz
       md5: 311b05b898c5a1c5cf6c4ed72b61a3d6
       size: 278423813
+  local_dict_lm_train:
+    cmd: cd $KALDI_ROOT/egs/wsj/s5; . ./path.sh; . ./cmd.sh; /data/exp/kostya/ukroASR/prepare_local_dict_from_lm.sh
+      --nj 16 /data/exp/kostya/ukroASR/data/local/dict /data/exp/kostya/ukroASR/data/lm_ukr_o3.gz
+      /data/exp/kostya/ukroASR/data/local/dict_lm_train
+    deps:
+    - path: artifacts/lexicon.txt
+      md5: 090ee18d9b43fb3b3716646654fd3beb
+      size: 101739868
+    - path: data/lm_ukr_o3.gz
+      md5: 311b05b898c5a1c5cf6c4ed72b61a3d6
+      size: 278423813
+    - path: prepare_local_dict_from_lm.sh
+      md5: d28912ec97c00c30a607464af2b0a954
+      size: 1922
+    outs:
+    - path: data/local/dict_lm_train/lexicon.txt
+      md5: 37bc5f77dc98764a76cddf2b5617da6c
+      size: 60425117
+    - path: data/local/dict_lm_train/vocab
+      md5: 5e9eccb364023bd6bc16fe6b97231457
+      size: 29809608
+  dev_data_dir:
+    cmd: python3.6 /data/exp/kostya/ukroASR/gen_data_dir.py /data/exp/kostya/ukroASR/data/raw_data/dev.csv
+      /data/exp/kostya/ukroASR/data/dev
+    deps:
+    - path: data/raw_data/dev.csv
+      md5: f9f3bc71f965db98dd20aeebccce45b3
+      size: 365624
+    - path: gen_data_dir.py
+      md5: 5ec044a51cc683be13f12cb9c87dd592
+      size: 6883
+    outs:
+    - path: data/dev/segments
+      md5: 9f3f392134cdf6b49ee274044261824c
+      size: 75975
+    - path: data/dev/spk2utt
+      md5: 069e7f8a925f31b71a874f7d374d2f57
+      size: 46628
+    - path: data/dev/text
+      md5: 2acbe3dbcd7895cb80447274b7484a6b
+      size: 263675
+    - path: data/dev/utt2spk
+      md5: 3535e75a7322de8450e71aa14f28a158
+      size: 62802
+    - path: data/dev/wav.scp
+      md5: 6a88ea8a754b539f796205c5b62b5b40
+      size: 432
+  local_dict:
+    cmd: /data/exp/kostya/ukroASR/prepare_dict.sh --nj 8 /data/exp/kostya/ukroASR/data/local/dict
+      /data/exp/kostya/ukroASR/data/train/text
+    deps:
+    - path: artifacts/lexicon.txt
+      md5: 090ee18d9b43fb3b3716646654fd3beb
+      size: 101739868
+    - path: data/train/text
+      md5: fd6167178ad5b7fec50a417b012b2e33
+      size: 5256661
+    outs:
+    - path: data/local/dict/lexicon.txt
+      md5: fc408316c925eccc1cfb4f1971b27c96
+      size: 221835293
+    - path: data/local/dict/vocab
+      md5: 8180e631c60e7324ee77baa111fb4b6b
+      size: 97162781
+  lang_dir:
+    cmd: cd $KALDI_ROOT/egs/wsj/s5; . ./path.sh; . ./cmd.sh; utils/prepare_lang.sh
+      --position-dependent-phones false /data/exp/kostya/ukroASR/data/local/dict_lm_train
+      '<UNK>' /data/exp/kostya/ukroASR/data/local/lang_lm /data/exp/kostya/ukroASR/data/lang
+    deps:
+    - path: data/local/dict_lm_train/extra_questions.txt
+      md5: d41d8cd98f00b204e9800998ecf8427e
+      size: 0
+    - path: data/local/dict_lm_train/lexicon.txt
+      md5: 37bc5f77dc98764a76cddf2b5617da6c
+      size: 60425117
+    - path: data/local/dict_lm_train/nonsilence_phones.txt
+      md5: 50134f865090d60f6b28d872683bd766
+      size: 322
+    - path: data/local/dict_lm_train/optional_silence.txt
+      md5: afb1c6c9240586b23a567660a6a3e0b3
+      size: 4
+    - path: data/local/dict_lm_train/silence_phones.txt
+      md5: e1c58dfa6a41e9fa4603ad847099be6a
+      size: 12
+    outs:
+    - path: data/lang/L.fst
+      md5: 2037580c54705c600d00d84a1ef41ceb
+      size: 349073914
+    - path: data/lang/L_disambig.fst
+      md5: c02508f7e3b110300c74af4eec40d092
+      size: 356755786
+    - path: data/lang/oov.int
+      md5: 48a24b70a0b376535542b996af517398
+      size: 2
+    - path: data/lang/oov.txt
+      md5: e28d9943584fdf57bd1a59c8f8ac6085
+      size: 6
+    - path: data/lang/phones
+      md5: 52719ea4323e1e62b585724643adf7ed.dir
+      size: 140230378
+      nfiles: 26
+    - path: data/lang/phones.txt
+      md5: 6488e9778145bfd3cb796a933014010a
+      size: 752
+    - path: data/lang/topo
+      md5: 2693e4022d2bd44d746a59aab2e6d6f3
+      size: 1213
+    - path: data/lang/words.txt
+      md5: 0ae157f267919ff61ca535cf6cab6c6e
+      size: 35418407
+    - path: data/local/dict_lm_train/lexiconp.txt
+      md5: aab553d34d775a0efc33243989ef66cf
+      size: 65781829
+  lm_ukr:
+    cmd: cut -d' ' -f2- /data/exp/kostya/ukroASR/data/train/text | ngram-count -text
+      - -order 3 -prune 1e-7 -gt1min 1 -gt2min 1 -lm - | gzip -c > /data/exp/kostya/ukroASR/data/lm_ukr.gz
+    deps:
+    - path: data/train/text
+      md5: fd6167178ad5b7fec50a417b012b2e33
+      size: 5256661
+    outs:
+    - path: data/lm_ukr.gz
+      md5: 365dbe071041ad1253497ca64cdb526f
+      size: 245160135
+  lm_metrics:
+    cmd: "echo {\\'LM perplexity\\': 2556.659} > /data/exp/kostya/ukroASR/exp/metrics/lm.json"
+    deps:
+    - path: data/dev/text
+      md5: 2acbe3dbcd7895cb80447274b7484a6b
+      size: 263675
+    - path: data/lm_ukr.gz
+      md5: 365dbe071041ad1253497ca64cdb526f
+      size: 245160135
+    outs:
+    - path: exp/metrics/lm.json
+      md5: c66bcae54fab54c1c664188af84fff60
+      size: 28
+  lang_fst:
+    cmd: cd $KALDI_ROOT/egs/wsj/s5; . ./path.sh; . ./cmd.sh; utils/format_lm.sh /data/exp/kostya/ukroASR/data/lang
+      /data/exp/kostya/ukroASR/data/lm_ukr_o3.gz /data/exp/kostya/ukroASR/data/local/dict_lm_train/lexicon.txt
+      /data/exp/kostya/ukroASR/data/lang
+    deps:
+    - path: data/lang/words.txt
+      md5: 0ae157f267919ff61ca535cf6cab6c6e
+      size: 35418407
+    - path: data/lm_ukr_o3.gz
+      md5: 311b05b898c5a1c5cf6c4ed72b61a3d6
+      size: 278423813
+    - path: data/local/dict_lm_train/lexicon.txt
+      md5: 37bc5f77dc98764a76cddf2b5617da6c
+      size: 60425117
+    outs:
+    - path: data/lang/G.fst
+      md5: 482067a16268161bbc3a863c8f55bd43
+      size: 403017006
+  lm_ukr_o4:
+    cmd: cut -d' ' -f2- /data/exp/kostya/ukroASR/artifacts/text_plane                 /data/exp/kostya/ukroASR/artifacts/normal_fiction.txt                 /data/exp/kostya/ukroASR/artifacts/normal_news.txt                 /data/exp/kostya/ukroASR/artifacts/normal_wiki_dump.txt                 /data/exp/kostya/ukroASR/artifacts/normal_ubercorpus.txt
+      > /tmp/train_corpus; ~/kenlm/build/bin/lmplz -o 4 --limit_vocab_file /data/exp/kostya/ukroASR/data/local/dict_lm_train/vocab
+      </tmp/train_corpus | gzip -c > /data/exp/kostya/ukroASR/data/lm_ukr_o4.gz
+    deps:
+    - path: artifacts/normal_fiction.txt
+      md5: ec1da4249355d6e39eccde5911b83b47
+      size: 205467591
+    - path: artifacts/normal_news.txt
+      md5: 670377dc72912b1a57cb685dc8e666c1
+      size: 5947306134
+    - path: artifacts/normal_ubercorpus.txt
+      md5: b0a5dffd6120dce3502e2ead36d1ab55
+      size: 8502784005
+    - path: artifacts/normal_wiki_dump.txt
+      md5: 5a31c53d86c19b6c5fc9a6c67ad7b97d
+      size: 2356960431
+    - path: artifacts/text_plane
+      md5: 3f9c322aa926e5701422d8521128ce12
+      size: 49124558
+    - path: data/local/dict_lm_train/vocab
+      md5: 5e9eccb364023bd6bc16fe6b97231457
+      size: 29809608
+    outs:
+    - path: data/lm_ukr_o4.gz
+      md5: d8c302e742d85dc6366c822e07e813c3
+      size: 9964710142
+  carpa:
+    cmd: cd $KALDI_ROOT/egs/wsj/s5; . ./path.sh; . ./cmd.sh; utils/build_const_arpa_lm.sh
+      /data/exp/kostya/ukroASR/data/lm_ukr_o4.gz /data/exp/kostya/ukroASR/data/lang
+      /data/exp/kostya/ukroASR/data/carpa
+    deps:
+    - path: data/lang/words.txt
+      md5: 0ae157f267919ff61ca535cf6cab6c6e
+      size: 35418407
+    - path: data/lm_ukr_o4.gz
+      md5: d8c302e742d85dc6366c822e07e813c3
+      size: 9964710142
+    outs:
+    - path: data/carpa/G.carpa
+      md5: fc3f0ca96ca10676ba31143f596f2cf7
+      size: 8753736352
+  local_dict_am_train:
+    cmd: cd $KALDI_ROOT/egs/wsj/s5; . ./path.sh; . ./cmd.sh; /data/exp/kostya/ukroASR/prepare_local_dict_from_text.sh
+      --nj 16 /data/exp/kostya/ukroASR/data/local/dict /data/exp/kostya/ukroASR/data/local/dict_am_train
+      /data/exp/kostya/ukroASR/data/train/text
+    deps:
+    - path: artifacts/lexicon.txt
+      md5: 090ee18d9b43fb3b3716646654fd3beb
+      size: 101739868
+    - path: data/train/text
+      md5: fd6167178ad5b7fec50a417b012b2e33
+      size: 5256661
+    - path: prepare_local_dict_from_text.sh
+      md5: dc85834a2c4bb1e6d0468c536a4b9744
+      size: 1768
+    outs:
+    - path: data/local/dict_am_train/lexicon.txt
+      md5: b707f8fe1e635fd5b2ff10a0a822e5d2
+      size: 2547474
+    - path: data/local/dict_am_train/vocab
+      md5: 182431c98e0c5ee3e9dbc4945f1d3297
+      size: 1042954
+  lang_dir_am_train:
+    cmd: cd $KALDI_ROOT/egs/wsj/s5; . ./path.sh; . ./cmd.sh; utils/prepare_lang.sh
+      --position-dependent-phones false /data/exp/kostya/ukroASR/data/local/dict_am_train
+      '<UNK>' /data/exp/kostya/ukroASR/data/local/lang_am /data/exp/kostya/ukroASR/data/lang_am_train
+    deps:
+    - path: data/local/dict_am_train/extra_questions.txt
+      md5: d41d8cd98f00b204e9800998ecf8427e
+      size: 0
+    - path: data/local/dict_am_train/lexicon.txt
+      md5: b707f8fe1e635fd5b2ff10a0a822e5d2
+      size: 2547474
+    - path: data/local/dict_am_train/nonsilence_phones.txt
+      md5: 50134f865090d60f6b28d872683bd766
+      size: 322
+    - path: data/local/dict_am_train/optional_silence.txt
+      md5: afb1c6c9240586b23a567660a6a3e0b3
+      size: 4
+    - path: data/local/dict_am_train/silence_phones.txt
+      md5: e1c58dfa6a41e9fa4603ad847099be6a
+      size: 12
+    outs:
+    - path: data/lang_am_train/L.fst
+      md5: a4540763ae944ca36f5b59e2d92265ab
+      size: 14686486
+    - path: data/lang_am_train/L_disambig.fst
+      md5: 8c152d10122f3b8647cac3bb89b98506
+      size: 14939902
+    - path: data/lang_am_train/oov.int
+      md5: 48a24b70a0b376535542b996af517398
+      size: 2
+    - path: data/lang_am_train/oov.txt
+      md5: e28d9943584fdf57bd1a59c8f8ac6085
+      size: 6
+    - path: data/lang_am_train/phones
+      md5: bd34f79799625147dd56a1be9be96c87.dir
+      size: 5854905
+      nfiles: 26
+    - path: data/lang_am_train/phones.txt
+      md5: b28d7e277c321c49c508cba5608c7ec5
+      size: 684
+    - path: data/lang_am_train/topo
+      md5: 2693e4022d2bd44d746a59aab2e6d6f3
+      size: 1213
+    - path: data/lang_am_train/words.txt
+      md5: 8ac5ac51c87575fe7d53ee64b257dfec
+      size: 1397961
+    - path: data/local/dict_am_train/lexiconp.txt
+      md5: fdc34ebc62e29e0e106461c809798bba
+      size: 2810002
+  mono:
+    cmd: cd $KALDI_ROOT/egs/wsj/s5; . ./path.sh; . ./cmd.sh; steps/train_mono.sh --boost-silence
+      1.25 --nj 8 /data/exp/kostya/ukroASR/data/train_2kshort /data/exp/kostya/ukroASR/data/lang_am_train
+      /data/exp/kostya/ukroASR/exp/mono
+    deps:
+    - path: data/lang_am_train/L.fst
+      md5: a4540763ae944ca36f5b59e2d92265ab
+      size: 14686486
+    - path: data/lang_am_train/phones
+      md5: bd34f79799625147dd56a1be9be96c87.dir
+      size: 5854905
+      nfiles: 26
+    - path: data/lang_am_train/phones.txt
+      md5: b28d7e277c321c49c508cba5608c7ec5
+      size: 684
+    - path: data/lang_am_train/topo
+      md5: 2693e4022d2bd44d746a59aab2e6d6f3
+      size: 1213
+    - path: data/lang_am_train/words.txt
+      md5: 8ac5ac51c87575fe7d53ee64b257dfec
+      size: 1397961
+    - path: data/train_2kshort/cmvn.scp
+      md5: da3516344367b01897a7b09bc21d656f
+      size: 814
+    - path: data/train_2kshort/feats.scp
+      md5: cd8e950c5be7a52b7988ba46f9e4a096
+      size: 226441
+    - path: data/train_2kshort/text
+      md5: ddd010ab1bb6d5a86a70a96bc617ca3f
+      size: 154268
+    - path: data/train_2kshort/utt2spk
+      md5: 3c423f0655b0d04337a8a2583d4b05c2
+      size: 112734
+    outs:
+    - path: exp/mono/final.mdl
+      md5: 68e9c96edeb2a8cfe2569785722b4871
+      size: 354612
+    - path: exp/mono/phones.txt
+      md5: b28d7e277c321c49c508cba5608c7ec5
+      size: 684
+    - path: exp/mono/tree
+      md5: 6fe676939f4f5face3387f4dd329467f
+      size: 4309

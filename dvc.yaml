@@ -34,14 +34,14 @@ stages:
     - data/local/dict/vocab
   lang_dir:
     cmd: cd $KALDI_ROOT/egs/wsj/s5; . ./path.sh; . ./cmd.sh; utils/prepare_lang.sh
-      --position-dependent-phones false /data/exp/kostya/ukroASR/data/local/dict '<UNK>'
-      /data/exp/kostya/ukroASR/data/local/lang /data/exp/kostya/ukroASR/data/lang
+      --position-dependent-phones false /data/exp/kostya/ukroASR/data/local/dict_lm_train
+      '<UNK>' /data/exp/kostya/ukroASR/data/local/lang_lm /data/exp/kostya/ukroASR/data/lang
     deps:
-    - data/local/dict/extra_questions.txt
-    - data/local/dict/lexicon.txt
-    - data/local/dict/nonsilence_phones.txt
-    - data/local/dict/optional_silence.txt
-    - data/local/dict/silence_phones.txt
+    - data/local/dict_lm_train/extra_questions.txt
+    - data/local/dict_lm_train/lexicon.txt
+    - data/local/dict_lm_train/nonsilence_phones.txt
+    - data/local/dict_lm_train/optional_silence.txt
+    - data/local/dict_lm_train/silence_phones.txt
     outs:
     - data/lang/L.fst
     - data/lang/L_disambig.fst
@@ -51,7 +51,7 @@ stages:
     - data/lang/phones.txt
     - data/lang/topo
     - data/lang/words.txt
-    - data/local/dict/lexiconp.txt:
+    - data/local/dict_lm_train/lexiconp.txt:
         cache: false
   lm_ukr:
     cmd: cut -d' ' -f2- /data/exp/kostya/ukroASR/data/train/text | ngram-count -text
@@ -69,12 +69,12 @@ stages:
     - exp/metrics/lm.json
   lang_fst:
     cmd: cd $KALDI_ROOT/egs/wsj/s5; . ./path.sh; . ./cmd.sh; utils/format_lm.sh /data/exp/kostya/ukroASR/data/lang
-      /data/exp/kostya/ukroASR/data/lm_ukr.gz /data/exp/kostya/ukroASR/data/local/dict/lexicon.txt
+      /data/exp/kostya/ukroASR/data/lm_ukr_o3.gz /data/exp/kostya/ukroASR/data/local/dict_lm_train/lexicon.txt
       /data/exp/kostya/ukroASR/data/lang
     deps:
     - data/lang/words.txt
-    - data/lm_ukr.gz
-    - data/local/dict/lexicon.txt
+    - data/lm_ukr_o3.gz
+    - data/local/dict_lm_train/lexicon.txt
     outs:
     - data/lang/G.fst
   mfcc_train:
@@ -201,14 +201,14 @@ stages:
     - data/dev_0.15k/wav.scp
   mono:
     cmd: cd $KALDI_ROOT/egs/wsj/s5; . ./path.sh; . ./cmd.sh; steps/train_mono.sh --boost-silence
-      1.25 --nj 8 /data/exp/kostya/ukroASR/data/train_2kshort /data/exp/kostya/ukroASR/data/lang
+      1.25 --nj 8 /data/exp/kostya/ukroASR/data/train_2kshort /data/exp/kostya/ukroASR/data/lang_am_train
       /data/exp/kostya/ukroASR/exp/mono
     deps:
-    - data/lang/L.fst
-    - data/lang/phones
-    - data/lang/phones.txt
-    - data/lang/topo
-    - data/lang/words.txt
+    - data/lang_am_train/L.fst
+    - data/lang_am_train/phones
+    - data/lang_am_train/phones.txt
+    - data/lang_am_train/topo
+    - data/lang_am_train/words.txt
     - data/train_2kshort/cmvn.scp
     - data/train_2kshort/feats.scp
     - data/train_2kshort/text
@@ -534,16 +534,6 @@ stages:
     - exp/tri3b/tree
     metrics:
     - exp/metrics/tri3b.json
-  lm_o4_ukr:
-    cmd: cut -d' ' -f2- /data/exp/kostya/ukroASR/data/train/text /data/exp/kostya/ukroASR/artifacts/text_plane
-      /data/exp/kostya/ukroASR/artifacts/normal_fiction.txt | ngram-count -text -
-      -order 4 -lm - | gzip -c > /data/exp/kostya/ukroASR/data/lm_ukr_o4.gz
-    deps:
-    - artifacts/normal_fiction.txt
-    - artifacts/text_plane
-    - data/train/text
-    outs:
-    - data/lm_ukr_o4.gz
   lm_o4_metrics:
     cmd: "echo {\\'LM perplexity\\': 2480.645} > /data/exp/kostya/ukroASR/exp/metrics/lm_o4.json"
     deps:
@@ -600,3 +590,59 @@ stages:
     - artifacts/text_plane
     outs:
     - data/lm_ukr_o3.gz
+  local_dict_lm_train:
+    cmd: cd $KALDI_ROOT/egs/wsj/s5; . ./path.sh; . ./cmd.sh; /data/exp/kostya/ukroASR/prepare_local_dict_from_lm.sh
+      --nj 16 /data/exp/kostya/ukroASR/data/local/dict /data/exp/kostya/ukroASR/data/lm_ukr_o3.gz
+      /data/exp/kostya/ukroASR/data/local/dict_lm_train
+    deps:
+    - artifacts/lexicon.txt
+    - data/lm_ukr_o3.gz
+    - prepare_local_dict_from_lm.sh
+    outs:
+    - data/local/dict_lm_train/lexicon.txt
+    - data/local/dict_lm_train/vocab
+  lm_ukr_o4:
+    cmd: cut -d' ' -f2- /data/exp/kostya/ukroASR/artifacts/text_plane                 /data/exp/kostya/ukroASR/artifacts/normal_fiction.txt                 /data/exp/kostya/ukroASR/artifacts/normal_news.txt                 /data/exp/kostya/ukroASR/artifacts/normal_wiki_dump.txt                 /data/exp/kostya/ukroASR/artifacts/normal_ubercorpus.txt
+      > /tmp/train_corpus; ~/kenlm/build/bin/lmplz -o 4 --limit_vocab_file /data/exp/kostya/ukroASR/data/local/dict_lm_train/vocab
+      </tmp/train_corpus | gzip -c > /data/exp/kostya/ukroASR/data/lm_ukr_o4.gz
+    deps:
+    - artifacts/normal_fiction.txt
+    - artifacts/normal_news.txt
+    - artifacts/normal_ubercorpus.txt
+    - artifacts/normal_wiki_dump.txt
+    - artifacts/text_plane
+    - data/local/dict_lm_train/vocab
+    outs:
+    - data/lm_ukr_o4.gz
+  local_dict_am_train:
+    cmd: cd $KALDI_ROOT/egs/wsj/s5; . ./path.sh; . ./cmd.sh; /data/exp/kostya/ukroASR/prepare_local_dict_from_text.sh
+      --nj 16 /data/exp/kostya/ukroASR/data/local/dict /data/exp/kostya/ukroASR/data/local/dict_am_train
+      /data/exp/kostya/ukroASR/data/train/text
+    deps:
+    - artifacts/lexicon.txt
+    - data/train/text
+    - prepare_local_dict_from_text.sh
+    outs:
+    - data/local/dict_am_train/lexicon.txt
+    - data/local/dict_am_train/vocab
+  lang_dir_am_train:
+    cmd: cd $KALDI_ROOT/egs/wsj/s5; . ./path.sh; . ./cmd.sh; utils/prepare_lang.sh
+      --position-dependent-phones false /data/exp/kostya/ukroASR/data/local/dict_am_train
+      '<UNK>' /data/exp/kostya/ukroASR/data/local/lang_am /data/exp/kostya/ukroASR/data/lang_am_train
+    deps:
+    - data/local/dict_am_train/extra_questions.txt
+    - data/local/dict_am_train/lexicon.txt
+    - data/local/dict_am_train/nonsilence_phones.txt
+    - data/local/dict_am_train/optional_silence.txt
+    - data/local/dict_am_train/silence_phones.txt
+    outs:
+    - data/lang_am_train/L.fst
+    - data/lang_am_train/L_disambig.fst
+    - data/lang_am_train/oov.int
+    - data/lang_am_train/oov.txt
+    - data/lang_am_train/phones
+    - data/lang_am_train/phones.txt
+    - data/lang_am_train/topo
+    - data/lang_am_train/words.txt
+    - data/local/dict_am_train/lexiconp.txt:
+        cache: false
