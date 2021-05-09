@@ -4,7 +4,7 @@ export PYTHONPATH="${PYTHONPATH}:/data/exp/kostya/ukr_g2p"
 export PYTHONPATH="${PYTHONPATH}:/data/exp/kostya/ukroASR"
 UKROASR_ROOT=/data/exp/kostya/ukroASR
 
-nj=1
+nj=8
 
 cd $KALDI_ROOT/egs/wsj/s5
 . ./path.sh
@@ -19,6 +19,9 @@ python3.6 $UKROASR_ROOT/tools/gen_vocab.py -t $* -v $dict_dir/vocab
 
 # generating lexicon file
 python3.6 $UKROASR_ROOT/tools/gen_lexicon.py -v $dict_dir/vocab -o $dict_dir/lexicon.txt -nj $nj
+
+# keep only words that pronunciation was generated for
+awk '{print $1}' $dict_dir/lexicon.txt > $dict_dir/vocab
 
 # extend lexicon with silence phones
 echo '!SIL SIL' >> $dict_dir/lexicon.txt

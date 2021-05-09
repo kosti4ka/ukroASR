@@ -1,6 +1,7 @@
 from pathlib import Path
 from tools.utils import get_list
 import argparse
+from tqdm import tqdm
 
 
 def gen_vocab(text_paths, vocab_path, utt_id=True, lower_case=True):
@@ -19,16 +20,19 @@ def gen_vocab(text_paths, vocab_path, utt_id=True, lower_case=True):
 
     vocab = set()
     for text_path in text_paths:
-        for line in get_list(text_path, encoding='utf-8'):
-            # line = re.sub(r'\'{2,}', ' ', line)
-            line_splited = line.split()[1:] if utt_id else line.split()
-            for word in line_splited:
-                # w = process_ukr_word(w)
-                if word:
-                    vocab.add(word.lower() if lower_case else word)
+        print(f'Extracting words from {text_path}')
+        with open(text_path, 'r', encoding='utf-8') as text_file:
+            for line in tqdm(text_file):
+                # line = re.sub(r'\'{2,}', ' ', line)
+                line_splited = line.split()[1:] if utt_id else line.split()
+                for word in line_splited:
+                    # w = process_ukr_word(w)
+                    if word:
+                        vocab.add(word.lower() if lower_case else word)
 
     # sorting
     vocab = sorted(vocab)
+    print(f'Total vocabulary size: {len(vocab)}')
 
     with open(vocab_path, 'w', encoding='utf-8') as words_f:
         for word in vocab:
