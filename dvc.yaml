@@ -34,7 +34,7 @@ stages:
     - data/local/dict/vocab
   lang_dir:
     cmd: cd $KALDI_ROOT/egs/wsj/s5; . ./path.sh; . ./cmd.sh; utils/prepare_lang.sh
-      --position-dependent-phones false /data/exp/kostya/ukroASR/data/local/dict_lm_train
+      --position-dependent-phones true /data/exp/kostya/ukroASR/data/local/dict_lm_train
       '<UNK>' /data/exp/kostya/ukroASR/data/local/lang_lm /data/exp/kostya/ukroASR/data/lang
     deps:
     - data/local/dict_lm_train/extra_questions.txt
@@ -616,7 +616,7 @@ stages:
     - data/local/dict_am_train/vocab
   lang_dir_am_train:
     cmd: cd $KALDI_ROOT/egs/wsj/s5; . ./path.sh; . ./cmd.sh; utils/prepare_lang.sh
-      --position-dependent-phones false /data/exp/kostya/ukroASR/data/local/dict_am_train
+      --position-dependent-phones true /data/exp/kostya/ukroASR/data/local/dict_am_train
       '<UNK>' /data/exp/kostya/ukroASR/data/local/lang_am /data/exp/kostya/ukroASR/data/lang_am_train
     deps:
     - data/local/dict_am_train/extra_questions.txt
