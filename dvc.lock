@@ -421,28 +421,28 @@ stages:
       size: 4309
     outs:
     - path: exp/mono_train_5k_ali/ali.1.gz
-      md5: bb751ef9809cf7b975416f1fe886ed85
+      md5: a2db16969f2f9126f35bdc3d984e2367
       size: 346337
     - path: exp/mono_train_5k_ali/ali.2.gz
-      md5: e41df3b2cb6db08b3270df7b93afbfc0
+      md5: f231e427571ea7ac8a5dc6fa2d28ca2c
       size: 308331
     - path: exp/mono_train_5k_ali/ali.3.gz
-      md5: 5b641b5105606a4119d81fd9bea7fa2c
+      md5: 60a7d858869f08c84598d8b7b7df1171
       size: 413380
     - path: exp/mono_train_5k_ali/ali.4.gz
-      md5: 9c3fdc1b7ecdf44d6c30e17f2d41ae8e
+      md5: 06cfde82b3d690e8a47c5bd93182b673
       size: 301393
     - path: exp/mono_train_5k_ali/ali.5.gz
-      md5: 71b6745e74251a3f29a733f4b117391d
+      md5: b7823c8cf72a2522b735b195976fdda4
       size: 580224
     - path: exp/mono_train_5k_ali/ali.6.gz
-      md5: 65021ad1f23ea1292b7570041b2dc1a6
+      md5: b11ce3259ead67fb149e4331be5c3215
       size: 365415
     - path: exp/mono_train_5k_ali/ali.7.gz
-      md5: 8e7929bbd8a97975ee19d7a0c70270ef
+      md5: 4d80b9594e564f6856e9f1d618bc8d7e
       size: 233316
     - path: exp/mono_train_5k_ali/ali.8.gz
-      md5: c6b48c1b323b5f92e50af3623e45a5cc
+      md5: 2c57dfe4a4d382cd6e6f6076be528f84
       size: 102371
   tri1:
     cmd: cd $KALDI_ROOT/egs/wsj/s5; . ./path.sh; . ./cmd.sh; steps/train_deltas.sh
@@ -477,28 +477,28 @@ stages:
       md5: efa4619d458fced64cb44ef18fefef6e
       size: 292064
     - path: exp/mono_train_5k_ali/ali.1.gz
-      md5: bb751ef9809cf7b975416f1fe886ed85
+      md5: a2db16969f2f9126f35bdc3d984e2367
       size: 346337
     - path: exp/mono_train_5k_ali/ali.2.gz
-      md5: e41df3b2cb6db08b3270df7b93afbfc0
+      md5: f231e427571ea7ac8a5dc6fa2d28ca2c
       size: 308331
     - path: exp/mono_train_5k_ali/ali.3.gz
-      md5: 5b641b5105606a4119d81fd9bea7fa2c
+      md5: 60a7d858869f08c84598d8b7b7df1171
       size: 413380
     - path: exp/mono_train_5k_ali/ali.4.gz
-      md5: 9c3fdc1b7ecdf44d6c30e17f2d41ae8e
+      md5: 06cfde82b3d690e8a47c5bd93182b673
       size: 301393
     - path: exp/mono_train_5k_ali/ali.5.gz
-      md5: 71b6745e74251a3f29a733f4b117391d
+      md5: b7823c8cf72a2522b735b195976fdda4
       size: 580224
     - path: exp/mono_train_5k_ali/ali.6.gz
-      md5: 65021ad1f23ea1292b7570041b2dc1a6
+      md5: b11ce3259ead67fb149e4331be5c3215
       size: 365415
     - path: exp/mono_train_5k_ali/ali.7.gz
-      md5: 8e7929bbd8a97975ee19d7a0c70270ef
+      md5: 4d80b9594e564f6856e9f1d618bc8d7e
       size: 233316
     - path: exp/mono_train_5k_ali/ali.8.gz
-      md5: c6b48c1b323b5f92e50af3623e45a5cc
+      md5: 2c57dfe4a4d382cd6e6f6076be528f84
       size: 102371
     outs:
     - path: exp/tri1/final.mdl
@@ -590,28 +590,28 @@ stages:
       size: 172085
     outs:
     - path: exp/tri1_train_ali/ali.1.gz
-      md5: 4f03b6f1b05bc9fd7b0ac0fd65d63562
+      md5: 741689deb2ac0dd2b5cc2d2b6086a07e
       size: 2327830
     - path: exp/tri1_train_ali/ali.2.gz
-      md5: 40d52fe2ffae540931d653b9a8fccfc7
+      md5: 62ded0d288744f0a6f40349927d36d07
       size: 2004863
     - path: exp/tri1_train_ali/ali.3.gz
-      md5: 40e4eb71de4f67a135f5fc12df6445e5
+      md5: 61a277ecc7a65e0ebe795c344dfb0f53
       size: 2711956
     - path: exp/tri1_train_ali/ali.4.gz
-      md5: 4da863c1991caa456074168027b0458a
+      md5: afd9821539f207d10adc4061cdb8d647
       size: 1916380
     - path: exp/tri1_train_ali/ali.5.gz
-      md5: 3a88a2bc57b79c1ae2bf7ae66dbb9629
+      md5: aab434d9392fda975bf8ab20d513ab9b
       size: 3946006
     - path: exp/tri1_train_ali/ali.6.gz
-      md5: abd2eb06db9f35d325ddf4b8baa82744
+      md5: 5a0279a59881e03ecfc706ea112bb4eb
       size: 2249264
     - path: exp/tri1_train_ali/ali.7.gz
-      md5: 515a0b9e941108d77f3e12f43d1bc02b
+      md5: de436abde9a7804b659212fa59cb460d
       size: 1480343
     - path: exp/tri1_train_ali/ali.8.gz
-      md5: c1c605baa74b22138765c0309953d2b4
+      md5: 30f2efaa0d297ca83c5e71fcf8d8d2f3
       size: 643513
   tri2b:
     cmd: cd $KALDI_ROOT/egs/wsj/s5; . ./path.sh; . ./cmd.sh; steps/train_lda_mllt.sh
@@ -649,28 +649,28 @@ stages:
       md5: 1d7a301bf04db1409ad88670ab1beeeb
       size: 963692
     - path: exp/tri1_train_ali/ali.1.gz
-      md5: 4f03b6f1b05bc9fd7b0ac0fd65d63562
+      md5: 741689deb2ac0dd2b5cc2d2b6086a07e
       size: 2327830
     - path: exp/tri1_train_ali/ali.2.gz
-      md5: 40d52fe2ffae540931d653b9a8fccfc7
+      md5: 62ded0d288744f0a6f40349927d36d07
       size: 2004863
     - path: exp/tri1_train_ali/ali.3.gz
-      md5: 40e4eb71de4f67a135f5fc12df6445e5
+      md5: 61a277ecc7a65e0ebe795c344dfb0f53
       size: 2711956
     - path: exp/tri1_train_ali/ali.4.gz
-      md5: 4da863c1991caa456074168027b0458a
+      md5: afd9821539f207d10adc4061cdb8d647
       size: 1916380
     - path: exp/tri1_train_ali/ali.5.gz
-      md5: 3a88a2bc57b79c1ae2bf7ae66dbb9629
+      md5: aab434d9392fda975bf8ab20d513ab9b
       size: 3946006
     - path: exp/tri1_train_ali/ali.6.gz
-      md5: abd2eb06db9f35d325ddf4b8baa82744
+      md5: 5a0279a59881e03ecfc706ea112bb4eb
       size: 2249264
     - path: exp/tri1_train_ali/ali.7.gz
-      md5: 515a0b9e941108d77f3e12f43d1bc02b
+      md5: de436abde9a7804b659212fa59cb460d
       size: 1480343
     - path: exp/tri1_train_ali/ali.8.gz
-      md5: c1c605baa74b22138765c0309953d2b4
+      md5: 30f2efaa0d297ca83c5e71fcf8d8d2f3
       size: 643513
     outs:
     - path: exp/tri2b/final.mat
@@ -732,28 +732,28 @@ stages:
       size: 208029
     outs:
     - path: exp/tri2b_train_ali/ali.1.gz
-      md5: eafd76a92eee975bcedeb023fb7f1893
+      md5: ad842e95be1911f92d47395be3d58c10
       size: 2494082
     - path: exp/tri2b_train_ali/ali.2.gz
-      md5: fa6083160568b864694921a672e8d6d0
+      md5: e930896031371164eb2099731189183f
       size: 2118989
     - path: exp/tri2b_train_ali/ali.3.gz
-      md5: 61335b9c34a60f138799eca1a7eb8a42
+      md5: abd66e59807c02fe7b0b4764c5f6ef4f
       size: 2891605
     - path: exp/tri2b_train_ali/ali.4.gz
-      md5: f762f68f9f7a4a5841e25c3b9389d961
+      md5: 34325de298a0c7aafe3510e056e802a9
       size: 2044855
     - path: exp/tri2b_train_ali/ali.5.gz
-      md5: a02ef8050db763cf84d10e740f21bf82
+      md5: 8fe93519ec097d411940c8b76f2e3001
       size: 4212450
     - path: exp/tri2b_train_ali/ali.6.gz
-      md5: a1d8a3833026dd240e4324e56875a6d4
+      md5: 1980ed0e67006411f93543cdba27fb9d
       size: 2378458
     - path: exp/tri2b_train_ali/ali.7.gz
-      md5: 71e19a33a0a40a66e5d067dcfdb47e0e
+      md5: 6a3728f8939daad96c251328cb3b8c84
       size: 1570149
     - path: exp/tri2b_train_ali/ali.8.gz
-      md5: 1b539204fcd63bd74f9282f5534464e5
+      md5: 64899ca9ef6d88ec54b53fe9608dea07
       size: 685413
   tri3b:
     cmd: cd $KALDI_ROOT/egs/wsj/s5; . ./path.sh; . ./cmd.sh; steps/train_sat.sh 2500
@@ -790,28 +790,28 @@ stages:
       md5: 1d7a301bf04db1409ad88670ab1beeeb
       size: 963692
     - path: exp/tri2b_train_ali/ali.1.gz
-      md5: eafd76a92eee975bcedeb023fb7f1893
+      md5: ad842e95be1911f92d47395be3d58c10
       size: 2494082
     - path: exp/tri2b_train_ali/ali.2.gz
-      md5: fa6083160568b864694921a672e8d6d0
+      md5: e930896031371164eb2099731189183f
       size: 2118989
     - path: exp/tri2b_train_ali/ali.3.gz
-      md5: 61335b9c34a60f138799eca1a7eb8a42
+      md5: abd66e59807c02fe7b0b4764c5f6ef4f
       size: 2891605
     - path: exp/tri2b_train_ali/ali.4.gz
-      md5: f762f68f9f7a4a5841e25c3b9389d961
+      md5: 34325de298a0c7aafe3510e056e802a9
       size: 2044855
     - path: exp/tri2b_train_ali/ali.5.gz
-      md5: a02ef8050db763cf84d10e740f21bf82
+      md5: 8fe93519ec097d411940c8b76f2e3001
       size: 4212450
     - path: exp/tri2b_train_ali/ali.6.gz
-      md5: a1d8a3833026dd240e4324e56875a6d4
+      md5: 1980ed0e67006411f93543cdba27fb9d
       size: 2378458
     - path: exp/tri2b_train_ali/ali.7.gz
-      md5: 71e19a33a0a40a66e5d067dcfdb47e0e
+      md5: 6a3728f8939daad96c251328cb3b8c84
       size: 1570149
     - path: exp/tri2b_train_ali/ali.8.gz
-      md5: 1b539204fcd63bd74f9282f5534464e5
+      md5: 64899ca9ef6d88ec54b53fe9608dea07
       size: 685413
     outs:
     - path: exp/tri3b/final.mat
