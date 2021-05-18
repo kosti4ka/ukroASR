@@ -81,12 +81,24 @@ stages:
     - path: data/lm_ukr_o3.gz
       md5: 311b05b898c5a1c5cf6c4ed72b61a3d6
       size: 278423813
+    - path: data/local/dict/extra_questions.txt
+      md5: ff0ff3deded59e092d5f7c4314d10026
+      size: 335
+    - path: data/local/dict/nonsilence_phones.txt
+      md5: 3ccb9a0bb10a87e55c46349deb467304
+      size: 322
+    - path: data/local/dict/optional_silence.txt
+      md5: afb1c6c9240586b23a567660a6a3e0b3
+      size: 4
+    - path: data/local/dict/silence_phones.txt
+      md5: e1c58dfa6a41e9fa4603ad847099be6a
+      size: 12
     - path: prepare_local_dict_from_lm.sh
       md5: 1fed571b811ab7a37da26ae31658290a
       size: 1936
     outs:
     - path: data/local/dict_lm_train/lexicon.txt
-      md5: ca0656cd63817fceddad3ef5da1d1874
+      md5: 2185818ffd670b8f180fdff2ccb7d765
       size: 60425117
     - path: data/local/dict_lm_train/vocab
       md5: 5e9eccb364023bd6bc16fe6b97231457
@@ -140,13 +152,13 @@ stages:
       '<UNK>' /data/exp/kostya/ukroASR/data/local/lang_lm /data/exp/kostya/ukroASR/data/lang
     deps:
     - path: data/local/dict_lm_train/extra_questions.txt
-      md5: d41d8cd98f00b204e9800998ecf8427e
-      size: 0
+      md5: ff0ff3deded59e092d5f7c4314d10026
+      size: 335
     - path: data/local/dict_lm_train/lexicon.txt
-      md5: ca0656cd63817fceddad3ef5da1d1874
+      md5: 2185818ffd670b8f180fdff2ccb7d765
       size: 60425117
     - path: data/local/dict_lm_train/nonsilence_phones.txt
-      md5: 50134f865090d60f6b28d872683bd766
+      md5: 3ccb9a0bb10a87e55c46349deb467304
       size: 322
     - path: data/local/dict_lm_train/optional_silence.txt
       md5: afb1c6c9240586b23a567660a6a3e0b3
@@ -156,10 +168,10 @@ stages:
       size: 12
     outs:
     - path: data/lang/L.fst
-      md5: e2984fb1bad5a7426ae11b142b582b99
+      md5: 06c44f65296be8ddcb37bc29b0ed948b
       size: 349073914
     - path: data/lang/L_disambig.fst
-      md5: 2559910c4741ee3fdc10e69fb1c3f333
+      md5: 678233e8dafdbdafa2066bb1e33cd9f8
       size: 356755786
     - path: data/lang/oov.int
       md5: 48a24b70a0b376535542b996af517398
@@ -168,11 +180,11 @@ stages:
       md5: e28d9943584fdf57bd1a59c8f8ac6085
       size: 6
     - path: data/lang/phones
-      md5: 52719ea4323e1e62b585724643adf7ed.dir
-      size: 140230378
+      md5: 28a0070a9a676cfbc3808ecb24ba2d27.dir
+      size: 140212008
       nfiles: 26
     - path: data/lang/phones.txt
-      md5: 6488e9778145bfd3cb796a933014010a
+      md5: 0f83abfad3bf8acb195132f6b8998437
       size: 752
     - path: data/lang/topo
       md5: 2693e4022d2bd44d746a59aab2e6d6f3
@@ -181,7 +193,7 @@ stages:
       md5: 0ae157f267919ff61ca535cf6cab6c6e
       size: 35418407
     - path: data/local/dict_lm_train/lexiconp.txt
-      md5: ef933383f620d8b24a35e11b9f111ab7
+      md5: 9997544d65149b63e49a662d4eaf7250
       size: 65781829
   lm_ukr:
     cmd: cut -d' ' -f2- /data/exp/kostya/ukroASR/data/train/text | ngram-count -text
@@ -219,7 +231,7 @@ stages:
       md5: 311b05b898c5a1c5cf6c4ed72b61a3d6
       size: 278423813
     - path: data/local/dict_lm_train/lexicon.txt
-      md5: ca0656cd63817fceddad3ef5da1d1874
+      md5: 2185818ffd670b8f180fdff2ccb7d765
       size: 60425117
     outs:
     - path: data/lang/G.fst
@@ -275,6 +287,18 @@ stages:
     - path: artifacts/lexicon.txt
       md5: 090ee18d9b43fb3b3716646654fd3beb
       size: 101739868
+    - path: data/local/dict/extra_questions.txt
+      md5: ff0ff3deded59e092d5f7c4314d10026
+      size: 335
+    - path: data/local/dict/nonsilence_phones.txt
+      md5: 3ccb9a0bb10a87e55c46349deb467304
+      size: 322
+    - path: data/local/dict/optional_silence.txt
+      md5: afb1c6c9240586b23a567660a6a3e0b3
+      size: 4
+    - path: data/local/dict/silence_phones.txt
+      md5: e1c58dfa6a41e9fa4603ad847099be6a
+      size: 12
     - path: data/train/text
       md5: fd6167178ad5b7fec50a417b012b2e33
       size: 5256661
@@ -283,7 +307,7 @@ stages:
       size: 1768
     outs:
     - path: data/local/dict_am_train/lexicon.txt
-      md5: b707f8fe1e635fd5b2ff10a0a822e5d2
+      md5: 192ba1c8ef12c5fb7f3c65e5b53a3e9f
       size: 2547474
     - path: data/local/dict_am_train/vocab
       md5: 182431c98e0c5ee3e9dbc4945f1d3297
@@ -294,13 +318,13 @@ stages:
       '<UNK>' /data/exp/kostya/ukroASR/data/local/lang_am /data/exp/kostya/ukroASR/data/lang_am_train
     deps:
     - path: data/local/dict_am_train/extra_questions.txt
-      md5: d41d8cd98f00b204e9800998ecf8427e
-      size: 0
+      md5: ff0ff3deded59e092d5f7c4314d10026
+      size: 335
     - path: data/local/dict_am_train/lexicon.txt
-      md5: b707f8fe1e635fd5b2ff10a0a822e5d2
+      md5: 192ba1c8ef12c5fb7f3c65e5b53a3e9f
       size: 2547474
     - path: data/local/dict_am_train/nonsilence_phones.txt
-      md5: 50134f865090d60f6b28d872683bd766
+      md5: 3ccb9a0bb10a87e55c46349deb467304
       size: 322
     - path: data/local/dict_am_train/optional_silence.txt
       md5: afb1c6c9240586b23a567660a6a3e0b3
@@ -310,10 +334,10 @@ stages:
       size: 12
     outs:
     - path: data/lang_am_train/L.fst
-      md5: a4540763ae944ca36f5b59e2d92265ab
+      md5: 51bcd9337004c624c7788ea0d86eebb9
       size: 14686486
     - path: data/lang_am_train/L_disambig.fst
-      md5: 8c152d10122f3b8647cac3bb89b98506
+      md5: c0b9bcab4f3068be4c3c00e07e359690
       size: 14939902
     - path: data/lang_am_train/oov.int
       md5: 48a24b70a0b376535542b996af517398
@@ -322,11 +346,11 @@ stages:
       md5: e28d9943584fdf57bd1a59c8f8ac6085
       size: 6
     - path: data/lang_am_train/phones
-      md5: bd34f79799625147dd56a1be9be96c87.dir
-      size: 5854905
+      md5: 1caa27a9ae015f88f0e046404166090f.dir
+      size: 5852965
       nfiles: 26
     - path: data/lang_am_train/phones.txt
-      md5: b28d7e277c321c49c508cba5608c7ec5
+      md5: 4f4dab01237c675831d9d08e5f2f4129
       size: 684
     - path: data/lang_am_train/topo
       md5: 2693e4022d2bd44d746a59aab2e6d6f3
@@ -335,7 +359,7 @@ stages:
       md5: 8ac5ac51c87575fe7d53ee64b257dfec
       size: 1397961
     - path: data/local/dict_am_train/lexiconp.txt
-      md5: fdc34ebc62e29e0e106461c809798bba
+      md5: 7d256ec500b6e9f465127daeb27318ab
       size: 2810002
   mono:
     cmd: cd $KALDI_ROOT/egs/wsj/s5; . ./path.sh; . ./cmd.sh; steps/train_mono.sh --boost-silence
@@ -343,14 +367,14 @@ stages:
       /data/exp/kostya/ukroASR/exp/mono
     deps:
     - path: data/lang_am_train/L.fst
-      md5: a4540763ae944ca36f5b59e2d92265ab
+      md5: 51bcd9337004c624c7788ea0d86eebb9
       size: 14686486
     - path: data/lang_am_train/phones
-      md5: bd34f79799625147dd56a1be9be96c87.dir
-      size: 5854905
+      md5: 1caa27a9ae015f88f0e046404166090f.dir
+      size: 5852965
       nfiles: 26
     - path: data/lang_am_train/phones.txt
-      md5: b28d7e277c321c49c508cba5608c7ec5
+      md5: 4f4dab01237c675831d9d08e5f2f4129
       size: 684
     - path: data/lang_am_train/topo
       md5: 2693e4022d2bd44d746a59aab2e6d6f3
@@ -372,31 +396,31 @@ stages:
       size: 112734
     outs:
     - path: exp/mono/final.mdl
-      md5: 68e9c96edeb2a8cfe2569785722b4871
-      size: 354612
+      md5: 93de26e609b0a1193e9ea45875d3ab36
+      size: 333442
     - path: exp/mono/phones.txt
-      md5: b28d7e277c321c49c508cba5608c7ec5
+      md5: 4f4dab01237c675831d9d08e5f2f4129
       size: 684
     - path: exp/mono/tree
-      md5: 6fe676939f4f5face3387f4dd329467f
-      size: 4309
+      md5: 9851b414f700788a797d09b2f4bee37e
+      size: 2963
   mono_ali:
     cmd: cd $KALDI_ROOT/egs/wsj/s5; . ./path.sh; . ./cmd.sh; steps/align_si.sh --boost-silence
       1.25 --nj 8 /data/exp/kostya/ukroASR/data/train_5k /data/exp/kostya/ukroASR/data/lang_am_train
       /data/exp/kostya/ukroASR/exp/mono /data/exp/kostya/ukroASR/exp/mono_train_5k_ali
     deps:
     - path: data/lang_am_train/L.fst
-      md5: a4540763ae944ca36f5b59e2d92265ab
+      md5: 51bcd9337004c624c7788ea0d86eebb9
       size: 14686486
     - path: data/lang_am_train/oov.int
       md5: 48a24b70a0b376535542b996af517398
       size: 2
     - path: data/lang_am_train/phones
-      md5: bd34f79799625147dd56a1be9be96c87.dir
-      size: 5854905
+      md5: 1caa27a9ae015f88f0e046404166090f.dir
+      size: 5852965
       nfiles: 26
     - path: data/lang_am_train/phones.txt
-      md5: b28d7e277c321c49c508cba5608c7ec5
+      md5: 4f4dab01237c675831d9d08e5f2f4129
       size: 684
     - path: data/lang_am_train/words.txt
       md5: 8ac5ac51c87575fe7d53ee64b257dfec
@@ -414,36 +438,36 @@ stages:
       md5: efa4619d458fced64cb44ef18fefef6e
       size: 292064
     - path: exp/mono/final.mdl
-      md5: 68e9c96edeb2a8cfe2569785722b4871
-      size: 354612
+      md5: 93de26e609b0a1193e9ea45875d3ab36
+      size: 333442
     - path: exp/mono/tree
-      md5: 6fe676939f4f5face3387f4dd329467f
-      size: 4309
+      md5: 9851b414f700788a797d09b2f4bee37e
+      size: 2963
     outs:
     - path: exp/mono_train_5k_ali/ali.1.gz
-      md5: a2db16969f2f9126f35bdc3d984e2367
-      size: 346337
+      md5: 0438ac94911a792f01028042ccd93469
+      size: 345080
     - path: exp/mono_train_5k_ali/ali.2.gz
-      md5: f231e427571ea7ac8a5dc6fa2d28ca2c
-      size: 308331
+      md5: d409d4bef2c37d46f582ef13a962040b
+      size: 302518
     - path: exp/mono_train_5k_ali/ali.3.gz
-      md5: 60a7d858869f08c84598d8b7b7df1171
-      size: 413380
+      md5: 4d221b707cec943082bb0c8b3e3e2781
+      size: 409717
     - path: exp/mono_train_5k_ali/ali.4.gz
-      md5: 06cfde82b3d690e8a47c5bd93182b673
-      size: 301393
+      md5: 41ad8b21156c743172e0d9dc426e09f6
+      size: 303985
     - path: exp/mono_train_5k_ali/ali.5.gz
-      md5: b7823c8cf72a2522b735b195976fdda4
-      size: 580224
+      md5: 327a7f874c878308515d8b22408bb5cc
+      size: 583420
     - path: exp/mono_train_5k_ali/ali.6.gz
-      md5: b11ce3259ead67fb149e4331be5c3215
-      size: 365415
+      md5: bdf129ac023d0ed65f9293adc810d0d1
+      size: 363914
     - path: exp/mono_train_5k_ali/ali.7.gz
-      md5: 4d80b9594e564f6856e9f1d618bc8d7e
-      size: 233316
+      md5: de7c4e66948cf72b1e1b870c239eedd3
+      size: 230593
     - path: exp/mono_train_5k_ali/ali.8.gz
-      md5: 2c57dfe4a4d382cd6e6f6076be528f84
-      size: 102371
+      md5: 89c3ac7862d0554e34727b9090ce8df1
+      size: 102448
   tri1:
     cmd: cd $KALDI_ROOT/egs/wsj/s5; . ./path.sh; . ./cmd.sh; steps/train_deltas.sh
       --boost-silence 1.25 2000 10000 /data/exp/kostya/ukroASR/data/train_5k /data/exp/kostya/ukroASR/data/lang_am_train
@@ -452,14 +476,14 @@ stages:
       mv /data/exp/kostya/ukroASR/exp/tri1/final.mdl_copy /data/exp/kostya/ukroASR/exp/tri1/final.mdl
     deps:
     - path: data/lang_am_train/L.fst
-      md5: a4540763ae944ca36f5b59e2d92265ab
+      md5: 51bcd9337004c624c7788ea0d86eebb9
       size: 14686486
     - path: data/lang_am_train/phones
-      md5: bd34f79799625147dd56a1be9be96c87.dir
-      size: 5854905
+      md5: 1caa27a9ae015f88f0e046404166090f.dir
+      size: 5852965
       nfiles: 26
     - path: data/lang_am_train/phones.txt
-      md5: b28d7e277c321c49c508cba5608c7ec5
+      md5: 4f4dab01237c675831d9d08e5f2f4129
       size: 684
     - path: data/lang_am_train/topo
       md5: 2693e4022d2bd44d746a59aab2e6d6f3
@@ -477,39 +501,39 @@ stages:
       md5: efa4619d458fced64cb44ef18fefef6e
       size: 292064
     - path: exp/mono_train_5k_ali/ali.1.gz
-      md5: a2db16969f2f9126f35bdc3d984e2367
-      size: 346337
+      md5: 0438ac94911a792f01028042ccd93469
+      size: 345080
     - path: exp/mono_train_5k_ali/ali.2.gz
-      md5: f231e427571ea7ac8a5dc6fa2d28ca2c
-      size: 308331
+      md5: d409d4bef2c37d46f582ef13a962040b
+      size: 302518
     - path: exp/mono_train_5k_ali/ali.3.gz
-      md5: 60a7d858869f08c84598d8b7b7df1171
-      size: 413380
+      md5: 4d221b707cec943082bb0c8b3e3e2781
+      size: 409717
     - path: exp/mono_train_5k_ali/ali.4.gz
-      md5: 06cfde82b3d690e8a47c5bd93182b673
-      size: 301393
+      md5: 41ad8b21156c743172e0d9dc426e09f6
+      size: 303985
     - path: exp/mono_train_5k_ali/ali.5.gz
-      md5: b7823c8cf72a2522b735b195976fdda4
-      size: 580224
+      md5: 327a7f874c878308515d8b22408bb5cc
+      size: 583420
     - path: exp/mono_train_5k_ali/ali.6.gz
-      md5: b11ce3259ead67fb149e4331be5c3215
-      size: 365415
+      md5: bdf129ac023d0ed65f9293adc810d0d1
+      size: 363914
     - path: exp/mono_train_5k_ali/ali.7.gz
-      md5: 4d80b9594e564f6856e9f1d618bc8d7e
-      size: 233316
+      md5: de7c4e66948cf72b1e1b870c239eedd3
+      size: 230593
     - path: exp/mono_train_5k_ali/ali.8.gz
-      md5: 2c57dfe4a4d382cd6e6f6076be528f84
-      size: 102371
+      md5: 89c3ac7862d0554e34727b9090ce8df1
+      size: 102448
     outs:
     - path: exp/tri1/final.mdl
-      md5: 5d86c36d03fd7fa16892c005ba18b0f9
-      size: 3431586
+      md5: 91a8b67b998c8f5263f5ded31f32b69e
+      size: 3473839
     - path: exp/tri1/phones.txt
-      md5: b28d7e277c321c49c508cba5608c7ec5
+      md5: 4f4dab01237c675831d9d08e5f2f4129
       size: 684
     - path: exp/tri1/tree
-      md5: 50c34979c6c5621d5bb186993d132a18
-      size: 172085
+      md5: 537044c48ab3e60418eaed30046ecb34
+      size: 194573
   mfcc_train:
     cmd: python3.6 /data/exp/kostya/ukroASR/features/make_mfcc.py /data/exp/kostya/ukroASR/data/train
       /data/exp/kostya/ukroASR/exp/log/mfcc /data/exp/kostya/ukroASR/exp/train_mfcc
@@ -555,17 +579,17 @@ stages:
       /data/exp/kostya/ukroASR/exp/tri1 /data/exp/kostya/ukroASR/exp/tri1_train_ali
     deps:
     - path: data/lang_am_train/L.fst
-      md5: a4540763ae944ca36f5b59e2d92265ab
+      md5: 51bcd9337004c624c7788ea0d86eebb9
       size: 14686486
     - path: data/lang_am_train/oov.int
       md5: 48a24b70a0b376535542b996af517398
       size: 2
     - path: data/lang_am_train/phones
-      md5: bd34f79799625147dd56a1be9be96c87.dir
-      size: 5854905
+      md5: 1caa27a9ae015f88f0e046404166090f.dir
+      size: 5852965
       nfiles: 26
     - path: data/lang_am_train/phones.txt
-      md5: b28d7e277c321c49c508cba5608c7ec5
+      md5: 4f4dab01237c675831d9d08e5f2f4129
       size: 684
     - path: data/lang_am_train/words.txt
       md5: 8ac5ac51c87575fe7d53ee64b257dfec
@@ -583,36 +607,36 @@ stages:
       md5: 1d7a301bf04db1409ad88670ab1beeeb
       size: 963692
     - path: exp/tri1/final.mdl
-      md5: 5d86c36d03fd7fa16892c005ba18b0f9
-      size: 3431586
+      md5: 91a8b67b998c8f5263f5ded31f32b69e
+      size: 3473839
     - path: exp/tri1/tree
-      md5: 50c34979c6c5621d5bb186993d132a18
-      size: 172085
+      md5: 537044c48ab3e60418eaed30046ecb34
+      size: 194573
     outs:
     - path: exp/tri1_train_ali/ali.1.gz
-      md5: 741689deb2ac0dd2b5cc2d2b6086a07e
-      size: 2327830
+      md5: 6bde553084ddf052c0729810a3ca5ac6
+      size: 2454741
     - path: exp/tri1_train_ali/ali.2.gz
-      md5: 62ded0d288744f0a6f40349927d36d07
-      size: 2004863
+      md5: 6d2a26b242c6ca9c64ece87e94afdfb4
+      size: 2091507
     - path: exp/tri1_train_ali/ali.3.gz
-      md5: 61a277ecc7a65e0ebe795c344dfb0f53
-      size: 2711956
+      md5: c433a4f6aa3f842e2dbf2f697d5e7ff9
+      size: 2861084
     - path: exp/tri1_train_ali/ali.4.gz
-      md5: afd9821539f207d10adc4061cdb8d647
-      size: 1916380
+      md5: 33cdb5096fed9ea5980c266e0781224c
+      size: 2051909
     - path: exp/tri1_train_ali/ali.5.gz
-      md5: aab434d9392fda975bf8ab20d513ab9b
-      size: 3946006
+      md5: d86215a95aca7bc6b7c665b89e12c954
+      size: 4141362
     - path: exp/tri1_train_ali/ali.6.gz
-      md5: 5a0279a59881e03ecfc706ea112bb4eb
-      size: 2249264
+      md5: a38d465e7c543ea575dcd72a4a793b74
+      size: 2358098
     - path: exp/tri1_train_ali/ali.7.gz
-      md5: de436abde9a7804b659212fa59cb460d
-      size: 1480343
+      md5: 92cd17dc20b23dd59e6b5068827e6744
+      size: 1561266
     - path: exp/tri1_train_ali/ali.8.gz
-      md5: 30f2efaa0d297ca83c5e71fcf8d8d2f3
-      size: 643513
+      md5: 40a13f78ea2c9b75734ed7428ce8ea8f
+      size: 678088
   tri2b:
     cmd: cd $KALDI_ROOT/egs/wsj/s5; . ./path.sh; . ./cmd.sh; steps/train_lda_mllt.sh
       --splice-opts "--left-context=3 --right-context=3" 2500 15000 /data/exp/kostya/ukroASR/data/train
@@ -624,14 +648,14 @@ stages:
       /data/exp/kostya/ukroASR/exp/tri2b/final.mat
     deps:
     - path: data/lang_am_train/L.fst
-      md5: a4540763ae944ca36f5b59e2d92265ab
+      md5: 51bcd9337004c624c7788ea0d86eebb9
       size: 14686486
     - path: data/lang_am_train/phones
-      md5: bd34f79799625147dd56a1be9be96c87.dir
-      size: 5854905
+      md5: 1caa27a9ae015f88f0e046404166090f.dir
+      size: 5852965
       nfiles: 26
     - path: data/lang_am_train/phones.txt
-      md5: b28d7e277c321c49c508cba5608c7ec5
+      md5: 4f4dab01237c675831d9d08e5f2f4129
       size: 684
     - path: data/lang_am_train/topo
       md5: 2693e4022d2bd44d746a59aab2e6d6f3
@@ -649,59 +673,59 @@ stages:
       md5: 1d7a301bf04db1409ad88670ab1beeeb
       size: 963692
     - path: exp/tri1_train_ali/ali.1.gz
-      md5: 741689deb2ac0dd2b5cc2d2b6086a07e
-      size: 2327830
+      md5: 6bde553084ddf052c0729810a3ca5ac6
+      size: 2454741
     - path: exp/tri1_train_ali/ali.2.gz
-      md5: 62ded0d288744f0a6f40349927d36d07
-      size: 2004863
+      md5: 6d2a26b242c6ca9c64ece87e94afdfb4
+      size: 2091507
     - path: exp/tri1_train_ali/ali.3.gz
-      md5: 61a277ecc7a65e0ebe795c344dfb0f53
-      size: 2711956
+      md5: c433a4f6aa3f842e2dbf2f697d5e7ff9
+      size: 2861084
     - path: exp/tri1_train_ali/ali.4.gz
-      md5: afd9821539f207d10adc4061cdb8d647
-      size: 1916380
+      md5: 33cdb5096fed9ea5980c266e0781224c
+      size: 2051909
     - path: exp/tri1_train_ali/ali.5.gz
-      md5: aab434d9392fda975bf8ab20d513ab9b
-      size: 3946006
+      md5: d86215a95aca7bc6b7c665b89e12c954
+      size: 4141362
     - path: exp/tri1_train_ali/ali.6.gz
-      md5: 5a0279a59881e03ecfc706ea112bb4eb
-      size: 2249264
+      md5: a38d465e7c543ea575dcd72a4a793b74
+      size: 2358098
     - path: exp/tri1_train_ali/ali.7.gz
-      md5: de436abde9a7804b659212fa59cb460d
-      size: 1480343
+      md5: 92cd17dc20b23dd59e6b5068827e6744
+      size: 1561266
     - path: exp/tri1_train_ali/ali.8.gz
-      md5: 30f2efaa0d297ca83c5e71fcf8d8d2f3
-      size: 643513
+      md5: 40a13f78ea2c9b75734ed7428ce8ea8f
+      size: 678088
     outs:
     - path: exp/tri2b/final.mat
-      md5: e9ada887ad4396f2e325a9ccf58cb616
+      md5: b926ebf718e453ee1a0eb40147a8c5b3
       size: 14575
     - path: exp/tri2b/final.mdl
-      md5: 1d8bbf9aab74bae888da38fb257b56ab
-      size: 5211843
+      md5: 8781cbe5f0aa9a49deb5609276008159
+      size: 5274766
     - path: exp/tri2b/phones.txt
-      md5: b28d7e277c321c49c508cba5608c7ec5
+      md5: 4f4dab01237c675831d9d08e5f2f4129
       size: 684
     - path: exp/tri2b/tree
-      md5: 130e5e1336bdf6eaf34e7aa0f194d8d7
-      size: 208029
+      md5: e99ee1668c21a13fc7c02eed7c5450ce
+      size: 259725
   tri2b_ali:
     cmd: cd $KALDI_ROOT/egs/wsj/s5; . ./path.sh; . ./cmd.sh; steps/align_si.sh --nj
       8 /data/exp/kostya/ukroASR/data/train /data/exp/kostya/ukroASR/data/lang_am_train
       /data/exp/kostya/ukroASR/exp/tri2b /data/exp/kostya/ukroASR/exp/tri2b_train_ali
     deps:
     - path: data/lang_am_train/L.fst
-      md5: a4540763ae944ca36f5b59e2d92265ab
+      md5: 51bcd9337004c624c7788ea0d86eebb9
       size: 14686486
     - path: data/lang_am_train/oov.int
       md5: 48a24b70a0b376535542b996af517398
       size: 2
     - path: data/lang_am_train/phones
-      md5: bd34f79799625147dd56a1be9be96c87.dir
-      size: 5854905
+      md5: 1caa27a9ae015f88f0e046404166090f.dir
+      size: 5852965
       nfiles: 26
     - path: data/lang_am_train/phones.txt
-      md5: b28d7e277c321c49c508cba5608c7ec5
+      md5: 4f4dab01237c675831d9d08e5f2f4129
       size: 684
     - path: data/lang_am_train/words.txt
       md5: 8ac5ac51c87575fe7d53ee64b257dfec
@@ -719,42 +743,42 @@ stages:
       md5: 1d7a301bf04db1409ad88670ab1beeeb
       size: 963692
     - path: exp/tri2b/final.mat
-      md5: e9ada887ad4396f2e325a9ccf58cb616
+      md5: b926ebf718e453ee1a0eb40147a8c5b3
       size: 14575
     - path: exp/tri2b/final.mdl
-      md5: 1d8bbf9aab74bae888da38fb257b56ab
-      size: 5211843
+      md5: 8781cbe5f0aa9a49deb5609276008159
+      size: 5274766
     - path: exp/tri2b/full.mat
-      md5: 62d5871f77ec02df33da896ad37fb673
+      md5: 017c529c61eab5dd0602ed5929c81e0e
       size: 33139
     - path: exp/tri2b/tree
-      md5: 130e5e1336bdf6eaf34e7aa0f194d8d7
-      size: 208029
+      md5: e99ee1668c21a13fc7c02eed7c5450ce
+      size: 259725
     outs:
     - path: exp/tri2b_train_ali/ali.1.gz
-      md5: ad842e95be1911f92d47395be3d58c10
-      size: 2494082
+      md5: 6ae747e8def25a49e7e0cae43c0e6673
+      size: 2619624
     - path: exp/tri2b_train_ali/ali.2.gz
-      md5: e930896031371164eb2099731189183f
-      size: 2118989
+      md5: 19d9e8936ec51a10dcd9c3ef73cebc30
+      size: 2209947
     - path: exp/tri2b_train_ali/ali.3.gz
-      md5: abd66e59807c02fe7b0b4764c5f6ef4f
-      size: 2891605
+      md5: d7f368d5cadc8adb53af87d71086b819
+      size: 3042949
     - path: exp/tri2b_train_ali/ali.4.gz
-      md5: 34325de298a0c7aafe3510e056e802a9
-      size: 2044855
+      md5: 4e1257f1f7ec9681ce1b05d5699917c0
+      size: 2148741
     - path: exp/tri2b_train_ali/ali.5.gz
-      md5: 8fe93519ec097d411940c8b76f2e3001
-      size: 4212450
+      md5: 238ae27343eddd455b7787aac2e69896
+      size: 4424485
     - path: exp/tri2b_train_ali/ali.6.gz
-      md5: 1980ed0e67006411f93543cdba27fb9d
-      size: 2378458
+      md5: e30a2ca54c5b0c4ada162da218c06fcf
+      size: 2501122
     - path: exp/tri2b_train_ali/ali.7.gz
-      md5: 6a3728f8939daad96c251328cb3b8c84
-      size: 1570149
+      md5: 613d6d30414c7565c2ad8d96690e7c9f
+      size: 1652463
     - path: exp/tri2b_train_ali/ali.8.gz
-      md5: 64899ca9ef6d88ec54b53fe9608dea07
-      size: 685413
+      md5: e8e1f2d139184219e7563228ccdb5167
+      size: 723503
   tri3b:
     cmd: cd $KALDI_ROOT/egs/wsj/s5; . ./path.sh; . ./cmd.sh; steps/train_sat.sh 2500
       15000 /data/exp/kostya/ukroASR/data/train /data/exp/kostya/ukroASR/data/lang_am_train
@@ -765,14 +789,14 @@ stages:
       mv /data/exp/kostya/ukroASR/exp/tri3b/final.mat_copy /data/exp/kostya/ukroASR/exp/tri3b/final.mat
     deps:
     - path: data/lang_am_train/L.fst
-      md5: a4540763ae944ca36f5b59e2d92265ab
+      md5: 51bcd9337004c624c7788ea0d86eebb9
       size: 14686486
     - path: data/lang_am_train/phones
-      md5: bd34f79799625147dd56a1be9be96c87.dir
-      size: 5854905
+      md5: 1caa27a9ae015f88f0e046404166090f.dir
+      size: 5852965
       nfiles: 26
     - path: data/lang_am_train/phones.txt
-      md5: b28d7e277c321c49c508cba5608c7ec5
+      md5: 4f4dab01237c675831d9d08e5f2f4129
       size: 684
     - path: data/lang_am_train/topo
       md5: 2693e4022d2bd44d746a59aab2e6d6f3
@@ -790,42 +814,42 @@ stages:
       md5: 1d7a301bf04db1409ad88670ab1beeeb
       size: 963692
     - path: exp/tri2b_train_ali/ali.1.gz
-      md5: ad842e95be1911f92d47395be3d58c10
-      size: 2494082
+      md5: 6ae747e8def25a49e7e0cae43c0e6673
+      size: 2619624
     - path: exp/tri2b_train_ali/ali.2.gz
-      md5: e930896031371164eb2099731189183f
-      size: 2118989
+      md5: 19d9e8936ec51a10dcd9c3ef73cebc30
+      size: 2209947
     - path: exp/tri2b_train_ali/ali.3.gz
-      md5: abd66e59807c02fe7b0b4764c5f6ef4f
-      size: 2891605
+      md5: d7f368d5cadc8adb53af87d71086b819
+      size: 3042949
     - path: exp/tri2b_train_ali/ali.4.gz
-      md5: 34325de298a0c7aafe3510e056e802a9
-      size: 2044855
+      md5: 4e1257f1f7ec9681ce1b05d5699917c0
+      size: 2148741
     - path: exp/tri2b_train_ali/ali.5.gz
-      md5: 8fe93519ec097d411940c8b76f2e3001
-      size: 4212450
+      md5: 238ae27343eddd455b7787aac2e69896
+      size: 4424485
     - path: exp/tri2b_train_ali/ali.6.gz
-      md5: 1980ed0e67006411f93543cdba27fb9d
-      size: 2378458
+      md5: e30a2ca54c5b0c4ada162da218c06fcf
+      size: 2501122
     - path: exp/tri2b_train_ali/ali.7.gz
-      md5: 6a3728f8939daad96c251328cb3b8c84
-      size: 1570149
+      md5: 613d6d30414c7565c2ad8d96690e7c9f
+      size: 1652463
     - path: exp/tri2b_train_ali/ali.8.gz
-      md5: 64899ca9ef6d88ec54b53fe9608dea07
-      size: 685413
+      md5: e8e1f2d139184219e7563228ccdb5167
+      size: 723503
     outs:
     - path: exp/tri3b/final.mat
-      md5: e9ada887ad4396f2e325a9ccf58cb616
+      md5: b926ebf718e453ee1a0eb40147a8c5b3
       size: 14575
     - path: exp/tri3b/final.mdl
-      md5: e2fb4efd26a0863ba7c6bb895afdcc43
-      size: 5207695
+      md5: a42ba8b9e6969631fcc15a5730a762d9
+      size: 5267994
     - path: exp/tri3b/phones.txt
-      md5: b28d7e277c321c49c508cba5608c7ec5
+      md5: 4f4dab01237c675831d9d08e5f2f4129
       size: 684
     - path: exp/tri3b/tree
-      md5: 98678e7c9ec303f825d1b92bc7847e2b
-      size: 167757
+      md5: 2b082bda44303382fc26246d9eaee0ca
+      size: 194905
   tri3b_graph:
     cmd: cd $KALDI_ROOT/egs/wsj/s5; . ./path.sh; . ./cmd.sh; utils/mkgraph.sh /data/exp/kostya/ukroASR/data/lang
       /data/exp/kostya/ukroASR/exp/tri3b /data/exp/kostya/ukroASR/exp/tri3b/graph
@@ -834,28 +858,28 @@ stages:
       md5: 482067a16268161bbc3a863c8f55bd43
       size: 403017006
     - path: data/lang/L.fst
-      md5: e2984fb1bad5a7426ae11b142b582b99
+      md5: 06c44f65296be8ddcb37bc29b0ed948b
       size: 349073914
     - path: data/lang/phones
-      md5: 52719ea4323e1e62b585724643adf7ed.dir
-      size: 140230378
+      md5: 28a0070a9a676cfbc3808ecb24ba2d27.dir
+      size: 140212008
       nfiles: 26
     - path: data/lang/phones.txt
-      md5: 6488e9778145bfd3cb796a933014010a
+      md5: 0f83abfad3bf8acb195132f6b8998437
       size: 752
     - path: data/lang/words.txt
       md5: 0ae157f267919ff61ca535cf6cab6c6e
       size: 35418407
     - path: exp/tri3b/final.mdl
-      md5: e2fb4efd26a0863ba7c6bb895afdcc43
-      size: 5207695
+      md5: a42ba8b9e6969631fcc15a5730a762d9
+      size: 5267994
     - path: exp/tri3b/tree
-      md5: 98678e7c9ec303f825d1b92bc7847e2b
-      size: 167757
+      md5: 2b082bda44303382fc26246d9eaee0ca
+      size: 194905
     outs:
     - path: exp/tri3b/graph/HCLG.fst
-      md5: 40b43fe9d1d277b1b5416930bdfdd932
-      size: 7572504533
+      md5: ef137148feddb5dac51bfc1ec1d38f90
+      size: 7605209009
     - path: exp/tri3b/graph/words.txt
       md5: 0ae157f267919ff61ca535cf6cab6c6e
       size: 35418407
@@ -875,28 +899,40 @@ stages:
       md5: a7c154e64bf978e1c1e927fa4bfe6fa0
       size: 10758
     - path: data/lang/phones
-      md5: 52719ea4323e1e62b585724643adf7ed.dir
-      size: 140230378
+      md5: 28a0070a9a676cfbc3808ecb24ba2d27.dir
+      size: 140212008
       nfiles: 26
     - path: data/lang/words.txt
       md5: 0ae157f267919ff61ca535cf6cab6c6e
       size: 35418407
     - path: exp/tri3b/final.mat
-      md5: e9ada887ad4396f2e325a9ccf58cb616
+      md5: b926ebf718e453ee1a0eb40147a8c5b3
       size: 14575
     - path: exp/tri3b/final.mdl
-      md5: e2fb4efd26a0863ba7c6bb895afdcc43
-      size: 5207695
+      md5: a42ba8b9e6969631fcc15a5730a762d9
+      size: 5267994
     - path: exp/tri3b/graph/HCLG.fst
-      md5: 40b43fe9d1d277b1b5416930bdfdd932
-      size: 7572504533
+      md5: ef137148feddb5dac51bfc1ec1d38f90
+      size: 7605209009
     - path: exp/tri3b/tree
-      md5: 98678e7c9ec303f825d1b92bc7847e2b
-      size: 167757
+      md5: 2b082bda44303382fc26246d9eaee0ca
+      size: 194905
     outs:
     - path: exp/metrics/tri3b.json
-      md5: c8d90e1fed26dcd10171085106259e8b
+      md5: 5611d67ca0841df62a72f198bac08309
       size: 15
+    - path: exp/tri3b/decode_dev_0.15k/lat.1.gz
+      md5: 75726e64db9d14f0e851a58142365e56
+      size: 180241
+    - path: exp/tri3b/decode_dev_0.15k/lat.2.gz
+      md5: e6218bc2f00a53b41483f3df1022e696
+      size: 138895
+    - path: exp/tri3b/decode_dev_0.15k/lat.3.gz
+      md5: f89efcacf52e493e5327125e8cdd2993
+      size: 44436
+    - path: exp/tri3b/decode_dev_0.15k/lat.4.gz
+      md5: 392d80f5680794125625799591c9ad94
+      size: 234477
   tri3b_rescore_metrics:
     cmd: cd $KALDI_ROOT/egs/wsj/s5; . ./path.sh; . ./cmd.sh; steps/lmrescore_const_arpa.sh
       /data/exp/kostya/ukroASR/data/lang /data/exp/kostya/ukroASR/data/carpa /data/exp/kostya/ukroASR/data/dev_0.15k
@@ -904,37 +940,24 @@ stages:
       /data/exp/kostya/ukroASR/parce_wer_report.sh /data/exp/kostya/ukroASR/exp/tri3b/rescore_dev_0.15k/scoring_kaldi/best_wer
       /data/exp/kostya/ukroASR/exp/metrics/tri3b_rescore.json
     deps:
-    - path: data/dev_0.15k/cmvn.scp
-      md5: 0e5b20ac9167931c8ac1b447bfa8a403
-      size: 291
-    - path: data/dev_0.15k/feats.scp
-      md5: c766137ca2953725bf433cb2edf30c2d
-      size: 17694
-    - path: data/dev_0.15k/utt2spk
-      md5: a7c154e64bf978e1c1e927fa4bfe6fa0
-      size: 10758
-    - path: data/lang/phones
-      md5: 52719ea4323e1e62b585724643adf7ed.dir
-      size: 140230378
-      nfiles: 26
-    - path: data/lang/words.txt
-      md5: 0ae157f267919ff61ca535cf6cab6c6e
-      size: 35418407
-    - path: exp/tri3b/final.mat
-      md5: e9ada887ad4396f2e325a9ccf58cb616
-      size: 14575
-    - path: exp/tri3b/final.mdl
-      md5: e2fb4efd26a0863ba7c6bb895afdcc43
-      size: 5207695
-    - path: exp/tri3b/graph/HCLG.fst
-      md5: 40b43fe9d1d277b1b5416930bdfdd932
-      size: 7572504533
-    - path: exp/tri3b/tree
-      md5: 98678e7c9ec303f825d1b92bc7847e2b
-      size: 167757
+    - path: data/carpa/G.carpa
+      md5: fc3f0ca96ca10676ba31143f596f2cf7
+      size: 8753736352
+    - path: exp/tri3b/decode_dev_0.15k/lat.1.gz
+      md5: 75726e64db9d14f0e851a58142365e56
+      size: 180241
+    - path: exp/tri3b/decode_dev_0.15k/lat.2.gz
+      md5: e6218bc2f00a53b41483f3df1022e696
+      size: 138895
+    - path: exp/tri3b/decode_dev_0.15k/lat.3.gz
+      md5: f89efcacf52e493e5327125e8cdd2993
+      size: 44436
+    - path: exp/tri3b/decode_dev_0.15k/lat.4.gz
+      md5: 392d80f5680794125625799591c9ad94
+      size: 234477
     outs:
     - path: exp/metrics/tri3b_rescore.json
-      md5: bb1ea516a125e8a3a57170f61fb96abb
+      md5: c5c83ed92e08e23dcdd6042ccc22c0f1
       size: 15
   mfcc_dev:
     cmd: python3.6 /data/exp/kostya/ukroASR/features/make_mfcc.py /data/exp/kostya/ukroASR/data/dev
@@ -1171,28 +1194,28 @@ stages:
       md5: 482067a16268161bbc3a863c8f55bd43
       size: 403017006
     - path: data/lang/L.fst
-      md5: e2984fb1bad5a7426ae11b142b582b99
+      md5: 06c44f65296be8ddcb37bc29b0ed948b
       size: 349073914
     - path: data/lang/phones
-      md5: 52719ea4323e1e62b585724643adf7ed.dir
-      size: 140230378
+      md5: 28a0070a9a676cfbc3808ecb24ba2d27.dir
+      size: 140212008
       nfiles: 26
     - path: data/lang/phones.txt
-      md5: 6488e9778145bfd3cb796a933014010a
+      md5: 0f83abfad3bf8acb195132f6b8998437
       size: 752
     - path: data/lang/words.txt
       md5: 0ae157f267919ff61ca535cf6cab6c6e
       size: 35418407
     - path: exp/tri2b/final.mdl
-      md5: 1d8bbf9aab74bae888da38fb257b56ab
-      size: 5211843
+      md5: 8781cbe5f0aa9a49deb5609276008159
+      size: 5274766
     - path: exp/tri2b/tree
-      md5: 130e5e1336bdf6eaf34e7aa0f194d8d7
-      size: 208029
+      md5: e99ee1668c21a13fc7c02eed7c5450ce
+      size: 259725
     outs:
     - path: exp/tri2b/graph/HCLG.fst
-      md5: 3d0efd83fe5ab35976a932905e75ab81
-      size: 7562117797
+      md5: 8017080f6e745cd3c4b5fc2e937d0ae4
+      size: 7605482553
     - path: exp/tri2b/graph/words.txt
       md5: 0ae157f267919ff61ca535cf6cab6c6e
       size: 35418407
@@ -1215,17 +1238,17 @@ stages:
       md5: 0ae157f267919ff61ca535cf6cab6c6e
       size: 35418407
     - path: exp/tri2b/final.mat
-      md5: e9ada887ad4396f2e325a9ccf58cb616
+      md5: b926ebf718e453ee1a0eb40147a8c5b3
       size: 14575
     - path: exp/tri2b/final.mdl
-      md5: 1d8bbf9aab74bae888da38fb257b56ab
-      size: 5211843
+      md5: 8781cbe5f0aa9a49deb5609276008159
+      size: 5274766
     - path: exp/tri2b/graph/HCLG.fst
-      md5: 3d0efd83fe5ab35976a932905e75ab81
-      size: 7562117797
+      md5: 8017080f6e745cd3c4b5fc2e937d0ae4
+      size: 7605482553
     outs:
     - path: exp/metrics/tri2b.json
-      md5: e86e10ebe4acd9e8a7c0766c9f12a1c5
+      md5: bc1f1492703fc06523087b3e5281cb42
       size: 15
   tri1_graph:
     cmd: cd $KALDI_ROOT/egs/wsj/s5; . ./path.sh; . ./cmd.sh; utils/mkgraph.sh /data/exp/kostya/ukroASR/data/lang
@@ -1235,28 +1258,28 @@ stages:
       md5: 482067a16268161bbc3a863c8f55bd43
       size: 403017006
     - path: data/lang/L.fst
-      md5: e2984fb1bad5a7426ae11b142b582b99
+      md5: 06c44f65296be8ddcb37bc29b0ed948b
       size: 349073914
     - path: data/lang/phones
-      md5: 52719ea4323e1e62b585724643adf7ed.dir
-      size: 140230378
+      md5: 28a0070a9a676cfbc3808ecb24ba2d27.dir
+      size: 140212008
       nfiles: 26
     - path: data/lang/phones.txt
-      md5: 6488e9778145bfd3cb796a933014010a
+      md5: 0f83abfad3bf8acb195132f6b8998437
       size: 752
     - path: data/lang/words.txt
       md5: 0ae157f267919ff61ca535cf6cab6c6e
       size: 35418407
     - path: exp/tri1/final.mdl
-      md5: 5d86c36d03fd7fa16892c005ba18b0f9
-      size: 3431586
+      md5: 91a8b67b998c8f5263f5ded31f32b69e
+      size: 3473839
     - path: exp/tri1/tree
-      md5: 50c34979c6c5621d5bb186993d132a18
-      size: 172085
+      md5: 537044c48ab3e60418eaed30046ecb34
+      size: 194573
     outs:
     - path: exp/tri1/graph/HCLG.fst
-      md5: f91c58c9239998d515ed43e512899cfd
-      size: 7491853809
+      md5: fdb132dc6d022b1fa7f1bef23807f329
+      size: 7551576625
     - path: exp/tri1/graph/words.txt
       md5: 0ae157f267919ff61ca535cf6cab6c6e
       size: 35418407
@@ -1279,14 +1302,14 @@ stages:
       md5: 0ae157f267919ff61ca535cf6cab6c6e
       size: 35418407
     - path: exp/tri1/final.mdl
-      md5: 5d86c36d03fd7fa16892c005ba18b0f9
-      size: 3431586
+      md5: 91a8b67b998c8f5263f5ded31f32b69e
+      size: 3473839
     - path: exp/tri1/graph/HCLG.fst
-      md5: f91c58c9239998d515ed43e512899cfd
-      size: 7491853809
+      md5: fdb132dc6d022b1fa7f1bef23807f329
+      size: 7551576625
     outs:
     - path: exp/metrics/tri1.json
-      md5: 2593373fac5982e890ac04bc8b603400
+      md5: 50822138ad1c0f0c0ed3dca61ec42edb
       size: 15
   mono_graph:
     cmd: cd $KALDI_ROOT/egs/wsj/s5; . ./path.sh; . ./cmd.sh; utils/mkgraph.sh /data/exp/kostya/ukroASR/data/lang
@@ -1296,28 +1319,28 @@ stages:
       md5: 482067a16268161bbc3a863c8f55bd43
       size: 403017006
     - path: data/lang/L.fst
-      md5: e2984fb1bad5a7426ae11b142b582b99
+      md5: 06c44f65296be8ddcb37bc29b0ed948b
       size: 349073914
     - path: data/lang/phones
-      md5: 52719ea4323e1e62b585724643adf7ed.dir
-      size: 140230378
+      md5: 28a0070a9a676cfbc3808ecb24ba2d27.dir
+      size: 140212008
       nfiles: 26
     - path: data/lang/phones.txt
-      md5: 6488e9778145bfd3cb796a933014010a
+      md5: 0f83abfad3bf8acb195132f6b8998437
       size: 752
     - path: data/lang/words.txt
       md5: 0ae157f267919ff61ca535cf6cab6c6e
       size: 35418407
     - path: exp/mono/final.mdl
-      md5: 68e9c96edeb2a8cfe2569785722b4871
-      size: 354612
+      md5: 93de26e609b0a1193e9ea45875d3ab36
+      size: 333442
     - path: exp/mono/tree
-      md5: 6fe676939f4f5face3387f4dd329467f
-      size: 4309
+      md5: 9851b414f700788a797d09b2f4bee37e
+      size: 2963
     outs:
     - path: exp/mono/graph/HCLG.fst
-      md5: c4197754b8ce4417b6ba1f4322ed167e
-      size: 7903421365
+      md5: 182bc0440a663a1f116173c4a957c01b
+      size: 7903275313
     - path: exp/mono/graph/words.txt
       md5: 0ae157f267919ff61ca535cf6cab6c6e
       size: 35418407
@@ -1340,12 +1363,88 @@ stages:
       md5: 0ae157f267919ff61ca535cf6cab6c6e
       size: 35418407
     - path: exp/mono/final.mdl
-      md5: 68e9c96edeb2a8cfe2569785722b4871
-      size: 354612
+      md5: 93de26e609b0a1193e9ea45875d3ab36
+      size: 333442
     - path: exp/mono/graph/HCLG.fst
-      md5: c4197754b8ce4417b6ba1f4322ed167e
-      size: 7903421365
+      md5: 182bc0440a663a1f116173c4a957c01b
+      size: 7903275313
     outs:
     - path: exp/metrics/mono.json
-      md5: 3bc2cc3b5ebf9dc150becbb295f4094e
+      md5: 593b87ed7b0e82263fab30fe8e548860
       size: 15
+  tri3b_075kshort_metrics:
+    cmd: cd $KALDI_ROOT/egs/wsj/s5; . ./path.sh; . ./cmd.sh; steps/decode_fmllr.sh
+      --nj 4 /data/exp/kostya/ukroASR/exp/tri3b/graph /data/exp/kostya/ukroASR/data/dev_0.75kshort
+      /data/exp/kostya/ukroASR/exp/tri3b/decode_dev_0.75kshort; /data/exp/kostya/ukroASR/parce_wer_report.sh
+      /data/exp/kostya/ukroASR/exp/tri3b/decode_dev_0.75kshort/scoring_kaldi/best_wer
+      /data/exp/kostya/ukroASR/exp/metrics/tri3b_0.75kshort.json
+    deps:
+    - path: data/dev_0.75kshort/cmvn.scp
+      md5: 0e5b20ac9167931c8ac1b447bfa8a403
+      size: 291
+    - path: data/dev_0.75kshort/feats.scp
+      md5: f1e8c959b330d7272a0dbc33a3a0cbc4
+      size: 88433
+    - path: data/dev_0.75kshort/utt2spk
+      md5: 8ef11c362c02133f7815d7d4e4de452e
+      size: 53772
+    - path: data/lang/phones
+      md5: 28a0070a9a676cfbc3808ecb24ba2d27.dir
+      size: 140212008
+      nfiles: 26
+    - path: data/lang/words.txt
+      md5: 0ae157f267919ff61ca535cf6cab6c6e
+      size: 35418407
+    - path: exp/tri3b/final.mat
+      md5: b926ebf718e453ee1a0eb40147a8c5b3
+      size: 14575
+    - path: exp/tri3b/final.mdl
+      md5: a42ba8b9e6969631fcc15a5730a762d9
+      size: 5267994
+    - path: exp/tri3b/graph/HCLG.fst
+      md5: ef137148feddb5dac51bfc1ec1d38f90
+      size: 7605209009
+    - path: exp/tri3b/tree
+      md5: 2b082bda44303382fc26246d9eaee0ca
+      size: 194905
+    outs:
+    - path: exp/metrics/tri3b_0.75kshort.json
+      md5: 38996df209439126400f3a333c0eed9b
+      size: 15
+    - path: exp/tri3b/decode_dev_0.75kshort/lat.1.gz
+      md5: 5ee1cb1e493f87af37f54faf394ec2d7
+      size: 854386
+    - path: exp/tri3b/decode_dev_0.75kshort/lat.2.gz
+      md5: 8d0d47c0032bf886d3333fd65ced9224
+      size: 864028
+    - path: exp/tri3b/decode_dev_0.75kshort/lat.3.gz
+      md5: e464241a9e7de7cd338748429f705266
+      size: 180460
+    - path: exp/tri3b/decode_dev_0.75kshort/lat.4.gz
+      md5: 59f3ae1b4995f211616730c156979c88
+      size: 1296350
+  tri3b_075kshort_rescore_metrics:
+    cmd: cd $KALDI_ROOT/egs/wsj/s5; . ./path.sh; . ./cmd.sh; steps/lmrescore_const_arpa.sh
+      /data/exp/kostya/ukroASR/data/lang /data/exp/kostya/ukroASR/data/carpa /data/exp/kostya/ukroASR/data/dev_0.75kshort                                            /data/exp/kostya/ukroASR/exp/tri3b/decode_dev_0.75kshort
+      /data/exp/kostya/ukroASR/exp/tri3b/rescore_dev_0.75kshort; /data/exp/kostya/ukroASR/parce_wer_report.sh
+      /data/exp/kostya/ukroASR/exp/tri3b/rescore_dev_0.175kshort/scoring_kaldi/best_wer                                   /data/exp/kostya/ukroASR/exp/metrics/tri3b_0.75kshort_rescore.json
+    deps:
+    - path: data/carpa/G.carpa
+      md5: fc3f0ca96ca10676ba31143f596f2cf7
+      size: 8753736352
+    - path: exp/tri3b/decode_dev_0.75kshort/lat.1.gz
+      md5: 5ee1cb1e493f87af37f54faf394ec2d7
+      size: 854386
+    - path: exp/tri3b/decode_dev_0.75kshort/lat.2.gz
+      md5: 8d0d47c0032bf886d3333fd65ced9224
+      size: 864028
+    - path: exp/tri3b/decode_dev_0.75kshort/lat.3.gz
+      md5: e464241a9e7de7cd338748429f705266
+      size: 180460
+    - path: exp/tri3b/decode_dev_0.75kshort/lat.4.gz
+      md5: 59f3ae1b4995f211616730c156979c88
+      size: 1296350
+    outs:
+    - path: exp/metrics/tri3b_0.75kshort_rescore.json
+      md5: 9d32c327a47d3183aa33cd620573f5d7
+      size: 10

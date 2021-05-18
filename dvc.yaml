@@ -530,6 +530,15 @@ stages:
     - exp/tri3b/tree
     metrics:
     - exp/metrics/tri3b.json
+    outs:
+    - exp/tri3b/decode_dev_0.15k/lat.1.gz:
+        cache: false
+    - exp/tri3b/decode_dev_0.15k/lat.2.gz:
+        cache: false
+    - exp/tri3b/decode_dev_0.15k/lat.3.gz:
+        cache: false
+    - exp/tri3b/decode_dev_0.15k/lat.4.gz:
+        cache: false
   carpa:
     cmd: cd $KALDI_ROOT/egs/wsj/s5; . ./path.sh; . ./cmd.sh; utils/build_const_arpa_lm.sh
       /data/exp/kostya/ukroASR/data/lm_ukr_o4.gz /data/exp/kostya/ukroASR/data/lang
@@ -546,15 +555,11 @@ stages:
       /data/exp/kostya/ukroASR/parce_wer_report.sh /data/exp/kostya/ukroASR/exp/tri3b/rescore_dev_0.15k/scoring_kaldi/best_wer
       /data/exp/kostya/ukroASR/exp/metrics/tri3b_rescore.json
     deps:
-    - data/dev_0.15k/cmvn.scp
-    - data/dev_0.15k/feats.scp
-    - data/dev_0.15k/utt2spk
-    - data/lang/phones
-    - data/lang/words.txt
-    - exp/tri3b/final.mat
-    - exp/tri3b/final.mdl
-    - exp/tri3b/graph/HCLG.fst
-    - exp/tri3b/tree
+    - data/carpa/G.carpa
+    - exp/tri3b/decode_dev_0.15k/lat.1.gz
+    - exp/tri3b/decode_dev_0.15k/lat.2.gz
+    - exp/tri3b/decode_dev_0.15k/lat.3.gz
+    - exp/tri3b/decode_dev_0.15k/lat.4.gz
     metrics:
     - exp/metrics/tri3b_rescore.json
   local_dict_train:
@@ -586,6 +591,10 @@ stages:
     deps:
     - artifacts/lexicon.txt
     - data/lm_ukr_o3.gz
+    - data/local/dict/extra_questions.txt
+    - data/local/dict/nonsilence_phones.txt
+    - data/local/dict/optional_silence.txt
+    - data/local/dict/silence_phones.txt
     - prepare_local_dict_from_lm.sh
     outs:
     - data/local/dict_lm_train/lexicon.txt
@@ -609,6 +618,10 @@ stages:
       /data/exp/kostya/ukroASR/data/train/text
     deps:
     - artifacts/lexicon.txt
+    - data/local/dict/extra_questions.txt
+    - data/local/dict/nonsilence_phones.txt
+    - data/local/dict/optional_silence.txt
+    - data/local/dict/silence_phones.txt
     - data/train/text
     - prepare_local_dict_from_text.sh
     outs:
@@ -635,3 +648,43 @@ stages:
     - data/lang_am_train/words.txt
     - data/local/dict_am_train/lexiconp.txt:
         cache: false
+  tri3b_075kshort_metrics:
+    cmd: cd $KALDI_ROOT/egs/wsj/s5; . ./path.sh; . ./cmd.sh; steps/decode_fmllr.sh
+      --nj 4 /data/exp/kostya/ukroASR/exp/tri3b/graph /data/exp/kostya/ukroASR/data/dev_0.75kshort
+      /data/exp/kostya/ukroASR/exp/tri3b/decode_dev_0.75kshort; /data/exp/kostya/ukroASR/parce_wer_report.sh
+      /data/exp/kostya/ukroASR/exp/tri3b/decode_dev_0.75kshort/scoring_kaldi/best_wer
+      /data/exp/kostya/ukroASR/exp/metrics/tri3b_0.75kshort.json
+    deps:
+    - data/dev_0.75kshort/cmvn.scp
+    - data/dev_0.75kshort/feats.scp
+    - data/dev_0.75kshort/utt2spk
+    - data/lang/phones
+    - data/lang/words.txt
+    - exp/tri3b/final.mat
+    - exp/tri3b/final.mdl
+    - exp/tri3b/graph/HCLG.fst
+    - exp/tri3b/tree
+    outs:
+    - exp/tri3b/decode_dev_0.75kshort/lat.1.gz:
+        cache: false
+    - exp/tri3b/decode_dev_0.75kshort/lat.2.gz:
+        cache: false
+    - exp/tri3b/decode_dev_0.75kshort/lat.3.gz:
+        cache: false
+    - exp/tri3b/decode_dev_0.75kshort/lat.4.gz:
+        cache: false
+    metrics:
+    - exp/metrics/tri3b_0.75kshort.json
+  tri3b_075kshort_rescore_metrics:
+    cmd: cd $KALDI_ROOT/egs/wsj/s5; . ./path.sh; . ./cmd.sh; steps/lmrescore_const_arpa.sh
+      /data/exp/kostya/ukroASR/data/lang /data/exp/kostya/ukroASR/data/carpa /data/exp/kostya/ukroASR/data/dev_0.75kshort                                            /data/exp/kostya/ukroASR/exp/tri3b/decode_dev_0.75kshort
+      /data/exp/kostya/ukroASR/exp/tri3b/rescore_dev_0.75kshort; /data/exp/kostya/ukroASR/parce_wer_report.sh
+      /data/exp/kostya/ukroASR/exp/tri3b/rescore_dev_0.175kshort/scoring_kaldi/best_wer                                   /data/exp/kostya/ukroASR/exp/metrics/tri3b_0.75kshort_rescore.json
+    deps:
+    - data/carpa/G.carpa
+    - exp/tri3b/decode_dev_0.75kshort/lat.1.gz
+    - exp/tri3b/decode_dev_0.75kshort/lat.2.gz
+    - exp/tri3b/decode_dev_0.75kshort/lat.3.gz
+    - exp/tri3b/decode_dev_0.75kshort/lat.4.gz
+    metrics:
+    - exp/metrics/tri3b_0.75kshort_rescore.json
