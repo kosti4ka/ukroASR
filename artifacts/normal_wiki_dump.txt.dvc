@@ -1,0 +1,4 @@
+outs:
+- md5: 24ec0e104e0f81a259e8246f7ce0f7a1
+  size: 2336319413
+  path: normal_wiki_dump.txt
